@@ -1,27 +1,27 @@
 const steps = [
   {
     number: "01",
-    title: "Align",
+    title: "ONBOARD & ALIGN",
     description:
-      "We align on expectations, markets, and goals during onboarding.",
+      "World class onboarding ensures you're ready to sell fiber and represent Rivvia.",
   },
   {
     number: "02",
-    title: "Plug In",
+    title: "PLUG IN & PLAY",
     description:
-      "You're plugged into active territories with leads delivered in real time.",
+      "We plug you into our systems, processes, and booming markets so you can hit the ground running.",
   },
   {
     number: "03",
-    title: "Execute",
+    title: "EXECUTE & EARN",
     description:
-      "Your focus is selling and closing while performance data tracks progress.",
+      "Start closing quickly and earn what you deserve. We'll help you perform better so you can earn more.",
   },
   {
     number: "04",
-    title: "Grow",
+    title: "REPEAT & GROW",
     description:
-      "As markets expand and results grow, so does your opportunity.",
+      "The reps who stick with us grow into new earning potentials, Positions, and more.",
   },
 ];
 
@@ -32,14 +32,11 @@ export default function HowItWorks() {
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-20">
           <p className="text-white/50 text-sm uppercase tracking-[0.3em] mb-4">
-            The Process
+            The Sales Process
           </p>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6">
-            HOW SELLING WITH RIVVIA WORKS
+            BUILT FOR BIG GROWTH
           </h2>
-          <p className="text-white/60 max-w-xl mx-auto">
-            Simple process. Clear systems. No guesswork.
-          </p>
         </div>
 
         {/* Steps */}

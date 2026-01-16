@@ -5,15 +5,15 @@ const stats = [
   },
   {
     value: "25+",
-    label: "Active Markets Nationwide",
+    label: "High-Demand Markets",
   },
   {
     value: "32%",
-    label: "Average Conversion Rate",
+    label: "Conversion Rate",
   },
   {
-    value: "$4.50",
-    label: "Average Cost Per Lead",
+    value: "$15k",
+    label: "Monthly Commissions",
   },
 ];
 
@@ -23,16 +23,17 @@ export default function StatsSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-20">
-          <p className="text-white/50 text-sm uppercase tracking-[0.3em] mb-4">
-            Opportunity at Scale
-          </p>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6">
-            REAL VOLUME. REAL RESULTS.
+            OPPORTUNITY THAT SCALES
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto">
-            Rivvia operates across active markets nationwide, creating consistent
-            demand for our sales teams. This is not a test environment—you're
-            stepping into a live system that produces real volume.
+          <p className="text-xl md:text-2xl text-white/80 font-semibold mb-4">
+            Real Volume. Real Growth. Real Results.
+          </p>
+          <p className="text-white/60 max-w-2xl mx-auto italic mb-6">
+            Consistent Demand for our sales teams across a nationwide market.
+          </p>
+          <p className="text-white/70 max-w-2xl mx-auto">
+            These are real numbers:
           </p>
         </div>
 
@@ -52,10 +53,8 @@ export default function StatsSection() {
         </div>
 
         {/* Bottom text */}
-        <p className="text-center text-white/40 mt-12 text-sm">
-          These numbers exist to answer one question: will you have opportunity
-          here?{" "}
-          <span className="text-white/80 font-medium">The answer is yes.</span>
+        <p className="text-center text-white/60 mt-12 text-base">
+          We've provided these numbers to answer the question: "how big is the opportunity?" <span className="text-white/90 font-medium">As big as you want it to be.</span>
         </p>
       </div>
     </section>

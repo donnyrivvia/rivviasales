@@ -9,26 +9,17 @@ export default function WhySection() {
             <h2 className="font-display text-5xl md:text-6xl lg:text-7xl tracking-tight leading-[0.95]">
               WHY SELL
               <br />
-              WITH RIVVIA
+              WITH RIVVIA?
             </h2>
           </div>
 
           {/* Right Column - Content */}
           <div className="space-y-6">
-            <p className="text-lg md:text-xl text-white/80 leading-relaxed">
-              Rivvia is designed for execution. Our platform, markets, and
-              support systems exist to help sales reps perform at a high level
-              without unnecessary friction.
+            <p className="text-xl md:text-2xl font-semibold text-white/90 leading-tight uppercase tracking-wide">
+              HIGH DEMAND. SERIOUS ENVIRONMENT. PROVEN SYSTEMS.
             </p>
-            <p className="text-base text-white/60 leading-relaxed">
-              Reps choose Rivvia because leads are provided through proven
-              acquisition channels, markets are active and expanding, and
-              expectations are clear from day one. Performance is tracked
-              openly, communication is direct, and growth is based on
-              results—not hype.
-            </p>
-            <p className="text-lg font-medium text-white/90 pt-4 border-t border-white/10">
-              This is a serious environment for serious sellers.
+            <p className="text-base text-white/70 leading-relaxed">
+              Rivvia is designed for excellence. From the high-demand product we sell (fiber internet) to the internal systems we've put into place, we've tooled our business to ensure your efforts are matched with maximum upside and wire-to-wire support.
             </p>
           </div>
         </div>

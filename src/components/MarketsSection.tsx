@@ -21,21 +21,14 @@ export default function MarketsSection() {
           <div>
             <div className="line-accent mb-6" />
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6">
-              MARKETS &<br />EXPANSION
+              CURRENT MARKETS &<br />MARKET EXPANSION
             </h2>
-            <p className="text-lg text-white/70 mb-6 leading-relaxed">
-              Rivvia operates in live markets across the country, with new
-              territories launching regularly. Sales reps can view available
-              markets, see where demand is strongest, and expand as opportunity
-              grows.
+            <p className="text-lg text-white/70 mb-6 leading-relaxed uppercase tracking-wide">
+              RIVVIA CURRENTLY OPERATES IN [NUMBER] MARKETS ACROSS THE COUNTRY, AND CONSISTENTLY OPENS NEW MARKETS EACH QUARTER.
             </p>
-            <p className="text-white/50 mb-8">
-              You&apos;re never selling blind—we prioritize markets with real activity
-              and measurable demand.
+            <p className="text-white/60 mb-8">
+              Each market is strategically picked for Fiber adoption to ensure the highest close rate possible.
             </p>
-            <Link href="#join" className="btn-primary inline-block">
-              View Open Markets
-            </Link>
           </div>
 
           {/* Visual - Abstract Map Representation */}

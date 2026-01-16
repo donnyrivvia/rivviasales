@@ -19,9 +19,10 @@ export default function FooterCTA() {
           </h2>
 
           {/* Description */}
-          <p className="text-lg md:text-xl text-white/60 mb-10 max-w-xl mx-auto">
-            If you&apos;re looking for a sales opportunity with real demand, clear
-            systems, and room to grow, Rivvia is ready.
+          <p className="text-lg md:text-xl text-white/70 mb-10 max-w-xl mx-auto">
+            Real Opportunities. Bigger Upside.
+            <br />
+            All without the unnecessary hype:
           </p>
 
           {/* CTA */}
@@ -29,7 +30,7 @@ export default function FooterCTA() {
             href="#"
             className="btn-primary inline-flex items-center gap-3 text-lg"
           >
-            Join the Rivvia Sales Team
+            JOIN TODAY
             <svg
               className="w-5 h-5"
               fill="none"

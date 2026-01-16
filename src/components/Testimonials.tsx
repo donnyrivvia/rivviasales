@@ -19,11 +19,8 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <p className="text-white/50 text-sm uppercase tracking-[0.3em] mb-4">
-            From the Team
-          </p>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight">
-            WHAT REPS ARE SAYING
+            WHAT OUR REPS ARE SAYING
           </h2>
         </div>
 

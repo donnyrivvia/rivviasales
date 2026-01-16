@@ -1,8 +1,8 @@
 const traits = [
-  "Wants leads provided",
-  "Prefers structure over chaos",
-  "Values transparency",
-  "Motivated by performance",
+  "VALUES STRUCTURE OVER HYPE",
+  "IS MOTIVATED BY REAL OPPORTUNITY",
+  "CRAVES SELF IMPROVEMENT/PERFORMANCE",
+  "VALUES TRANSPARENCY",
 ];
 
 export default function WhoSection() {
@@ -13,15 +13,14 @@ export default function WhoSection() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-white/50 text-sm uppercase tracking-[0.3em] mb-4">
-            Who We&apos;re Looking For
-          </p>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-8">
-            WHO RIVVIA IS BUILT FOR
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-tight mb-8">
+            RIVVIA ISN&apos;T FOR EVERYONE
+            <br />
+            HERE&apos;S WHO WE BUILT IT FOR
           </h2>
 
-          <p className="text-lg md:text-xl text-white/70 mb-12">
-            Rivvia is a strong fit if you are a sales rep who:
+          <p className="text-lg md:text-xl text-white/70 mb-12 uppercase tracking-wide">
+            THE RIGHT RIVVIA CANDIDATE:
           </p>
 
           {/* Traits Grid */}
@@ -31,21 +30,17 @@ export default function WhoSection() {
                 key={index}
                 className="flex items-center gap-4 p-5 border border-white/10 hover:border-white/25 transition-colors text-left"
               >
-                <div className="w-8 h-8 flex items-center justify-center border border-white/30 text-sm font-medium">
-                  {index + 1}
+                <div className="w-10 h-10 flex items-center justify-center border border-white/30 text-sm font-medium shrink-0">
+                  [{String(index + 1).padStart(2, '0')}]
                 </div>
-                <span className="text-white/80">{trait}</span>
+                <span className="text-white/80 text-sm uppercase tracking-wide">{trait}</span>
               </div>
             ))}
           </div>
 
-          <p className="text-white/60 text-lg">
-            If you&apos;re looking for a place to plug in, execute, and grow over
-            time,{" "}
-            <span className="text-white font-medium">
-              Rivvia is built for you.
-            </span>
-          </p>
+          <a href="#join" className="btn-secondary inline-block">
+            READY?
+          </a>
         </div>
       </div>
     </section>

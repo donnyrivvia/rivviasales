@@ -31,39 +31,33 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32 pt-40">
         <div className="max-w-4xl">
-          {/* Eyebrow */}
-          <p className="text-white/60 text-sm uppercase tracking-[0.3em] mb-6 animate-fade-in-up text-center">
-            Build Your Sales Career
-          </p>
-
           {/* Main Headline */}
-          <h1 className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] mb-6 animate-fade-in-up delay-100 text-center">
-            SELL WITH
+          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[0.95] mb-6 animate-fade-in-up text-center">
+            A BETTER SALES CAREER
             <br />
-            CONFIDENCE
+            BEGINS AT RIVVIA //
           </h1>
 
           {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-white/80 max-w-2xl mb-10 leading-relaxed animate-fade-in-up delay-200 text-center">
-            Leads provided. Active markets. Real opportunity.
+          <p className="text-sm md:text-base text-white/70 max-w-3xl mb-10 leading-relaxed animate-fade-in-up delay-100 text-center uppercase tracking-wider">
+            LEADING FIBER PROVIDER // INBOUND LEADS // HOT MARKETS // MEANINGFUL OPPORTUNITIES // INCENTIVES
           </p>
 
           {/* Description */}
-          <p className="text-base text-white/60 max-w-xl mb-10 animate-fade-in-up delay-300 text-center">
-            Rivvia is built for sales reps who want consistency, support, and a
-            system that works. We remove the guesswork from selling.
+          <p className="text-base md:text-lg text-white/60 max-w-2xl mb-10 animate-fade-in-up delay-200 text-center italic leading-relaxed">
+            Rivvia is built for sales reps who care more about consistency and less about hype. Our product, systems, and platforms are designed to help you win, win big, and win consistently.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-400 justify-start sm:justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-300 justify-start sm:justify-center items-center">
             <Link href="#join" className="btn-primary inline-block text-center">
-              Join the Rivvia Sales Team
+              Join the Team
             </Link>
             <Link
               href="#how-it-works"
               className="btn-secondary inline-block text-center"
             >
-              See How It Works
+              Learn More
             </Link>
           </div>
         </div>
