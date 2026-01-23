@@ -1,6 +1,6 @@
 export default function CultureSection() {
   return (
-    <section className="py-24 md:py-32 bg-[#0a0a0a]">
+    <section data-theme="dark" className="py-24 md:py-32 bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           {/* Section Header */}

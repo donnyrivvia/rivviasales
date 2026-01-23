@@ -1,19 +1,42 @@
 const traits = [
-  "VALUES STRUCTURE OVER HYPE",
-  "IS MOTIVATED BY REAL OPPORTUNITY",
-  "CRAVES SELF IMPROVEMENT/PERFORMANCE",
-  "VALUES TRANSPARENCY",
+  {
+    text: "VALUES STRUCTURE OVER HYPE",
+    image: "/placeholder-1.jpg" // Replace with your actual image path
+  },
+  {
+    text: "IS MOTIVATED BY REAL OPPORTUNITY",
+    image: "/placeholder-2.jpg" // Replace with your actual image path
+  },
+  {
+    text: "CRAVES SELF IMPROVEMENT/PERFORMANCE",
+    image: "/placeholder-3.jpg" // Replace with your actual image path
+  },
+  {
+    text: "VALUES TRANSPARENCY",
+    image: "/placeholder-4.jpg" // Replace with your actual image path
+  },
 ];
 
 export default function WhoSection() {
   return (
-    <section className="py-24 md:py-32 bg-black relative overflow-hidden">
+    <section 
+      data-theme="dark" 
+      className="py-24 md:py-32 relative overflow-hidden"
+      style={{
+        backgroundImage: 'url(/bts1.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}
+    >
+      {/* Black overlay at 40% opacity */}
+      <div className="absolute inset-0 bg-black/40 z-0" />
+      
       {/* Background accent */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-white/[0.02] to-transparent" />
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-white/[0.02] to-transparent z-0" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-tight mb-8">
+        <div className="w-[100%] flex flex-col items-center justify-center">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-tight mb-8 text-center">
             RIVVIA ISN&apos;T FOR EVERYONE
             <br />
             HERE&apos;S WHO WE BUILT IT FOR
@@ -24,16 +47,29 @@ export default function WhoSection() {
           </p>
 
           {/* Traits Grid */}
-          <div className="grid sm:grid-cols-2 gap-4 mb-12">
+          <div className="flex justify-center items-center w-[100%] gap-5 mb-[70px]">
             {traits.map((trait, index) => (
               <div
                 key={index}
-                className="flex items-center gap-4 p-5 border border-white/10 hover:border-white/25 transition-colors text-left"
+                className="trait-image-card relative h-[600px] w-[300px] overflow-hidden border border-white/10 hover:border-white/25 transition-all duration-300 group"
+                style={{
+                  backgroundImage: `url(${trait.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
               >
-                <div className="w-10 h-10 flex items-center justify-center border border-white/30 text-sm font-medium shrink-0">
-                  [{String(index + 1).padStart(2, '0')}]
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-80 group-hover:opacity-70 transition-opacity" />
+                
+                {/* Text content - bottom left */}
+                <div className="absolute bottom-0 left-0 p-6 z-10 h-full flex flex-col gap-0 items-stretch justify-between">
+                  <div className="w-10 h-10 flex items-center justify-center border border-white/50 text-sm font-medium mb-3">
+                    [{String(index + 1).padStart(2, '0')}]
+                  </div>
+                  <span className="text-white text-sm uppercase tracking-wide font-semibold leading-tight block">
+                    {trait.text}
+                  </span>
                 </div>
-                <span className="text-white/80 text-sm uppercase tracking-wide">{trait}</span>
               </div>
             ))}
           </div>
