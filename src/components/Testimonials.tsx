@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const testimonials = [
   {
@@ -27,6 +27,27 @@ const testimonials = [
 
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  // Handle video play - pause all other videos
+  const handleVideoPlay = (playingIndex: number) => {
+    videoRefs.current.forEach((video, index) => {
+      if (video && index !== playingIndex && !video.paused) {
+        video.pause();
+      }
+    });
+  };
+
+  // Add play event listeners to all videos
+  useEffect(() => {
+    videoRefs.current.forEach((video, index) => {
+      if (video) {
+        const playHandler = () => handleVideoPlay(index);
+        video.addEventListener('play', playHandler);
+        return () => video.removeEventListener('play', playHandler);
+      }
+    });
+  }, []);
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
@@ -68,6 +89,7 @@ export default function Testimonials() {
                     {/* Video */}
                     <div className="w-full bg-black">
                       <video
+                        ref={(el) => (videoRefs.current[index] = el)}
                         controls
                         className="w-full"
                         preload="metadata"
