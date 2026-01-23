@@ -1,14 +1,22 @@
 const testimonials = [
   {
-    quote:
-      "Having leads provided completely changed how I sell. I can focus on conversations and closing instead of chasing.",
-    author: "Sales Rep",
+    videoId: "202f6766-8911-4b1d-a3a4-3142365ae6dc",
+    author: "Golden Door Winner",
     role: "Rivvia Team Member",
   },
   {
-    quote:
-      "The transparency and structure made it easy to understand where I stood and how to improve.",
-    author: "Sales Rep",
+    videoId: "33dfcd85-fbe4-4e99-9210-9712a09dedf0",
+    author: "Golden Door Winner",
+    role: "Rivvia Team Member",
+  },
+  {
+    videoId: "b8562cbf-b21c-4e6b-af12-4b0582d07e40",
+    author: "Golden Door Winner",
+    role: "Rivvia Team Member",
+  },
+  {
+    videoId: "380be2c9-4183-4b4e-97e8-a19205c27cd0",
+    author: "Golden Door Winner",
     role: "Rivvia Team Member",
   },
 ];
@@ -30,21 +38,23 @@ export default function Testimonials() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="relative p-8 md:p-10 border border-white/10 hover:border-white/20 transition-colors"
+              className="relative border border-white/10 hover:border-white/20 transition-colors overflow-hidden"
             >
-              {/* Quote Mark */}
-              <div className="absolute top-6 left-8 font-display text-6xl text-white/10 leading-none">
-                &ldquo;
+              {/* Video */}
+              <div className="w-full aspect-video bg-black">
+                <video
+                  controls
+                  className="w-full h-full object-cover"
+                  preload="metadata"
+                >
+                  <source src={`https://vz-d6574812-a94.b-cdn.net/${testimonial.videoId}/play_1080p.mp4`} type="video/mp4" />
+                  <source src={`https://vz-d6574812-a94.b-cdn.net/${testimonial.videoId}/play_720p.mp4`} type="video/mp4" />
+                </video>
               </div>
 
-              {/* Quote */}
-              <blockquote className="relative z-10 pt-8">
-                <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-8">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </p>
-
-                {/* Author */}
-                <footer className="flex items-center gap-4">
+              {/* Author Info */}
+              <div className="p-6 bg-black/50">
+                <div className="flex items-center gap-4">
                   <div className="w-10 h-10 bg-white/10 flex items-center justify-center">
                     <span className="text-sm font-medium">
                       {testimonial.author.charAt(0)}
@@ -52,14 +62,14 @@ export default function Testimonials() {
                   </div>
                   <div>
                     <div className="text-sm font-medium text-white/90">
-                      — {testimonial.author}
+                      {testimonial.author}
                     </div>
                     <div className="text-xs text-white/50 uppercase tracking-wider">
                       {testimonial.role}
                     </div>
                   </div>
-                </footer>
-              </blockquote>
+                </div>
+              </div>
             </div>
           ))}
         </div>
