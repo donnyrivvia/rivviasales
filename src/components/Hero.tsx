@@ -1,21 +1,53 @@
+'use client';
+
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 export default function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Load HLS.js for .m3u8 streaming
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Check if browser supports HLS natively (Safari)
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = 'https://vz-d6574812-a94.b-cdn.net/509413b9-062f-4197-aecc-b05790e48114/playlist.m3u8';
+    } 
+    // Use HLS.js for other browsers
+    else if (typeof window !== 'undefined') {
+      import('hls.js').then(({ default: Hls }) => {
+        if (Hls.isSupported()) {
+          const hls = new Hls({
+            enableWorker: true,
+            lowLatencyMode: true,
+          });
+          hls.loadSource('https://vz-d6574812-a94.b-cdn.net/509413b9-062f-4197-aecc-b05790e48114/playlist.m3u8');
+          hls.attachMedia(video);
+          
+          return () => {
+            hls.destroy();
+          };
+        }
+      });
+    }
+  }, []);
+
   return (
     <section data-theme="light" className="bg-white relative min-h-screen flex items-center justify-start overflow-hidden">
       {/* Background Video */}
       <div className="absolute inset-0">
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="https://drive.google.com/uc?export=download&id=1i945Qj4pfvJFao8Xlbplt0GTef9qTYJ8" type="video/mp4" />
-        </video>
+        />
       </div>
-      
+
       {/* Content */}
       <div className="relative z-10 w-full max-w-[90vw] px-6 lg:px-8 py-32 pt-40 flex flex-col items-start justify-start mx-auto">
         <div className="max-w-4xl flex flex-col">
