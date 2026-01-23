@@ -34,7 +34,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Background Video */}
+      {/* Background Video - High Quality Only */}
       <div className={`absolute inset-0 transition-opacity duration-700 ${
         isVideoLoaded ? 'opacity-100' : 'opacity-0'
       }`}>
@@ -47,8 +47,8 @@ export default function Hero() {
           onCanPlayThrough={handleVideoLoad}
           className="absolute inset-0 w-full h-full object-cover"
         >
+          {/* Using 1080p only for guaranteed high quality */}
           <source src="https://vz-d6574812-a94.b-cdn.net/509413b9-062f-4197-aecc-b05790e48114/play_1080p.mp4" type="video/mp4" />
-          <source src="https://vz-d6574812-a94.b-cdn.net/509413b9-062f-4197-aecc-b05790e48114/play_720p.mp4" type="video/mp4" />
         </video>
       </div>
       
