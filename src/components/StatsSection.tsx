@@ -12,9 +12,9 @@ const stats = [
     format: (n: number) => n.toLocaleString(),
   },
   {
-    value: "15",
+    value: "16",
     label: "Number of Golden Door Winners in 2025",
-    target: 15,
+    target: 16,
     prefix: "",
     suffix: "",
     format: (n: number) => n.toString(),
