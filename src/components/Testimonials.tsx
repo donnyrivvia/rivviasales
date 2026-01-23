@@ -41,10 +41,10 @@ export default function Testimonials() {
               className="relative border border-white/10 hover:border-white/20 transition-colors overflow-hidden"
             >
               {/* Video */}
-              <div className="w-full aspect-video bg-black">
+              <div className="w-full bg-black">
                 <video
                   controls
-                  className="w-full h-full object-cover"
+                  className="w-full"
                   preload="metadata"
                 >
                   <source src={`https://vz-d6574812-a94.b-cdn.net/${testimonial.videoId}/play_1080p.mp4`} type="video/mp4" />
