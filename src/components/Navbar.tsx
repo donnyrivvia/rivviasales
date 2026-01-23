@@ -7,6 +7,7 @@ const navLinks = [
   { href: "#about", label: "About" },
   { href: "#how-it-works", label: "How It Works" },
   { href: "/incentives", label: "Incentives" },
+  { href: "/golden-door", label: "Golden Door" },
   { href: "https://apps.apple.com/app/knockvia", label: "Knockvia", external: true },
   { href: "https://store.rivvia.com", label: "Store", external: true },
 ];

@@ -113,14 +113,9 @@ const generateSimpleGrid = () => {
 
 export default function MarketsSection() {
   const [isMounted, setIsMounted] = useState(false);
-  const [animateGrid, setAnimateGrid] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-    // Start animation after component mounts
-    setTimeout(() => {
-      setAnimateGrid(true);
-    }, 300);
   }, []);
 
   // Memoize grid generation - only compute once after mount
@@ -129,10 +124,10 @@ export default function MarketsSection() {
     return generateSimpleGrid();
   }, [isMounted]);
   return (
-    <section data-theme="dark" id="markets" className="py-24 md:py-32 bg-black relative overflow-hidden h-screen min-h-[1200px] flex items-center justify-center">
+    <section data-theme="dark" id="markets" className="bg-black relative overflow-hidden h-[120vh] min-h-[1500px] flex items-center justify-center">
       
       {/* Full Width Map Background */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="relative h-full w-full flex items-center justify-center">
         <div className="relative w-full max-w-[90vw] h-full mx-auto">
           <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent flex items-center justify-center">
             <svg
@@ -151,11 +146,7 @@ export default function MarketsSection() {
                     width={SQUARE_SIZE}
                     height={SQUARE_SIZE}
                     fill="white"
-                    opacity={animateGrid ? square.opacity : 0}
-                    style={{
-                      transition: `opacity 0.4s ease-out`,
-                      transitionDelay: `${index * 0.5}ms`,
-                    }}
+                    opacity={square.opacity}
                   />
                 ))}
               </g>

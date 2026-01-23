@@ -1,19 +1,19 @@
 const traits = [
   {
     text: "VALUES STRUCTURE OVER HYPE",
-    image: "/placeholder-1.jpg" // Replace with your actual image path
+    image: "/growth1.png" // Replace with your actual image path
   },
   {
     text: "IS MOTIVATED BY REAL OPPORTUNITY",
-    image: "/placeholder-2.jpg" // Replace with your actual image path
+    image: "/growth2.png" // Replace with your actual image path
   },
   {
     text: "CRAVES SELF IMPROVEMENT/PERFORMANCE",
-    image: "/placeholder-3.jpg" // Replace with your actual image path
+    image: "/growth3.png" // Replace with your actual image path
   },
   {
     text: "VALUES TRANSPARENCY",
-    image: "/placeholder-4.jpg" // Replace with your actual image path
+    image: "/growth4.png" // Replace with your actual image path
   },
 ];
 
