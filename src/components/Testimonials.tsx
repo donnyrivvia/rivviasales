@@ -52,19 +52,19 @@ export default function Testimonials() {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative max-w-3xl mx-auto">
-          {/* Video Card */}
+        <div className="relative">
+          {/* Video Cards - Horizontal Scroll */}
           <div className="relative overflow-hidden">
             <div
-              className="flex transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              className="flex gap-6 transition-transform duration-500 ease-out"
+              style={{ transform: `translateX(-${currentIndex * (100 / testimonials.length + 1.5)}%)` }}
             >
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="min-w-full"
+                  className="flex-shrink-0 w-[calc(25%-18px)]"
                 >
-                  <div className="relative border border-white/10 overflow-hidden">
+                  <div className="relative border border-white/10 hover:border-white/20 transition-colors overflow-hidden">
                     {/* Video */}
                     <div className="w-full bg-black">
                       <video
@@ -78,18 +78,18 @@ export default function Testimonials() {
                     </div>
 
                     {/* Author Info */}
-                    <div className="p-6 bg-black/50">
-                      <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 bg-white/10 flex items-center justify-center">
-                          <span className="text-sm font-medium">
+                    <div className="p-4 bg-black/50">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-white/10 flex items-center justify-center flex-shrink-0">
+                          <span className="text-xs font-medium">
                             {testimonial.author.charAt(0)}
                           </span>
                         </div>
-                        <div>
-                          <div className="text-sm font-medium text-white/90">
+                        <div className="min-w-0">
+                          <div className="text-xs font-medium text-white/90 truncate">
                             {testimonial.author}
                           </div>
-                          <div className="text-xs text-white/50 uppercase tracking-wider">
+                          <div className="text-[10px] text-white/50 uppercase tracking-wider truncate">
                             {testimonial.role}
                           </div>
                         </div>
@@ -104,7 +104,7 @@ export default function Testimonials() {
           {/* Navigation Arrows */}
           <button
             onClick={goToPrevious}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 w-10 h-10 flex items-center justify-center border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-14 w-12 h-12 flex items-center justify-center border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all z-10"
             aria-label="Previous testimonial"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -113,7 +113,7 @@ export default function Testimonials() {
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 w-10 h-10 flex items-center justify-center border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-14 w-12 h-12 flex items-center justify-center border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all z-10"
             aria-label="Next testimonial"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
