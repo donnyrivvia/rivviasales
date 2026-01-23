@@ -27,7 +27,12 @@ const testimonials = [
 
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(true);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const autoPlayRef = useRef<NodeJS.Timeout | undefined>(undefined);
+
+  // Create extended array for infinite loop (original + duplicate)
+  const extendedTestimonials = [...testimonials, ...testimonials];
 
   // Handle video play - pause all other videos
   const handleVideoPlay = (playingIndex: number) => {
@@ -49,15 +54,46 @@ export default function Testimonials() {
     });
   }, []);
 
+  // Auto-advance carousel
+  useEffect(() => {
+    autoPlayRef.current = setInterval(() => {
+      setCurrentIndex((prev) => prev + 1);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => {
+      if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current);
+      }
+    };
+  }, []);
+
+  // Handle infinite loop reset
+  useEffect(() => {
+    if (currentIndex === testimonials.length) {
+      // When we reach the duplicate set, reset to beginning without transition
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(0);
+        // Re-enable transition after reset
+        setTimeout(() => {
+          setIsTransitioning(true);
+        }, 50);
+      }, 500); // Wait for transition to complete
+    }
+  }, [currentIndex]);
+
   const goToPrevious = () => {
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current);
     setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
   };
 
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    setCurrentIndex((prev) => prev + 1);
   };
 
   const goToSlide = (index: number) => {
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current);
     setCurrentIndex(index);
   };
 
@@ -77,10 +113,13 @@ export default function Testimonials() {
           {/* Video Cards - Horizontal Scroll */}
           <div className="relative overflow-hidden">
             <div
-              className="flex gap-6 transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(-${currentIndex * 50}%)` }}
+              className="flex gap-6"
+              style={{
+                transform: `translateX(-${currentIndex * 50}%)`,
+                transition: isTransitioning ? 'transform 500ms ease-out' : 'none',
+              }}
             >
-              {testimonials.map((testimonial, index) => (
+              {extendedTestimonials.map((testimonial, index) => (
                 <div
                   key={index}
                   className="flex-shrink-0 w-[calc(50%-12px)]"
@@ -89,7 +128,9 @@ export default function Testimonials() {
                     {/* Video */}
                     <div className="w-full bg-black">
                       <video
-                        ref={(el) => (videoRefs.current[index] = el)}
+                        ref={(el) => {
+                          videoRefs.current[index] = el;
+                        }}
                         controls
                         className="w-full"
                         preload="metadata"
@@ -150,7 +191,7 @@ export default function Testimonials() {
                 key={index}
                 onClick={() => goToSlide(index)}
                 className={`w-2 h-2 transition-all ${
-                  index === currentIndex
+                  index === (currentIndex % testimonials.length)
                     ? 'bg-white w-8'
                     : 'bg-white/30 hover:bg-white/50'
                 }`}
