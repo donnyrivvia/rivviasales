@@ -1,17 +1,5 @@
 import Link from "next/link";
 
-// Video configuration
-// Local: Keep your video file in /public/video/ for development
-// Production: Upload to a proper CDN service for better performance
-// 
-// Recommended services for production:
-// 1. Cloudinary (best for videos) - https://cloudinary.com
-// 2. Bunny.net CDN - https://bunny.net  
-// 3. Vercel Blob Storage - https://vercel.com/docs/storage/vercel-blob
-//
-// For now, we'll use environment variable with fallback to local
-const VIDEO_URL = process.env.NEXT_PUBLIC_VIDEO_URL || "/video/website.MOV";
-
 export default function Hero() {
   return (
     <section data-theme="light" className="bg-white relative min-h-screen flex items-center justify-start overflow-hidden">
@@ -24,38 +12,10 @@ export default function Hero() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src={VIDEO_URL} type="video/mp4" />
-          {/* Fallback gradient if video doesn't load */}
+          <source src="https://drive.google.com/uc?export=download&id=1i945Qj4pfvJFao8Xlbplt0GTef9qTYJ8" type="video/mp4" />
         </video>
-        {/* Dark overlay to ensure text readability */}
-        {/* <div className="absolute inset-0 bg-black/20" /> */}
       </div>
-
-      {/* Fallback Background Gradient (shows if video doesn't load) */}
-      {/* <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0a0a0a] to-[#111] -z-10" /> */}
-
-      {/* Animated background shapes */}
-      {/* <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-white/[0.02] rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-white/[0.02] rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/[0.01] rounded-full blur-3xl" />
-      </div> */}
-
-      {/* Grid pattern overlay */}
-      {/* <div className="absolute inset-0 opacity-[0.01]">
-        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <defs>
-            <pattern id="heroGrid" width="4" height="4" patternUnits="userSpaceOnUse">
-              <path d="M 4 0 L 0 0 0 4" fill="none" stroke="white" strokeWidth="0.2"/>
-            </pattern>
-          </defs>
-          <rect width="100" height="100" fill="url(#heroGrid)" />
-        </svg>
-      </div> */}
-
-      {/* Radial gradient overlay */}
-      {/* <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.5)_100%)]" /> */}
-
+      
       {/* Content */}
       <div className="relative z-10 w-full max-w-[90vw] px-6 lg:px-8 py-32 pt-40 flex flex-col items-start justify-start mx-auto">
         <div className="max-w-4xl flex flex-col">
