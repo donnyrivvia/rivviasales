@@ -52,17 +52,17 @@ export default function Testimonials() {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative">
+        <div className="relative max-w-6xl mx-auto">
           {/* Video Cards - Horizontal Scroll */}
           <div className="relative overflow-hidden">
             <div
               className="flex gap-6 transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(-${currentIndex * (100 / testimonials.length + 1.5)}%)` }}
+              style={{ transform: `translateX(-${currentIndex * 50}%)` }}
             >
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 w-[calc(25%-18px)]"
+                  className="flex-shrink-0 w-[calc(50%-12px)]"
                 >
                   <div className="relative border border-white/10 hover:border-white/20 transition-colors overflow-hidden">
                     {/* Video */}
@@ -78,18 +78,18 @@ export default function Testimonials() {
                     </div>
 
                     {/* Author Info */}
-                    <div className="p-4 bg-black/50">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-white/10 flex items-center justify-center flex-shrink-0">
-                          <span className="text-xs font-medium">
+                    <div className="p-6 bg-black/50">
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 bg-white/10 flex items-center justify-center flex-shrink-0">
+                          <span className="text-sm font-medium">
                             {testimonial.author.charAt(0)}
                           </span>
                         </div>
                         <div className="min-w-0">
-                          <div className="text-xs font-medium text-white/90 truncate">
+                          <div className="text-sm font-medium text-white/90 truncate">
                             {testimonial.author}
                           </div>
-                          <div className="text-[10px] text-white/50 uppercase tracking-wider truncate">
+                          <div className="text-xs text-white/50 uppercase tracking-wider truncate">
                             {testimonial.role}
                           </div>
                         </div>
