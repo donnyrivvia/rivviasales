@@ -1,3 +1,7 @@
+'use client';
+
+import { useState } from 'react';
+
 const testimonials = [
   {
     videoId: "202f6766-8911-4b1d-a3a4-3142365ae6dc",
@@ -22,6 +26,20 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
+
   return (
     <section data-theme="dark" className="py-24 md:py-32 bg-black">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -33,45 +51,91 @@ export default function Testimonials() {
           <p className="text-white/60 text-lg max-w-2xl mx-auto">Get to know them and see what they're saying about their experience with Rivvia.</p>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {testimonials.map((testimonial, index) => (
+        {/* Carousel Container */}
+        <div className="relative max-w-3xl mx-auto">
+          {/* Video Card */}
+          <div className="relative overflow-hidden">
             <div
-              key={index}
-              className="relative border border-white/10 hover:border-white/20 transition-colors overflow-hidden"
+              className="flex transition-transform duration-500 ease-out"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
-              {/* Video */}
-              <div className="w-full bg-black">
-                <video
-                  controls
-                  className="w-full"
-                  preload="metadata"
+              {testimonials.map((testimonial, index) => (
+                <div
+                  key={index}
+                  className="min-w-full"
                 >
-                  <source src={`https://vz-d6574812-a94.b-cdn.net/${testimonial.videoId}/play_1080p.mp4`} type="video/mp4" />
-                  <source src={`https://vz-d6574812-a94.b-cdn.net/${testimonial.videoId}/play_720p.mp4`} type="video/mp4" />
-                </video>
-              </div>
-
-              {/* Author Info */}
-              <div className="p-6 bg-black/50">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-white/10 flex items-center justify-center">
-                    <span className="text-sm font-medium">
-                      {testimonial.author.charAt(0)}
-                    </span>
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium text-white/90">
-                      {testimonial.author}
+                  <div className="relative border border-white/10 overflow-hidden">
+                    {/* Video */}
+                    <div className="w-full bg-black">
+                      <video
+                        controls
+                        className="w-full"
+                        preload="metadata"
+                      >
+                        <source src={`https://vz-d6574812-a94.b-cdn.net/${testimonial.videoId}/play_1080p.mp4`} type="video/mp4" />
+                        <source src={`https://vz-d6574812-a94.b-cdn.net/${testimonial.videoId}/play_720p.mp4`} type="video/mp4" />
+                      </video>
                     </div>
-                    <div className="text-xs text-white/50 uppercase tracking-wider">
-                      {testimonial.role}
+
+                    {/* Author Info */}
+                    <div className="p-6 bg-black/50">
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 bg-white/10 flex items-center justify-center">
+                          <span className="text-sm font-medium">
+                            {testimonial.author.charAt(0)}
+                          </span>
+                        </div>
+                        <div>
+                          <div className="text-sm font-medium text-white/90">
+                            {testimonial.author}
+                          </div>
+                          <div className="text-xs text-white/50 uppercase tracking-wider">
+                            {testimonial.role}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={goToPrevious}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 w-10 h-10 flex items-center justify-center border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all"
+            aria-label="Previous testimonial"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={goToNext}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 w-10 h-10 flex items-center justify-center border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all"
+            aria-label="Next testimonial"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center gap-2 mt-8">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-2 h-2 transition-all ${
+                  index === currentIndex
+                    ? 'bg-white w-8'
+                    : 'bg-white/30 hover:bg-white/50'
+                }`}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
