@@ -113,9 +113,14 @@ const generateSimpleGrid = () => {
 
 export default function MarketsSection() {
   const [isMounted, setIsMounted] = useState(false);
+  const [animateGrid, setAnimateGrid] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
+    // Start animation after component mounts
+    setTimeout(() => {
+      setAnimateGrid(true);
+    }, 300);
   }, []);
 
   // Memoize grid generation - only compute once after mount
@@ -128,7 +133,7 @@ export default function MarketsSection() {
       
       {/* Full Width Map Background */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative w-full h-full max-w-[1400px] mx-auto">
+        <div className="relative w-full max-w-[90vw] h-full mx-auto">
           <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent flex items-center justify-center">
             <svg
               viewBox="0 0 800 500"
@@ -146,7 +151,11 @@ export default function MarketsSection() {
                     width={SQUARE_SIZE}
                     height={SQUARE_SIZE}
                     fill="white"
-                    opacity={square.opacity}
+                    opacity={animateGrid ? square.opacity : 0}
+                    style={{
+                      transition: `opacity 0.4s ease-out`,
+                      transitionDelay: `${index * 0.5}ms`,
+                    }}
                   />
                 ))}
               </g>
@@ -156,15 +165,21 @@ export default function MarketsSection() {
       </div>
 
       {/* Absolute Positioned Content - Position as needed */}
-      <div className="absolute top-1/2 left-24 -translate-y-1/2 max-w-[500px] z-10">
+      <div
+        className="absolute max-w-[410px] z-10 flex flex-col items-end"
+        style={{
+          top: '8vh',
+          right: '12vw',
+        }}
+      >
         <div className="line-accent mb-6" />
-        <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6">
+        <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6 text-right">
           CURRENT MARKETS &<br />MARKET EXPANSION
         </h2>
-        <p className="text-lg text-white/70 mb-6 leading-relaxed uppercase tracking-wide">
+        <p className="text-lg text-white/70 mb-6 leading-relaxed uppercase tracking-wide text-right">
           RIVVIA CURRENTLY OPERATES IN 22 MARKETS ACROSS THE COUNTRY, AND CONSISTENTLY OPENS NEW MARKETS EACH QUARTER.
         </p>
-        <p className="text-white/60 mb-8">
+        <p className="text-white/60 mb-8 text-right">
           Each market is strategically picked for Fiber adoption to ensure the highest close rate possible.
         </p>
       </div>
