@@ -124,61 +124,56 @@ export default function MarketsSection() {
     return generateSimpleGrid();
   }, [isMounted]);
   return (
-    <section data-theme="dark" id="markets" className="py-24 md:py-32 bg-black relative overflow-hidden min-h-screen flex flex-col justify-center items-center">
+    <section data-theme="dark" id="markets" className="py-24 md:py-32 bg-black relative overflow-hidden h-screen min-h-[1200px] flex items-center justify-center">
       
-      <div className="max-w-7xl w-full mx-auto px-6 lg:px-8 relative z-10">
-        {/* Stacked Layout: Content on Top, Map Below */}
-        <div className="flex flex-col items-center gap-16">
-          
-          {/* Content - Centered */}
-          <div className="max-w-3xl text-center">
-            <div className="line-accent mb-6 mx-auto" />
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6">
-              CURRENT MARKETS &<br />MARKET EXPANSION
-            </h2>
-            <p className="text-lg text-white/70 mb-6 leading-relaxed uppercase tracking-wide">
-              RIVVIA CURRENTLY OPERATES IN 22 MARKETS ACROSS THE COUNTRY, AND CONSISTENTLY OPENS NEW MARKETS EACH QUARTER.
-            </p>
-            <p className="text-white/60">
-              Each market is strategically picked for Fiber adoption to ensure the highest close rate possible.
-            </p>
+      {/* Full Width Map Background */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="relative w-full h-full max-w-[1400px] mx-auto">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent flex items-center justify-center">
+            <svg
+              viewBox="0 0 800 500"
+              className="w-full h-auto max-h-full"
+              preserveAspectRatio="xMidYMid meet"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {/* Simple Square Grid */}
+              <g id="square-grid">
+                {gridSquares.map((square, index) => (
+                  <rect
+                    key={`square-${index}`}
+                    x={square.x - SQUARE_SIZE / 2}
+                    y={square.y - SQUARE_SIZE / 2}
+                    width={SQUARE_SIZE}
+                    height={SQUARE_SIZE}
+                    fill="white"
+                    opacity={square.opacity}
+                  />
+                ))}
+              </g>
+            </svg>
           </div>
-
-          {/* Visual - USA Dotted Map - Centered Below */}
-          <div className="relative w-full max-w-5xl aspect-[16/10]">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent">
-              <svg
-                viewBox="0 0 800 500"
-                className="w-full h-full"
-                preserveAspectRatio="xMidYMid meet"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                {/* Simple Square Grid */}
-                <g id="square-grid">
-                  {gridSquares.map((square, index) => (
-                    <rect
-                      key={`square-${index}`}
-                      x={square.x - SQUARE_SIZE / 2}
-                      y={square.y - SQUARE_SIZE / 2}
-                      width={SQUARE_SIZE}
-                      height={SQUARE_SIZE}
-                      fill="white"
-                      opacity={square.opacity}
-                    />
-                  ))}
-                </g>
-              </svg>
-            </div>
-            
-            {/* Label */}
-            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-black px-6 py-2 border border-white/20">
-              <span className="text-sm uppercase tracking-[0.2em] text-white/70 font-medium">
-                Active Markets Nationwide - 22 Cities
-              </span>
-            </div>
-          </div>
-          
         </div>
+      </div>
+
+      {/* Absolute Positioned Content - Position as needed */}
+      <div className="absolute top-1/2 left-24 -translate-y-1/2 max-w-[500px] z-10">
+        <div className="line-accent mb-6" />
+        <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6">
+          CURRENT MARKETS &<br />MARKET EXPANSION
+        </h2>
+        <p className="text-lg text-white/70 mb-6 leading-relaxed uppercase tracking-wide">
+          RIVVIA CURRENTLY OPERATES IN 22 MARKETS ACROSS THE COUNTRY, AND CONSISTENTLY OPENS NEW MARKETS EACH QUARTER.
+        </p>
+        <p className="text-white/60 mb-8">
+          Each market is strategically picked for Fiber adoption to ensure the highest close rate possible.
+        </p>
+      </div>
+
+      {/* Map Label */}
+      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 bg-black px-6 py-2 border border-white/20 z-10">
+        <span className="text-sm uppercase tracking-[0.2em] text-white/70 font-medium">
+          Active Markets Nationwide - 22 Cities
+        </span>
       </div>
     </section>
   );
