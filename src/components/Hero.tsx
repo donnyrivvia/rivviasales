@@ -1,55 +1,19 @@
 'use client';
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 export default function Hero() {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isContentVisible, setIsContentVisible] = useState(false);
 
-  useEffect(() => {
-    // Load HLS.js for .m3u8 streaming
-    const video = videoRef.current;
-    if (!video) return;
-
-    // Handle video loaded event
-    const handleCanPlay = () => {
-      setIsVideoLoaded(true);
-      // Delay content reveal for smooth transition
-      setTimeout(() => {
-        setIsContentVisible(true);
-      }, 300);
-    };
-
-    video.addEventListener('canplaythrough', handleCanPlay);
-
-    // Check if browser supports HLS natively (Safari)
-    if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = 'https://vz-d6574812-a94.b-cdn.net/509413b9-062f-4197-aecc-b05790e48114/playlist.m3u8';
-    } 
-    // Use HLS.js for other browsers
-    else if (typeof window !== 'undefined') {
-      import('hls.js').then(({ default: Hls }) => {
-        if (Hls.isSupported()) {
-          const hls = new Hls({
-            enableWorker: true,
-            lowLatencyMode: true,
-          });
-          hls.loadSource('https://vz-d6574812-a94.b-cdn.net/509413b9-062f-4197-aecc-b05790e48114/playlist.m3u8');
-          hls.attachMedia(video);
-          
-          return () => {
-            hls.destroy();
-          };
-        }
-      });
-    }
-
-    return () => {
-      video.removeEventListener('canplaythrough', handleCanPlay);
-    };
-  }, []);
+  const handleVideoLoad = () => {
+    setIsVideoLoaded(true);
+    // Delay content reveal for smooth transition
+    setTimeout(() => {
+      setIsContentVisible(true);
+    }, 300);
+  };
 
   return (
     <section data-theme="light" className="bg-white relative min-h-screen flex items-center justify-start overflow-hidden">
@@ -75,13 +39,17 @@ export default function Hero() {
         isVideoLoaded ? 'opacity-100' : 'opacity-0'
       }`}>
         <video
-          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
+          preload="auto"
+          onCanPlayThrough={handleVideoLoad}
           className="absolute inset-0 w-full h-full object-cover"
-        />
+        >
+          {/* Replace with your Bunny.net direct MP4 URL */}
+          <source src="https://vz-d6574812-a94.b-cdn.net/509413b9-062f-4197-aecc-b05790e48114/play_720p.mp4" type="video/mp4" />
+        </video>
       </div>
       
       {/* Content */}
