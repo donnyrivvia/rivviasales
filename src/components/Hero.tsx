@@ -1,12 +1,20 @@
 import Link from "next/link";
 
-// Video URL - Hosted on Google Drive
-// File ID: 1i945Qj4pfvJFao8Xlbplt0GTef9qTYJ8
-const VIDEO_URL = "https://drive.google.com/uc?export=download&id=1i945Qj4pfvJFao8Xlbplt0GTef9qTYJ8";
+// Video configuration
+// Local: Keep your video file in /public/video/ for development
+// Production: Upload to a proper CDN service for better performance
+// 
+// Recommended services for production:
+// 1. Cloudinary (best for videos) - https://cloudinary.com
+// 2. Bunny.net CDN - https://bunny.net  
+// 3. Vercel Blob Storage - https://vercel.com/docs/storage/vercel-blob
+//
+// For now, we'll use environment variable with fallback to local
+const VIDEO_URL = process.env.NEXT_PUBLIC_VIDEO_URL || "/video/website.MOV";
 
 export default function Hero() {
   return (
-    <section data-theme="light" className="relative min-h-screen flex items-center justify-start overflow-hidden">
+    <section data-theme="light" className="bg-white relative min-h-screen flex items-center justify-start overflow-hidden">
       {/* Background Video */}
       <div className="absolute inset-0">
         <video

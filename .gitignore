@@ -40,8 +40,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# large media files
-/public/video/
+# large media files (keep local for development, use CDN for production)
+# The video files are ignored to prevent deployment issues
+# Use NEXT_PUBLIC_VIDEO_URL env variable in production
+/public/video/*.MOV
+/public/video/*.mov
+/public/video/*.mp4
+/public/video/frames/
 /public/*.mp4
-/public/*.mov
-/public/*.MOV
