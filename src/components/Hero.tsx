@@ -47,7 +47,7 @@ export default function Hero() {
           onCanPlayThrough={handleVideoLoad}
           className="absolute inset-0 w-full h-full object-cover"
         >
-          {/* Replace with your Bunny.net direct MP4 URL */}
+          <source src="https://vz-d6574812-a94.b-cdn.net/509413b9-062f-4197-aecc-b05790e48114/play_1080p.mp4" type="video/mp4" />
           <source src="https://vz-d6574812-a94.b-cdn.net/509413b9-062f-4197-aecc-b05790e48114/play_720p.mp4" type="video/mp4" />
         </video>
       </div>
