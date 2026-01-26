@@ -108,13 +108,11 @@ export default function MarketsSection() {
       Math.pow(square.y - mousePosition.y, 2)
     );
     
-    // Highlight squares within 50 units of mouse
+    // Highlight squares within 50 units of mouse - no gradient, just on/off
     const highlightRadius = 50;
     
     if (distance < highlightRadius) {
-      // Fade out effect from center (1.0) to edge (base opacity)
-      const intensity = 1 - (distance / highlightRadius);
-      return Math.min(1, square.opacity + intensity * 0.8);
+      return 1.0; // Full brightness
     }
     
     return square.opacity;
@@ -146,7 +144,7 @@ export default function MarketsSection() {
                     fill="white"
                     opacity={getSquareOpacity(square)}
                     style={{
-                      transition: 'opacity 0.15s ease-out'
+                      transition: 'opacity 0.5s ease-out'
                     }}
                   />
                 ))}
