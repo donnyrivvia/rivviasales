@@ -5,19 +5,19 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 const traits = [
   {
     text: "VALUES STRUCTURE OVER HYPE",
-    image: "/growth1.png" // Replace with your actual image path
+    image: "/structureOverHype.png"
   },
   {
     text: "IS MOTIVATED BY REAL OPPORTUNITY",
-    image: "/growth2.png" // Replace with your actual image path
+    image: "/realOpportunity.png"
   },
   {
     text: "CRAVES SELF IMPROVEMENT/PERFORMANCE",
-    image: "/growth3.png" // Replace with your actual image path
+    image: "/selfImprovement.png"
   },
   {
     text: "VALUES TRANSPARENCY",
-    image: "/growth4.png" // Replace with your actual image path
+    image: "/transparency.png"
   },
 ];
 
