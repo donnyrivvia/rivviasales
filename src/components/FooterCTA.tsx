@@ -1,8 +1,18 @@
+'use client';
+
 import Link from "next/link";
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export default function FooterCTA() {
+  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.3 });
+
   return (
-    <section data-theme="dark" id="join" className="py-24 md:py-32 bg-[#0a0a0a] relative overflow-hidden">
+    <section 
+      ref={elementRef as React.RefObject<HTMLElement>}
+      data-theme="dark" 
+      id="join" 
+      className="py-24 md:py-32 bg-[#0a0a0a] relative overflow-hidden"
+    >
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/[0.02] blur-3xl rounded-full" />
@@ -12,14 +22,26 @@ export default function FooterCTA() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           {/* Headline */}
-          <h2 className="font-display text-5xl md:text-6xl lg:text-7xl tracking-tight mb-6">
+          <h2 
+            className={`font-display text-5xl md:text-6xl lg:text-7xl tracking-tight mb-6 transition-all duration-700 ${
+              isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}
+          >
             READY TO SELL
             <br />
             WITH RIVVIA?
           </h2>
 
           {/* Description */}
-          <p className="text-lg md:text-xl text-white/70 mb-10 max-w-xl mx-auto">
+          <p 
+            className={`text-lg md:text-xl text-white/70 mb-10 max-w-xl mx-auto transition-all duration-700 delay-200 ${
+              isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}
+          >
             Real Opportunities. Bigger Upside.
             <br />
             All without the unnecessary hype:
@@ -28,7 +50,11 @@ export default function FooterCTA() {
           {/* CTA */}
           <Link
             href="#"
-            className="btn-primary inline-flex items-center gap-3 text-lg"
+            className={`btn-primary inline-flex items-center gap-3 text-lg transition-all duration-700 delay-300 ${
+              isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}
           >
             JOIN TODAY
             <svg

@@ -1,3 +1,7 @@
+'use client';
+
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+
 const traits = [
   {
     text: "VALUES STRUCTURE OVER HYPE",
@@ -18,8 +22,11 @@ const traits = [
 ];
 
 export default function WhoSection() {
+  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
+
   return (
     <section 
+      ref={elementRef as React.RefObject<HTMLElement>}
       data-theme="dark" 
       className="py-24 md:py-32 relative overflow-hidden"
       style={{
@@ -36,13 +43,25 @@ export default function WhoSection() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="w-[100%] flex flex-col items-center justify-center">
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-tight mb-8 text-center">
+          <h2 
+            className={`font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-tight mb-8 text-center transition-all duration-700 ${
+              isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}
+          >
             RIVVIA ISN&apos;T FOR EVERYONE
             <br />
             HERE&apos;S WHO WE BUILT IT FOR
           </h2>
 
-          <p className="text-lg md:text-xl text-white/70 mb-12 uppercase tracking-wide">
+          <p 
+            className={`text-lg md:text-xl text-white/70 mb-12 uppercase tracking-wide transition-all duration-700 delay-200 ${
+              isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}
+          >
             THE RIGHT RIVVIA CANDIDATE:
           </p>
 
@@ -51,11 +70,16 @@ export default function WhoSection() {
             {traits.map((trait, index) => (
               <div
                 key={index}
-                className="trait-image-card relative h-[600px] w-[300px] overflow-hidden border border-white/10 hover:border-white/25 transition-all duration-300 group"
+                className={`trait-image-card relative h-[600px] w-[300px] overflow-hidden border border-white/10 hover:border-white/25 transition-all duration-700 group ${
+                  isVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-12'
+                }`}
                 style={{
                   backgroundImage: `url(${trait.image})`,
                   backgroundSize: 'cover',
-                  backgroundPosition: 'center'
+                  backgroundPosition: 'center',
+                  transitionDelay: `${(index + 2) * 150}ms`
                 }}
               >
                 {/* Dark overlay */}
@@ -74,7 +98,14 @@ export default function WhoSection() {
             ))}
           </div>
 
-          <a href="#join" className="btn-secondary inline-block">
+          <a 
+            href="#join" 
+            className={`btn-secondary inline-block transition-all duration-700 delay-[900ms] ${
+              isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}
+          >
             READY?
           </a>
         </div>

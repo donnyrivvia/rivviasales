@@ -130,27 +130,27 @@ export default function MarketsSection() {
       <div className="relative h-full w-full flex items-center justify-center">
         <div className="relative w-full max-w-[90vw] h-full mx-auto">
           <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent flex items-center justify-center">
-            <svg
-              viewBox="0 0 800 500"
+              <svg
+                viewBox="0 0 800 500"
               className="w-full h-auto max-h-full"
-              preserveAspectRatio="xMidYMid meet"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {/* Simple Square Grid */}
-              <g id="square-grid">
+                preserveAspectRatio="xMidYMid meet"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {/* Simple Square Grid */}
+                <g id="square-grid">
                 {gridSquares.map((square, index) => (
-                  <rect
-                    key={`square-${index}`}
-                    x={square.x - SQUARE_SIZE / 2}
-                    y={square.y - SQUARE_SIZE / 2}
-                    width={SQUARE_SIZE}
-                    height={SQUARE_SIZE}
-                    fill="white"
+                    <rect
+                      key={`square-${index}`}
+                      x={square.x - SQUARE_SIZE / 2}
+                      y={square.y - SQUARE_SIZE / 2}
+                      width={SQUARE_SIZE}
+                      height={SQUARE_SIZE}
+                      fill="white"
                     opacity={square.opacity}
-                  />
-                ))}
-              </g>
-            </svg>
+                    />
+                  ))}
+                </g>
+              </svg>
           </div>
         </div>
       </div>

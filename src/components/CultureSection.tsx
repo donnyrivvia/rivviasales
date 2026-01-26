@@ -1,11 +1,26 @@
+'use client';
+
 import Image from "next/image";
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export default function CultureSection() {
+  const headerAnimation = useScrollAnimation({ threshold: 0.2 });
+  const supportAnimation = useScrollAnimation({ threshold: 0.3 });
+  const structureAnimation = useScrollAnimation({ threshold: 0.3 });
+  const communicationAnimation = useScrollAnimation({ threshold: 0.3 });
+
   return (
     <section data-theme="dark" className="py-24 md:py-32 bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-20">
+        <div 
+          ref={headerAnimation.elementRef as React.RefObject<HTMLDivElement>}
+          className={`text-center mb-20 transition-all duration-700 ${
+            headerAnimation.isVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}
+        >
           <p className="text-white/50 text-sm uppercase tracking-[0.3em] mb-4">
             Our Environment
           </p>
@@ -21,8 +36,17 @@ export default function CultureSection() {
         {/* Mini Sections */}
         <div className="space-y-24">
           {/* Support Mini-Section */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1">
+          <div 
+            ref={supportAnimation.elementRef as React.RefObject<HTMLDivElement>}
+            className="grid lg:grid-cols-2 gap-12 items-center"
+          >
+            <div 
+              className={`order-2 lg:order-1 transition-all duration-700 ${
+                supportAnimation.isVisible 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 -translate-x-8'
+              }`}
+            >
               <div className="line-accent mb-6" />
               <h3 className="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight mb-6">
                 SUPPORT
@@ -34,7 +58,13 @@ export default function CultureSection() {
                 From day one, you'll have access to proven tools, comprehensive training, and ongoing support. Our team is committed to providing everything you need to perform at your best—whether it's tech, leads, or coaching.
               </p>
             </div>
-            <div className="order-1 lg:order-2">
+            <div 
+              className={`order-1 lg:order-2 transition-all duration-700 delay-200 ${
+                supportAnimation.isVisible 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 translate-x-8'
+              }`}
+            >
               {/* Placeholder for Support Image/Video */}
               <div className="aspect-[4/3] bg-white/5 rounded-lg overflow-hidden border border-white/10 flex items-center justify-center">
                 <Image 
@@ -49,8 +79,17 @@ export default function CultureSection() {
           </div>
 
           {/* Structure Mini-Section */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="order-1">
+          <div 
+            ref={structureAnimation.elementRef as React.RefObject<HTMLDivElement>}
+            className="grid lg:grid-cols-2 gap-12 items-center"
+          >
+            <div 
+              className={`order-1 transition-all duration-700 ${
+                structureAnimation.isVisible 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 -translate-x-8'
+              }`}
+            >
               {/* Placeholder for Structure Image/Video */}
               <div className="aspect-[4/3] bg-white/5 rounded-lg overflow-hidden border border-white/10 flex items-center justify-center">
                 <Image 
@@ -62,7 +101,13 @@ export default function CultureSection() {
                 />
               </div>
             </div>
-            <div className="order-2">
+            <div 
+              className={`order-2 transition-all duration-700 delay-200 ${
+                structureAnimation.isVisible 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 translate-x-8'
+              }`}
+            >
               <div className="line-accent mb-6" />
               <h3 className="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight mb-6">
                 STRUCTURE
@@ -77,8 +122,17 @@ export default function CultureSection() {
           </div>
 
           {/* Communication Mini-Section */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1">
+          <div 
+            ref={communicationAnimation.elementRef as React.RefObject<HTMLDivElement>}
+            className="grid lg:grid-cols-2 gap-12 items-center"
+          >
+            <div 
+              className={`order-2 lg:order-1 transition-all duration-700 ${
+                communicationAnimation.isVisible 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 -translate-x-8'
+              }`}
+            >
               <div className="line-accent mb-6" />
               <h3 className="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight mb-6">
                 COMMUNICATION
@@ -90,7 +144,13 @@ export default function CultureSection() {
                 We believe in straight talk. No corporate speak, no mixed messages. You'll get honest feedback, clear direction, and open channels to leadership. It's communication that actually helps you grow.
               </p>
             </div>
-            <div className="order-1 lg:order-2">
+            <div 
+              className={`order-1 lg:order-2 transition-all duration-700 delay-200 ${
+                communicationAnimation.isVisible 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 translate-x-8'
+              }`}
+            >
               {/* Placeholder for Communication Image/Video */}
               <div className="aspect-[4/3] bg-white/5 rounded-lg overflow-hidden border border-white/10 flex items-center justify-center">
                 <Image 
@@ -106,7 +166,14 @@ export default function CultureSection() {
         </div>
 
         {/* Bottom Statement */}
-        <div className="mt-20 text-center max-w-3xl mx-auto space-y-6">
+        <div 
+          className={`mt-20 text-center max-w-3xl mx-auto space-y-6 transition-all duration-700 ${
+            communicationAnimation.isVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}
+          style={{ transitionDelay: '400ms' }}
+        >
           <p className="text-white/60 text-lg">
             We value reps who take ownership of their results and respect
             systems that work. Success ultimately comes down to effort and

@@ -74,16 +74,25 @@ function useCountUp(target: number, duration: number = 2000, shouldStart: boolea
 
 function StatCard({ 
   stat, 
-  isVisible 
+  isVisible,
+  index
 }: { 
   stat: typeof stats[0]; 
   isVisible: boolean;
+  index: number;
 }) {
   const count = useCountUp(stat.target, 2000, isVisible);
   const displayValue = `${stat.prefix}${stat.format(count)}${stat.suffix}`;
 
   return (
-    <div className="stat-card h-[400px] flex flex-col justify-center items-center text-center p-6 border border-white/10 hover:border-white/20 transition-colors">
+    <div 
+      className={`stat-card h-[400px] flex flex-col justify-center items-center text-center p-6 border border-white/10 hover:border-white/20 transition-all duration-700 ${
+        isVisible 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 translate-y-8'
+      }`}
+      style={{ transitionDelay: `${index * 100}ms` }}
+    >
       <div className="stat-number text-white mb-2">{displayValue}</div>
       <div className="stat-label text-sm text-white/50 uppercase tracking-wider">
         {stat.label}
@@ -125,7 +134,13 @@ export default function StatsSection() {
     <section data-theme="dark" id="opportunity" className="py-24 md:py-32 bg-[#0a0a0a]">
       <div ref={sectionRef} className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16 md:mb-20">
+        <div 
+          className={`text-center mb-16 md:mb-20 transition-all duration-700 ${
+            isVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6">
             OPPORTUNITY THAT SCALES
           </h2>
@@ -143,12 +158,18 @@ export default function StatsSection() {
         {/* Stats Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {stats.map((stat, index) => (
-            <StatCard key={index} stat={stat} isVisible={isVisible} />
+            <StatCard key={index} stat={stat} isVisible={isVisible} index={index} />
           ))}
         </div>
 
         {/* Bottom text */}
-        <p className="text-center text-white/60 mt-12 text-base">
+        <p 
+          className={`text-center text-white/60 mt-12 text-base transition-all duration-700 delay-500 ${
+            isVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}
+        >
           We've provided these numbers to answer the question: "how big is the opportunity?" <span className="text-white/90 font-medium">As big as you want it to be.</span>
         </p>
       </div>

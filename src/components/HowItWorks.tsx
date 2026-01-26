@@ -1,4 +1,7 @@
+'use client';
+
 import Image from "next/image";
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const steps = [
   {
@@ -32,11 +35,24 @@ const steps = [
 ];
 
 export default function HowItWorks() {
+  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
+
   return (
-    <section data-theme="dark" id="how-it-works" className="py-24 md:py-32 bg-[#0a0a0a]">
+    <section 
+      ref={elementRef as React.RefObject<HTMLElement>}
+      data-theme="dark" 
+      id="how-it-works" 
+      className="py-24 md:py-32 bg-[#0a0a0a]"
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16 md:mb-20">
+        <div 
+          className={`text-center mb-16 md:mb-20 transition-all duration-700 ${
+            isVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}
+        >
           <p className="text-white/50 text-sm uppercase tracking-[0.3em] mb-4">
             The Sales Process
           </p>
@@ -50,7 +66,12 @@ export default function HowItWorks() {
           {steps.map((step, index) => (
             <div 
               key={index} 
-              className="relative group overflow-hidden rounded-[1px] bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 hover:border-white/20 transition-all duration-500 hover:scale-[1.02]"
+              className={`relative group overflow-hidden rounded-[1px] bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 hover:border-white/20 transition-all duration-700 hover:scale-[1.02] ${
+                isVisible 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-12'
+              }`}
+              style={{ transitionDelay: `${(index + 1) * 150}ms` }}
             >
               {/* Background Image */}
               <div className="absolute inset-0 overflow-hidden">
