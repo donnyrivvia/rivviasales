@@ -71,6 +71,7 @@ const generateSimpleGrid = () => {
 
 export default function MarketsSection() {
   const [isMounted, setIsMounted] = useState(false);
+  const [mousePosition, setMousePosition] = useState<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     setIsMounted(true);
@@ -81,8 +82,45 @@ export default function MarketsSection() {
     if (!isMounted) return [];
     return generateSimpleGrid();
   }, [isMounted]);
+
+  // Handle mouse move over SVG
+  const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
+    const svg = e.currentTarget;
+    const rect = svg.getBoundingClientRect();
+    
+    // Convert mouse position to SVG coordinates
+    const x = ((e.clientX - rect.left) / rect.width) * 800;
+    const y = ((e.clientY - rect.top) / rect.height) * 500;
+    
+    setMousePosition({ x, y });
+  };
+
+  const handleMouseLeave = () => {
+    setMousePosition(null);
+  };
+
+  // Calculate if a square should be highlighted based on mouse position
+  const getSquareOpacity = (square: { x: number; y: number; opacity: number }) => {
+    if (!mousePosition) return square.opacity;
+    
+    const distance = Math.sqrt(
+      Math.pow(square.x - mousePosition.x, 2) + 
+      Math.pow(square.y - mousePosition.y, 2)
+    );
+    
+    // Highlight squares within 50 units of mouse
+    const highlightRadius = 50;
+    
+    if (distance < highlightRadius) {
+      // Fade out effect from center (1.0) to edge (base opacity)
+      const intensity = 1 - (distance / highlightRadius);
+      return Math.min(1, square.opacity + intensity * 0.8);
+    }
+    
+    return square.opacity;
+  };
   return (
-    <section data-theme="dark" id="markets" className="bg-black relative overflow-hidden py-24 md:py-32 flex items-center justify-center">
+    <section data-theme="dark" id="markets" className="bg-black relative overflow-hidden py-24 md:py-32 flex items-center justify-center h-[100vh]">
       
       {/* Absolute Positioned Map Background */}
       <div className="absolute inset-0 flex items-center justify-center">
@@ -93,6 +131,8 @@ export default function MarketsSection() {
               className="w-full h-auto max-h-full"
               preserveAspectRatio="xMidYMid meet"
               xmlns="http://www.w3.org/2000/svg"
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
             >
               {/* Simple Square Grid */}
               <g id="square-grid">
@@ -104,7 +144,10 @@ export default function MarketsSection() {
                     width={SQUARE_SIZE}
                     height={SQUARE_SIZE}
                     fill="white"
-                    opacity={square.opacity}
+                    opacity={getSquareOpacity(square)}
+                    style={{
+                      transition: 'opacity 0.15s ease-out'
+                    }}
                   />
                 ))}
               </g>
