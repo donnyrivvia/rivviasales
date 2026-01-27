@@ -41,20 +41,26 @@ export default function WhoSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [translateX, setTranslateX] = useState(0);
+  const maxTranslateRef = useRef(0);
 
   useEffect(() => {
+    // Calculate max translate distance once on mount/resize
+    const calculateMaxTranslate = () => {
+      if (!containerRef.current) return;
+      const totalWidth = containerRef.current.scrollWidth;
+      const viewportWidth = window.innerWidth;
+      maxTranslateRef.current = -(totalWidth - viewportWidth);
+    };
+
     const handleScroll = () => {
-      if (!sectionRef.current || !containerRef.current) return;
+      if (!sectionRef.current) return;
 
       const section = sectionRef.current;
-      const container = containerRef.current;
       const rect = section.getBoundingClientRect();
       const sectionHeight = section.offsetHeight;
       const viewportHeight = window.innerHeight;
 
       // Calculate scroll progress through the section
-      // Section is "active" from when top hits viewport top (0) 
-      // until the bottom exits viewport bottom
       const totalScrollDistance = sectionHeight - viewportHeight;
       const currentScroll = -rect.top;
       
@@ -62,25 +68,27 @@ export default function WhoSection() {
       const progress = Math.max(0, Math.min(1, currentScroll / totalScrollDistance));
       
       setScrollProgress(progress);
-
-      // Calculate horizontal translation
-      const totalWidth = container.scrollWidth;
-      const viewportWidth = window.innerWidth;
-      const maxTranslate = -(totalWidth - viewportWidth);
-      
-      setTranslateX(maxTranslate * progress);
+      setTranslateX(maxTranslateRef.current * progress);
     };
 
+    const handleResize = () => {
+      calculateMaxTranslate();
+      handleScroll();
+    };
+
+    // Initial calculations
+    calculateMaxTranslate();
+    const timeoutId = setTimeout(() => {
+      calculateMaxTranslate();
+      handleScroll();
+    }, 100);
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
-    
-    // Run on mount and after a short delay to ensure layout is ready
-    handleScroll();
-    const timeoutId = setTimeout(handleScroll, 100);
+    window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      window.removeEventListener('resize', handleResize);
       clearTimeout(timeoutId);
     };
   }, []);
