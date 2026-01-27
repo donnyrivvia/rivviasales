@@ -52,46 +52,36 @@ export default function WhoSection() {
       const sectionHeight = section.offsetHeight;
       const viewportHeight = window.innerHeight;
 
-      // When section enters viewport until it exits
-      const start = rect.top + viewportHeight;
-      const end = rect.bottom;
+      // Calculate scroll progress through the section
+      // Section is "active" from when top hits viewport top (0) 
+      // until the bottom exits viewport bottom
+      const totalScrollDistance = sectionHeight - viewportHeight;
+      const currentScroll = -rect.top;
+      
+      // Clamp progress between 0 and 1
+      const progress = Math.max(0, Math.min(1, currentScroll / totalScrollDistance));
+      
+      setScrollProgress(progress);
 
-      if (start > 0 && end > viewportHeight) {
-        // Calculate progress (0 to 1) as user scrolls through the section
-        const scrollDistance = sectionHeight - viewportHeight;
-        const scrolled = -rect.top;
-        const progress = Math.max(0, Math.min(1, scrolled / scrollDistance));
-        
-        setScrollProgress(progress);
-
-        // Calculate how far to translate horizontally
-        // Total width = number of screens * viewport width
-        const totalScreens = 6; // intro + 4 traits + outro
-        const totalWidth = container.scrollWidth;
-        const viewportWidth = window.innerWidth;
-        const maxTranslate = -(totalWidth - viewportWidth);
-        
-        setTranslateX(maxTranslate * progress);
-      } else if (end <= viewportHeight) {
-        // Section has fully scrolled through
-        setScrollProgress(1);
-        const totalWidth = container.scrollWidth;
-        const viewportWidth = window.innerWidth;
-        setTranslateX(-(totalWidth - viewportWidth));
-      } else if (start <= 0) {
-        // Section hasn't entered yet
-        setScrollProgress(0);
-        setTranslateX(0);
-      }
+      // Calculate horizontal translation
+      const totalWidth = container.scrollWidth;
+      const viewportWidth = window.innerWidth;
+      const maxTranslate = -(totalWidth - viewportWidth);
+      
+      setTranslateX(maxTranslate * progress);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleScroll);
-    handleScroll(); // Initial check
+    
+    // Run on mount and after a short delay to ensure layout is ready
+    handleScroll();
+    const timeoutId = setTimeout(handleScroll, 100);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
+      clearTimeout(timeoutId);
     };
   }, []);
 
@@ -99,11 +89,11 @@ export default function WhoSection() {
     <section 
       ref={sectionRef}
       data-theme="dark" 
-      className="relative bg-black overflow-hidden"
+      className="relative bg-black"
       style={{ height: '400vh' }} // 4x viewport height for scroll duration
     >
       {/* Sticky container */}
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
         {/* Subtle grid background pattern */}
         <div 
           className="absolute inset-0 opacity-[0.03] z-0"
