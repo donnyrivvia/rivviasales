@@ -66,11 +66,11 @@ export default function WhoSection() {
           </p>
 
           {/* Traits Grid */}
-          <div className="flex justify-center items-center w-[100%] gap-5 mb-[70px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-12 sm:mb-[70px] w-full max-w-7xl">
             {traits.map((trait, index) => (
               <div
                 key={index}
-                className={`trait-image-card relative h-[600px] w-[300px] overflow-hidden border border-white transition-all duration-200 group ${
+                className={`trait-image-card relative h-[500px] sm:h-[600px] w-full overflow-hidden border border-white transition-all duration-200 group ${
                   isVisible 
                     ? 'opacity-100 translate-y-0' 
                     : 'opacity-0 translate-y-12'

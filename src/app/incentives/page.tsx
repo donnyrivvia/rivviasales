@@ -40,33 +40,20 @@ export default function IncentivesPage() {
       <Navbar />
       <main className="min-h-screen bg-black">
       {/* Hero Section */}
-      <section 
+      <section data-theme="dark"
         ref={heroAnimation.elementRef as React.RefObject<HTMLElement>}
         className="relative pt-32 pb-16 px-6 lg:px-8 overflow-hidden"
         style={{
-          backgroundImage: 'url(/groupPhoto.png)',
+          backgroundImage: 'url(/groupPhoto.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
       >
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/60 z-0" />
+        <div className="absolute inset-0 bg-black/70 z-0" />
         
         <div className="max-w-7xl mx-auto relative z-10">
-          {/* Back Button */}
-          <Link 
-            href="/"
-            className={`inline-flex items-center gap-2 text-white/60 hover:text-white transition-all duration-700 mb-8 ${
-              heroAnimation.isVisible 
-                ? 'opacity-100 translate-x-0' 
-                : 'opacity-0 -translate-x-4'
-            }`}
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Back to Home
-          </Link>
+          
 
           {/* Header */}
           <div className="text-center mb-16">
@@ -110,6 +97,7 @@ export default function IncentivesPage() {
               key={incentive.id}
               ref={animation.elementRef as React.RefObject<HTMLElement>}
               className="py-24 md:py-32 bg-black"
+              data-theme="dark"
             >
               <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${isEven ? '' : 'lg:grid-flow-dense'}`}>

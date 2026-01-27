@@ -122,7 +122,7 @@ export default function Testimonials() {
               {extendedTestimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 w-[calc(50%-12px)]"
+                  className="flex-shrink-0 w-full md:w-[calc(50%-12px)]"
                 >
                   <div className="relative border border-white/10 hover:border-white/20 transition-colors overflow-hidden">
                     {/* Video */}
@@ -167,19 +167,19 @@ export default function Testimonials() {
           {/* Navigation Arrows */}
           <button
             onClick={goToPrevious}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-14 w-12 h-12 flex items-center justify-center border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all z-10"
+            className="absolute left-2 md:left-0 top-1/2 -translate-y-1/2 md:-translate-x-14 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center border border-white/20 hover:border-white/40 bg-black/80 hover:bg-white/5 transition-all z-10"
             aria-label="Previous testimonial"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-14 w-12 h-12 flex items-center justify-center border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all z-10"
+            className="absolute right-2 md:right-0 top-1/2 -translate-y-1/2 md:translate-x-14 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center border border-white/20 hover:border-white/40 bg-black/80 hover:bg-white/5 transition-all z-10"
             aria-label="Next testimonial"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>

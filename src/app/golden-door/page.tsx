@@ -57,16 +57,7 @@ export default function GoldenDoorPage() {
         {/* Hero Section */}
         <section data-theme="dark" className="relative pt-32 pb-16 px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* Back Button */}
-          <Link 
-            href="/"
-            className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors mb-8"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Back to Home
-          </Link>
+          
 
           {/* Header */}
           <div className="text-center mb-16">

@@ -82,7 +82,7 @@ export default function MarketsSection() {
     return generateSimpleGrid();
   }, [isMounted]);
   return (
-    <section data-theme="dark" id="markets" className="bg-[#0a0a0a] relative overflow-hidden py-24 md:py-32 flex items-center justify-center h-[100vh]">
+    <section data-theme="dark" id="markets" className="bg-[#0a0a0a] relative overflow-hidden py-16 sm:py-24 md:py-32 flex items-center justify-center min-h-[80vh] sm:min-h-[90vh] md:h-[100vh]">
       
       {/* Absolute Positioned Map Background */}
       <div className="absolute inset-0 flex items-center justify-center">

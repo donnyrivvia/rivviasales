@@ -64,13 +64,13 @@ export default function Hero() {
       }`}>
         <div className="max-w-4xl flex flex-col">
           {/* Main Headline */}
-          <h1 className={`font-display text-black text-xl sm:text-6xl md:text-[180px] lg:text-[200px] leading-[0.80] mb-6 transition-all duration-700 delay-100 ${
+          <h1 className={`font-display text-black text-5xl sm:text-7xl md:text-[140px] lg:text-[180px] xl:text-[200px] leading-[0.85] mb-4 sm:mb-6 transition-all duration-700 delay-100 ${
             isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             <b><i>A BETTER<br /> SALES CAREER</i></b>
             
           </h1>
-          <h3 className={`font-display text-black text-xl sm:text-6xl md:text-[80px] lg:text-[100px] leading-[0.95] mb-6 transition-all duration-700 delay-200 ${
+          <h3 className={`font-display text-black text-3xl sm:text-5xl md:text-[60px] lg:text-[80px] xl:text-[100px] leading-[0.95] mb-6 transition-all duration-700 delay-200 ${
             isContentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             <i>BEGINS AT RIVVIA</i>
