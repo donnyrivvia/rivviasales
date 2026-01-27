@@ -92,16 +92,17 @@ export default function WhoSection() {
       style={{ height: '400vh' }} // 4x viewport height for scroll duration
     >
       {/* Sticky container */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      <div className="sticky top-0 h-screen w-full overflow-hidden bg-black">
         {/* Animated grid background pattern */}
         <div 
-          className="absolute inset-0 opacity-[0.03] z-0 animate-grid"
+          className="absolute inset-0 z-0 animate-grid"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+              linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px)
             `,
-            backgroundSize: '50px 50px'
+            backgroundSize: '50px 50px',
+            opacity: 0.5
           }}
         />
 
