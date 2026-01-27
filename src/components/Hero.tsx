@@ -46,6 +46,7 @@ export default function Hero() {
           preload="auto"
           onCanPlayThrough={handleVideoLoad}
           className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: '75% center' }}
         >
           {/* Using 1080p only for guaranteed high quality */}
           <source src="https://vz-d6574812-a94.b-cdn.net/509413b9-062f-4197-aecc-b05790e48114/play_1080p.mp4" type="video/mp4" />
