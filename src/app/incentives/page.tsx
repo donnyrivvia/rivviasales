@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import Navbar from '@/components/Navbar';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const incentives = [
@@ -35,9 +36,11 @@ export default function IncentivesPage() {
   const heroAnimation = useScrollAnimation({ threshold: 0.2 });
 
   return (
-    <main className="min-h-screen bg-black">
-      {/* Hero Section */}
-      <section 
+    <>
+      <Navbar />
+      <main className="min-h-screen bg-black">
+        {/* Hero Section */}
+        <section 
         ref={heroAnimation.elementRef as React.RefObject<HTMLElement>}
         className="relative pt-32 pb-16 px-6 lg:px-8 bg-[#0a0a0a]"
       >
@@ -195,5 +198,6 @@ export default function IncentivesPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }
