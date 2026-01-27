@@ -1,7 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useState } from 'react';
 
 const steps = [
   {
@@ -35,90 +35,110 @@ const steps = [
 ];
 
 export default function HowItWorks() {
-  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const goToPrevious = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? steps.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === steps.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const currentStep = steps[currentIndex];
 
   return (
     <section 
-      ref={elementRef as React.RefObject<HTMLElement>}
       data-theme="dark" 
       id="how-it-works" 
-      className="py-24 md:py-32 bg-[#0a0a0a]"
+      className="relative min-h-screen bg-black overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Section Header */}
-        <div 
-          className={`text-center mb-16 md:mb-20 transition-all duration-700 ${
-            isVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <p className="text-white/50 text-sm uppercase tracking-[0.3em] mb-4">
-            The Sales Process
-          </p>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6">
-            BUILT FOR BIG GROWTH
-          </h2>
+      {/* Full Screen Split Layout */}
+      <div className="flex flex-col md:flex-row h-screen">
+        {/* Left Side - Image */}
+        <div className="relative w-full md:w-1/2 h-1/2 md:h-full">
+          <div className="absolute inset-0 transition-opacity duration-700">
+            <Image
+              src={currentStep.image}
+              alt={currentStep.title}
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+          {/* Large Number Overlay */}
+          <div className="absolute top-8 right-8 md:top-16 md:right-16 pointer-events-none">
+            <span className="font-display text-[120px] md:text-[200px] lg:text-[280px] text-white/10 leading-none">
+              {currentStep.number}
+            </span>
+          </div>
         </div>
 
-        {/* 2x2 Grid of Image Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {steps.map((step, index) => (
-            <div 
-              key={index} 
-              className={`relative group overflow-hidden rounded-[1px] bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 hover:border-white/20 transition-all duration-700 hover:scale-[1.02] ${
-                isVisible 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-12'
-              }`}
-              style={{ transitionDelay: `${(index + 1) * 150}ms` }}
-            >
-              {/* Background Image */}
-              <div className="absolute inset-0 overflow-hidden">
-                <Image
-                  src={step.image}
-                  alt={step.title}
-                  fill
-                  className="object-cover opacity-20 group-hover:opacity-30 transition-opacity duration-500"
-                />
-              </div>
+        {/* Right Side - Content */}
+        <div className="relative w-full md:w-1/2 h-1/2 md:h-full bg-black flex items-center justify-center px-8 md:px-16 lg:px-24">
+          <div className="max-w-2xl w-full">
+            {/* Section Label */}
+            <p className="text-white/50 text-xs md:text-sm uppercase tracking-[0.3em] mb-4 md:mb-6">
+              The Sales Process
+            </p>
+            
+            {/* Main Heading */}
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl xl:text-6xl tracking-tight mb-12 md:mb-16 leading-tight">
+              BUILT FOR BIG GROWTH
+            </h2>
 
-              {/* Background Pattern/Texture */}
-              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              {/* Card Content */}
-              <div className="relative z-10 p-8 md:p-10 lg:p-12 min-h-[300px] md:min-h-[350px] flex flex-col">
-                {/* Step Number - Large Background */}
-                <div className="absolute top-6 right-6 md:top-8 md:right-8">
-                  <span className="font-display text-8xl md:text-9xl text-white/5 group-hover:text-white/10 transition-colors duration-500">
-                    {step.number}
-                  </span>
-                </div>
+            {/* Step Title with Number */}
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-display font-medium mb-6 md:mb-8 tracking-wide">
+              {currentIndex + 1}. {currentStep.title}
+            </h3>
 
-                {/* Step Number - Small Indicator */}
-                {/* <div className="relative mb-6">
-                  <div className="inline-flex items-center justify-center w-16 h-16 border border-white/20 group-hover:border-white/40 bg-black transition-colors duration-300">
-                    <span className="font-display text-2xl text-white/40 group-hover:text-white/60 transition-colors">
-                      {step.number}
-                    </span>
-                  </div>
-                </div> */}
+            {/* Description */}
+            <p className="text-white/70 text-base md:text-lg lg:text-xl leading-relaxed mb-12 md:mb-16">
+              {currentStep.description}
+            </p>
 
-                {/* Content */}
-                <div className="flex-1 flex flex-col justify-end w-[70%]">
-                  <h3 className="text-2xl md:text-3xl font-display font-semibold mb-4 uppercase tracking-wider text-white group-hover:text-white transition-colors">
-                    {step.title}
-                  </h3>
-                  <p className="text-white/60 group-hover:text-white/80 text-base md:text-lg leading-relaxed transition-colors">
-                    {step.description}
-                  </p>
-                </div>
-
-                {/* Bottom Accent Line */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
+            {/* Navigation Arrows */}
+            <div className="flex items-center gap-4">
+              <button
+                onClick={goToPrevious}
+                className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all group"
+                aria-label="Previous step"
+              >
+                <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                onClick={goToNext}
+                className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all group"
+                aria-label="Next step"
+              >
+                <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
-          ))}
+
+            {/* Step Indicator Dots */}
+            <div className="flex items-center gap-2 mt-8 md:mt-10">
+              {steps.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`h-1 transition-all ${
+                    index === currentIndex
+                      ? 'bg-white w-8'
+                      : 'bg-white/30 hover:bg-white/50 w-8'
+                  }`}
+                  aria-label={`Go to step ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
