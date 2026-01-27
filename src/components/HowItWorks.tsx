@@ -16,21 +16,21 @@ const steps = [
     title: "PLUG IN & PLAY",
     description:
       "We plug you into our systems, processes, and booming markets so you can hit the ground running.",
-    image: "/growth2.png",
+    image: "/laptop-lap.png",
   },
   {
     number: "03",
     title: "EXECUTE & EARN",
     description:
       "Start closing quickly and earn what you deserve. We'll help you perform better so you can earn more.",
-    image: "/growth3.png",
+    image: "/growth4.png",
   },
   {
     number: "04",
     title: "REPEAT & GROW",
     description:
       "The reps who stick with us grow into new earning potentials, Positions, and more.",
-    image: "/growth4.png",
+    image: "/walking-neighborhood.png",
   },
 ];
 

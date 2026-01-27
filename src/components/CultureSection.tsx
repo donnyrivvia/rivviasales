@@ -66,9 +66,9 @@ export default function CultureSection() {
               }`}
             >
               {/* Placeholder for Support Image/Video */}
-              <div className="aspect-[4/3] bg-white/5 rounded-lg overflow-hidden border border-white/10 flex items-center justify-center">
+              <div className="aspect-[4/3] bg-white/5 overflow-hidden border border-white/10 flex items-center justify-center">
                 <Image 
-                  src="/support.png" 
+                  src="/laptop-desk.png" 
                   alt="Support systems and resources"
                   width={800}
                   height={600}
@@ -91,9 +91,9 @@ export default function CultureSection() {
               }`}
             >
               {/* Placeholder for Structure Image/Video */}
-              <div className="aspect-[4/3] bg-white/5 rounded-lg overflow-hidden border border-white/10 flex items-center justify-center">
+              <div className="aspect-[4/3] bg-white/5 overflow-hidden border border-white/10 flex items-center justify-center">
                 <Image 
-                  src="/structure.png" 
+                  src="/knocking.png" 
                   alt="Clear structure and workflows"
                   width={800}
                   height={600}
@@ -152,7 +152,7 @@ export default function CultureSection() {
               }`}
             >
               {/* Placeholder for Communication Image/Video */}
-              <div className="aspect-[4/3] bg-white/5 rounded-lg overflow-hidden border border-white/10 flex items-center justify-center">
+              <div className="aspect-[4/3] bg-white/5 overflow-hidden border border-white/10 flex items-center justify-center">
                 <Image 
                   src="/communication.png" 
                   alt="Open communication and transparency"
