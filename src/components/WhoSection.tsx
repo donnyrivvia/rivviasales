@@ -93,33 +93,36 @@ export default function WhoSection() {
     >
       {/* Sticky container */}
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-black">
-        {/* Animated grid background pattern */}
+        {/* Animated grid background pattern with gradient mask */}
         <div 
-          className="absolute inset-0 z-0 animate-grid"
+          className="absolute inset-0 z-0 animate-grid animate-gridGradient"
           style={{
             backgroundImage: `
               linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
               linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px)
             `,
             backgroundSize: '50px 50px',
-            opacity: 0.5
-          }}
-        />
-        
-        {/* Animated gradient mask overlay - fades grid on edges */}
-        <div 
-          className="absolute inset-0 z-[1] animate-gridGradient pointer-events-none"
-          style={{
-            background: `
+            opacity: 0.5,
+            maskImage: `
               radial-gradient(
                 ellipse 100% 80% at 50% 50%,
-                transparent 0%,
-                transparent 20%,
-                rgba(0, 0, 0, 0.7) 50%,
-                black 80%
+                rgba(0, 0, 0, 1) 0%,
+                rgba(0, 0, 0, 1) 20%,
+                rgba(0, 0, 0, 0.3) 50%,
+                rgba(0, 0, 0, 0) 80%
               )
             `,
-            backgroundSize: '200% 200%'
+            WebkitMaskImage: `
+              radial-gradient(
+                ellipse 100% 80% at 50% 50%,
+                rgba(0, 0, 0, 1) 0%,
+                rgba(0, 0, 0, 1) 20%,
+                rgba(0, 0, 0, 0.3) 50%,
+                rgba(0, 0, 0, 0) 80%
+              )
+            `,
+            maskSize: '200% 200%',
+            WebkitMaskSize: '200% 200%'
           }}
         />
 
