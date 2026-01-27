@@ -26,15 +26,6 @@ const traits = [
   },
 ];
 
-// Decorative small images with labels
-const decorativeImages = [
-  { label: "RIVERCENA, 2025", position: { top: '15%', left: '10%' } },
-  { label: "HIGH PERFORMANCE GOALS, 2025", position: { top: '20%', left: '35%' } },
-  { label: "BARCELONA, 2024", position: { top: '65%', left: '25%' } },
-  { label: "RIVERCENA, 2024", position: { top: '70%', left: '55%' } },
-  { label: "Q4 GOALS, 2025", position: { top: '25%', left: '75%' } },
-  { label: "TEAM SUMMIT, 2024", position: { top: '60%', left: '85%' } },
-];
 
 export default function WhoSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -150,56 +141,53 @@ export default function WhoSection() {
               key={index}
               className="flex-shrink-0 w-screen h-full flex items-center justify-center px-8 md:px-16 lg:px-24 relative"
             >
-              {/* Decorative small images */}
-              {index < decorativeImages.length && (
-                <>
-                  <div 
-                    className="absolute z-10 animate-fadeIn"
-                    style={{
-                      ...decorativeImages[index].position,
-                      animationDelay: '600ms'
-                    }}
-                  >
-                    <div className="relative">
-                      {/* Small placeholder image */}
-                      <div className="w-24 h-32 md:w-32 md:h-40 bg-white/5 border border-white/20 overflow-hidden">
-                        <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
-                      </div>
-                      {/* Label */}
-                      <p className="text-white/50 text-[10px] uppercase tracking-wider mt-2 font-medium">
-                        {decorativeImages[index].label}
-                      </p>
-                    </div>
+              {/* Small decorative images without labels - 2-3 per slide */}
+              <div 
+                className="absolute z-10 animate-fadeIn"
+                style={{
+                  top: '12%',
+                  left: '8%',
+                  animationDelay: '400ms'
+                }}
+              >
+                <div className="w-20 h-28 md:w-28 md:h-36 bg-white/5 border border-white/20 overflow-hidden">
+                  <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
+                </div>
+              </div>
+
+              <div 
+                className="absolute z-10 animate-fadeIn"
+                style={{
+                  bottom: '15%',
+                  right: '10%',
+                  animationDelay: '600ms'
+                }}
+              >
+                <div className="w-24 h-32 md:w-32 md:h-40 bg-white/5 border border-white/20 overflow-hidden">
+                  <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
+                </div>
+              </div>
+
+              {index % 2 === 0 && (
+                <div 
+                  className="absolute z-10 animate-fadeIn"
+                  style={{
+                    top: '60%',
+                    left: '15%',
+                    animationDelay: '800ms'
+                  }}
+                >
+                  <div className="w-16 h-24 md:w-24 md:h-32 bg-white/5 border border-white/20 overflow-hidden">
+                    <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
                   </div>
-                  
-                  {/* Additional decorative image if available */}
-                  {index < decorativeImages.length - 1 && (
-                    <div 
-                      className="absolute z-10 animate-fadeIn"
-                      style={{
-                        top: decorativeImages[index].position.top === '15%' ? '75%' : '20%',
-                        left: decorativeImages[index].position.left === '10%' ? '80%' : '15%',
-                        animationDelay: '800ms'
-                      }}
-                    >
-                      <div className="relative">
-                        <div className="w-20 h-28 md:w-28 md:h-36 bg-white/5 border border-white/20 overflow-hidden">
-                          <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
-                        </div>
-                        <p className="text-white/50 text-[10px] uppercase tracking-wider mt-2 font-medium">
-                          {decorativeImages[index + 1].label}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </>
+                </div>
               )}
 
-              {/* Main content card */}
-              <div className="max-w-5xl w-full flex flex-col md:flex-row gap-8 md:gap-12 items-center relative z-20">
+              {/* Main slide - centered */}
+              <div className="max-w-4xl w-full flex flex-col items-center relative z-20">
                 {/* Large trait image */}
-                <div className="w-full md:w-1/2 relative">
-                  <div className="relative h-[400px] md:h-[500px] lg:h-[600px] w-full overflow-hidden border border-white/30 group transition-all duration-500 hover:border-white/50">
+                <div className="relative w-full max-w-2xl">
+                  <div className="relative h-[500px] md:h-[600px] lg:h-[700px] w-full overflow-hidden border border-white/30 group transition-all duration-500 hover:border-white/50">
                     <Image
                       src={trait.image}
                       alt={trait.text}
@@ -214,35 +202,12 @@ export default function WhoSection() {
                       [{String(index + 1).padStart(2, '0')}]
                     </div>
                   </div>
-                </div>
-
-                {/* Content */}
-                <div className="w-full md:w-1/2 space-y-6">
-                  {/* Label */}
-                  <p className="text-white/50 text-xs md:text-sm uppercase tracking-[0.3em]">
-                    {trait.label}
-                  </p>
                   
-                  {/* Main text */}
-                  <h3 className="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight">
-                    {trait.text}
-                  </h3>
-
-                  {/* Quote/Description */}
-                  <p className="text-white/70 text-base md:text-lg leading-relaxed italic">
-                    &quot;Since I was 7 years old and had my first experience with kart racing, I&apos;ve worked tirelessly to make that dream come true.&quot;
-                  </p>
-
-                  {/* Progress indicator */}
-                  <div className="flex items-center gap-2 pt-4">
-                    {traits.map((_, i) => (
-                      <div 
-                        key={i}
-                        className={`h-1 transition-all duration-300 ${
-                          i === index ? 'bg-white w-12' : 'bg-white/30 w-12'
-                        }`}
-                      />
-                    ))}
+                  {/* Label below image */}
+                  <div className="mt-6 text-center">
+                    <h3 className="font-display text-2xl md:text-3xl lg:text-4xl tracking-tight leading-tight">
+                      {trait.text}
+                    </h3>
                   </div>
                 </div>
               </div>
