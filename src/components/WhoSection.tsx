@@ -9,11 +9,11 @@ const traits = [
   },
   {
     text: "IS MOTIVATED BY REAL OPPORTUNITY",
-    image: "/realOpportunity.png"
+    image: "/realOpportunity2.png"
   },
   {
     text: "CRAVES SELF IMPROVEMENT/PERFORMANCE",
-    image: "/selfImprovement.png"
+    image: "/selfImprovement3.png"
   },
   {
     text: "VALUES TRANSPARENCY",
@@ -70,7 +70,7 @@ export default function WhoSection() {
             {traits.map((trait, index) => (
               <div
                 key={index}
-                className={`trait-image-card relative h-[600px] w-[300px] overflow-hidden border border-white/10 hover:border-white/25 transition-all duration-700 group ${
+                className={`trait-image-card relative h-[600px] w-[300px] overflow-hidden border border-white transition-all duration-200 group ${
                   isVisible 
                     ? 'opacity-100 translate-y-0' 
                     : 'opacity-0 translate-y-12'

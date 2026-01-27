@@ -47,8 +47,10 @@ export default function Hero() {
           onCanPlayThrough={handleVideoLoad}
           className="absolute inset-0 w-full h-full object-cover"
           style={{ 
-            objectPosition: '0% center',
-            transform: 'scale(1.0)' 
+            objectPosition: 'left',
+            transform: 'scale(1.5)',
+            left: '24%',
+            top: '22%',
           }}
         >
           {/* Using 1080p only for guaranteed high quality */}

@@ -68,7 +68,7 @@ export default function CultureSection() {
               {/* Placeholder for Support Image/Video */}
               <div className="aspect-[4/3] bg-white/5 rounded-lg overflow-hidden border border-white/10 flex items-center justify-center">
                 <Image 
-                  src="/growth1.png" 
+                  src="/support.png" 
                   alt="Support systems and resources"
                   width={800}
                   height={600}
@@ -93,7 +93,7 @@ export default function CultureSection() {
               {/* Placeholder for Structure Image/Video */}
               <div className="aspect-[4/3] bg-white/5 rounded-lg overflow-hidden border border-white/10 flex items-center justify-center">
                 <Image 
-                  src="/growth2.png" 
+                  src="/structure.png" 
                   alt="Clear structure and workflows"
                   width={800}
                   height={600}
@@ -154,7 +154,7 @@ export default function CultureSection() {
               {/* Placeholder for Communication Image/Video */}
               <div className="aspect-[4/3] bg-white/5 rounded-lg overflow-hidden border border-white/10 flex items-center justify-center">
                 <Image 
-                  src="/growth3.png" 
+                  src="/communication.png" 
                   alt="Open communication and transparency"
                   width={800}
                   height={600}

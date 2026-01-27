@@ -96,16 +96,16 @@ export default function HowItWorks() {
                 </div>
 
                 {/* Step Number - Small Indicator */}
-                <div className="relative mb-6">
+                {/* <div className="relative mb-6">
                   <div className="inline-flex items-center justify-center w-16 h-16 border border-white/20 group-hover:border-white/40 bg-black transition-colors duration-300">
                     <span className="font-display text-2xl text-white/40 group-hover:text-white/60 transition-colors">
                       {step.number}
                     </span>
                   </div>
-                </div>
+                </div> */}
 
                 {/* Content */}
-                <div className="flex-1 flex flex-col justify-center">
+                <div className="flex-1 flex flex-col justify-end w-[70%]">
                   <h3 className="text-2xl md:text-3xl font-display font-semibold mb-4 uppercase tracking-wider text-white group-hover:text-white transition-colors">
                     {step.title}
                   </h3>

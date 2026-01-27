@@ -6,9 +6,9 @@ import { useState, useEffect, useMemo } from "react";
 // ========================================
 // GRID CONTROLS - Adjust these values
 // ========================================
-const SQUARE_SIZE = 2;        // Size of each square in pixels
-const GRID_SPACING = 4;       // Space between squares (center to center)
-const SQUARE_OPACITY = 0.14;   // Opacity of squares (0-1)
+const SQUARE_SIZE = 4;        // Size of each square in pixels
+const GRID_SPACING = 6;       // Space between squares (center to center)
+const SQUARE_OPACITY = 0.1;   // Opacity of squares (0-1)
 
 // Market locations removed - map now serves as background visual only
 
@@ -71,7 +71,6 @@ const generateSimpleGrid = () => {
 
 export default function MarketsSection() {
   const [isMounted, setIsMounted] = useState(false);
-  const [mousePosition, setMousePosition] = useState<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     setIsMounted(true);
@@ -82,55 +81,18 @@ export default function MarketsSection() {
     if (!isMounted) return [];
     return generateSimpleGrid();
   }, [isMounted]);
-
-  // Handle mouse move over SVG
-  const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
-    const svg = e.currentTarget;
-    const rect = svg.getBoundingClientRect();
-    
-    // Convert mouse position to SVG coordinates
-    const x = ((e.clientX - rect.left) / rect.width) * 800;
-    const y = ((e.clientY - rect.top) / rect.height) * 500;
-    
-    setMousePosition({ x, y });
-  };
-
-  const handleMouseLeave = () => {
-    setMousePosition(null);
-  };
-
-  // Calculate if a square should be highlighted based on mouse position
-  const getSquareOpacity = (square: { x: number; y: number; opacity: number }) => {
-    if (!mousePosition) return square.opacity;
-    
-    const distance = Math.sqrt(
-      Math.pow(square.x - mousePosition.x, 2) + 
-      Math.pow(square.y - mousePosition.y, 2)
-    );
-    
-    // Highlight squares within 50 units of mouse - no gradient, just on/off
-    const highlightRadius = 50;
-    
-    if (distance < highlightRadius) {
-      return 1.0; // Full brightness
-    }
-    
-    return square.opacity;
-  };
   return (
-    <section data-theme="dark" id="markets" className="bg-black relative overflow-hidden py-24 md:py-32 flex items-center justify-center h-[100vh]">
+    <section data-theme="dark" id="markets" className="bg-[#0a0a0a] relative overflow-hidden py-24 md:py-32 flex items-center justify-center h-[100vh]">
       
       {/* Absolute Positioned Map Background */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-full max-w-[90vw] h-full flex items-center justify-center">
-          <div className="w-full h-full bg-gradient-to-br from-white/[0.03] to-transparent flex items-center justify-center">
+        <div className="w-full max-w-[110vw] h-full flex items-center justify-center">
+          <div className="w-full h-full bg-[#0a0a0a] flex items-center justify-center">
             <svg
               viewBox="0 0 800 500"
               className="w-full h-auto max-h-full"
               preserveAspectRatio="xMidYMid meet"
               xmlns="http://www.w3.org/2000/svg"
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
             >
               {/* Simple Square Grid */}
               <g id="square-grid">
@@ -142,10 +104,7 @@ export default function MarketsSection() {
                     width={SQUARE_SIZE}
                     height={SQUARE_SIZE}
                     fill="white"
-                    opacity={getSquareOpacity(square)}
-                    style={{
-                      transition: 'opacity 0.5s ease-out'
-                    }}
+                    opacity={square.opacity}
                   />
                 ))}
               </g>
@@ -159,13 +118,13 @@ export default function MarketsSection() {
         <div className="max-w-[600px] text-center">
           <div className="line-accent mb-6 mx-auto" />
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6">
-            CURRENT MARKETS &<br />MARKET EXPANSION
+          QUALITY LEADS FROM<br />ALL OVER THE NATION
           </h2>
           <p className="text-lg text-white/70 mb-6 leading-relaxed uppercase tracking-wide">
-            RIVVIA CURRENTLY OPERATES IN 22 MARKETS ACROSS THE COUNTRY, AND CONSISTENTLY OPENS NEW MARKETS EACH QUARTER.
+          Although we’re in 22 markets, we have the power to sell wherever there’s demand. We field quality leads from all over the nation, giving you more chances to close. 
           </p>
           <p className="text-white/60 mb-8">
-            Each market is strategically picked for Fiber adoption to ensure the highest close rate possible.
+          Bigger opportunity means bigger upside for everyone at Rivvia.
           </p>
         </div>
       </div>
