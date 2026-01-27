@@ -39,12 +39,20 @@ export default function IncentivesPage() {
     <>
       <Navbar />
       <main className="min-h-screen bg-black">
-        {/* Hero Section */}
-        <section 
+      {/* Hero Section */}
+      <section 
         ref={heroAnimation.elementRef as React.RefObject<HTMLElement>}
-        className="relative pt-32 pb-16 px-6 lg:px-8 bg-[#0a0a0a]"
+        className="relative pt-32 pb-16 px-6 lg:px-8 overflow-hidden"
+        style={{
+          backgroundImage: 'url(/groupPhoto.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
       >
-        <div className="max-w-7xl mx-auto">
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/60 z-0" />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
           {/* Back Button */}
           <Link 
             href="/"
