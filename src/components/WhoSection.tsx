@@ -26,6 +26,33 @@ const traits = [
   },
 ];
 
+// Decorative photo variations for each slide
+const decorativePhotos = [
+  // Slide 0 - Structure
+  [
+    { width: 'w-24 md:w-32', height: 'h-32 md:h-44', top: '8%', left: '6%', rotate: '-3deg' },
+    { width: 'w-28 md:w-36', height: 'h-20 md:h-28', bottom: '12%', right: '8%', rotate: '2deg' },
+    { width: 'w-20 md:w-24', height: 'h-28 md:h-36', top: '55%', left: '12%', rotate: '4deg' },
+  ],
+  // Slide 1 - Opportunity
+  [
+    { width: 'w-32 md:w-40', height: 'h-24 md:h-32', top: '15%', right: '10%', rotate: '-2deg' },
+    { width: 'w-20 md:w-28', height: 'h-32 md:h-40', bottom: '20%', left: '8%', rotate: '3deg' },
+    { width: 'w-24 md:w-32', height: 'h-24 md:h-32', top: '50%', right: '15%', rotate: '-4deg' },
+  ],
+  // Slide 2 - Performance
+  [
+    { width: 'w-28 md:w-36', height: 'h-36 md:h-48', top: '10%', left: '10%', rotate: '2deg' },
+    { width: 'w-24 md:w-32', height: 'h-20 md:h-24', bottom: '15%', right: '12%', rotate: '-3deg' },
+  ],
+  // Slide 3 - Transparency
+  [
+    { width: 'w-20 md:w-28', height: 'h-28 md:h-36', top: '12%', right: '8%', rotate: '3deg' },
+    { width: 'w-32 md:w-40', height: 'h-28 md:h-36', bottom: '18%', left: '10%', rotate: '-2deg' },
+    { width: 'w-24 md:w-28', height: 'h-32 md:h-40', top: '60%', right: '18%', rotate: '4deg' },
+  ],
+];
+
 
 export default function WhoSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -162,47 +189,25 @@ export default function WhoSection() {
               key={index}
               className="flex-shrink-0 w-screen h-full flex items-center justify-center px-8 md:px-16 lg:px-24 relative"
             >
-              {/* Small decorative images without labels - 2-3 per slide */}
-              <div 
-                className="absolute z-10 animate-fadeIn"
-                style={{
-                  top: '12%',
-                  left: '8%',
-                  animationDelay: '400ms'
-                }}
-              >
-                <div className="w-20 h-28 md:w-28 md:h-36 bg-white/5 border border-white/20 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
-                </div>
-              </div>
-
-              <div 
-                className="absolute z-10 animate-fadeIn"
-                style={{
-                  bottom: '15%',
-                  right: '10%',
-                  animationDelay: '600ms'
-                }}
-              >
-                <div className="w-24 h-32 md:w-32 md:h-40 bg-white/5 border border-white/20 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
-                </div>
-              </div>
-
-              {index % 2 === 0 && (
+              {/* Small decorative images without labels - varied sizes and positions */}
+              {decorativePhotos[index]?.map((photo, photoIndex) => (
                 <div 
+                  key={photoIndex}
                   className="absolute z-10 animate-fadeIn"
                   style={{
-                    top: '60%',
-                    left: '15%',
-                    animationDelay: '800ms'
+                    top: photo.top,
+                    bottom: photo.bottom,
+                    left: photo.left,
+                    right: photo.right,
+                    transform: `rotate(${photo.rotate})`,
+                    animationDelay: `${(photoIndex + 1) * 200 + 200}ms`
                   }}
                 >
-                  <div className="w-16 h-24 md:w-24 md:h-32 bg-white/5 border border-white/20 overflow-hidden">
+                  <div className={`${photo.width} ${photo.height} bg-white/5 border border-white/20 overflow-hidden transition-transform duration-300 hover:scale-105`}>
                     <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
                   </div>
                 </div>
-              )}
+              ))}
 
               {/* Main slide - centered */}
               <div className="max-w-4xl w-full flex flex-col items-center relative z-20">
