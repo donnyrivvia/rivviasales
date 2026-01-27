@@ -1,113 +1,261 @@
 'use client';
 
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 
 const traits = [
   {
     text: "VALUES STRUCTURE OVER HYPE",
-    image: "/structureOverHype.png"
+    image: "/structureOverHype.png",
+    label: "STRUCTURE FIRST"
   },
   {
     text: "IS MOTIVATED BY REAL OPPORTUNITY",
-    image: "/realOpportunity2.png"
+    image: "/realOpportunity2.png",
+    label: "REAL GROWTH"
   },
   {
     text: "CRAVES SELF IMPROVEMENT/PERFORMANCE",
-    image: "/selfImprovement3.png"
+    image: "/selfImprovement3.png",
+    label: "HIGH PERFORMANCE"
   },
   {
     text: "VALUES TRANSPARENCY",
-    image: "/transparency.png"
+    image: "/transparency.png",
+    label: "TRANSPARENCY"
   },
 ];
 
+// Decorative small images with labels
+const decorativeImages = [
+  { label: "RIVERCENA, 2025", position: { top: '15%', left: '10%' } },
+  { label: "HIGH PERFORMANCE GOALS, 2025", position: { top: '20%', left: '35%' } },
+  { label: "BARCELONA, 2024", position: { top: '65%', left: '25%' } },
+  { label: "RIVERCENA, 2024", position: { top: '70%', left: '55%' } },
+  { label: "Q4 GOALS, 2025", position: { top: '25%', left: '75%' } },
+  { label: "TEAM SUMMIT, 2024", position: { top: '60%', left: '85%' } },
+];
+
 export default function WhoSection() {
-  const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
+  const sectionRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current || !containerRef.current) return;
+
+      const section = sectionRef.current;
+      const container = containerRef.current;
+      const sectionRect = section.getBoundingClientRect();
+      const sectionHeight = section.offsetHeight;
+      const viewportHeight = window.innerHeight;
+
+      // Calculate scroll progress through the section
+      const scrollStart = sectionRect.top;
+      const scrollEnd = scrollStart - (sectionHeight - viewportHeight);
+      
+      if (scrollStart <= 0 && scrollEnd <= 0) {
+        const progress = Math.abs(scrollStart) / (sectionHeight - viewportHeight);
+        const clampedProgress = Math.max(0, Math.min(1, progress));
+        setScrollProgress(clampedProgress);
+
+        // Apply horizontal scroll based on vertical scroll
+        const maxScroll = container.scrollWidth - container.offsetWidth;
+        container.scrollLeft = maxScroll * clampedProgress;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <section 
-      ref={elementRef as React.RefObject<HTMLElement>}
+      ref={sectionRef}
       data-theme="dark" 
-      className="py-24 md:py-32 relative overflow-hidden"
-      style={{
-        backgroundImage: 'url(/bts1.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }}
+      className="relative bg-black overflow-hidden"
+      style={{ height: '400vh' }} // 4x viewport height for scroll duration
     >
-      {/* Black overlay at 40% opacity */}
-      <div className="absolute inset-0 bg-black/40 z-0" />
-      
-      {/* Background accent */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-white/[0.02] to-transparent z-0" />
+      {/* Sticky container */}
+      <div className="sticky top-0 h-screen overflow-hidden">
+        {/* Subtle grid background pattern */}
+        <div 
+          className="absolute inset-0 opacity-[0.03] z-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px'
+          }}
+        />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="w-[100%] flex flex-col items-center justify-center">
-          <h2 
-            className={`font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-tight mb-8 text-center transition-all duration-700 ${
-              isVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-8'
-            }`}
-          >
-            RIVVIA ISN&apos;T FOR EVERYONE
-            <br />
-            HERE&apos;S WHO WE BUILT IT FOR
-          </h2>
-
-          <p 
-            className={`text-lg md:text-xl text-white/70 mb-12 uppercase tracking-wide transition-all duration-700 delay-200 ${
-              isVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-8'
-            }`}
-          >
-            THE RIGHT RIVVIA CANDIDATE:
-          </p>
-
-          {/* Traits Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-12 sm:mb-[70px] w-full max-w-7xl">
-            {traits.map((trait, index) => (
-              <div
-                key={index}
-                className={`trait-image-card relative h-[500px] sm:h-[600px] w-full overflow-hidden border border-white transition-all duration-200 group ${
-                  isVisible 
-                    ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-12'
-                }`}
-                style={{
-                  backgroundImage: `url(${trait.image})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  transitionDelay: `${(index + 2) * 150}ms`
-                }}
+        {/* Horizontal scrolling container */}
+        <div 
+          ref={containerRef}
+          className="h-full flex items-center overflow-x-hidden"
+          style={{ 
+            scrollBehavior: 'auto',
+            WebkitOverflowScrolling: 'touch'
+          }}
+        >
+          {/* Intro Section */}
+          <div className="flex-shrink-0 w-screen h-full flex flex-col items-center justify-center px-8 md:px-16 relative">
+            <div className="max-w-4xl text-center">
+              <h2 
+                className="font-display text-4xl md:text-6xl lg:text-7xl tracking-tight leading-tight mb-8 animate-fadeIn"
+                style={{ animationDelay: '200ms' }}
               >
-                {/* Dark overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-80 group-hover:opacity-70 transition-opacity" />
-                
-                {/* Text content - bottom left */}
-                <div className="absolute bottom-0 left-0 p-6 z-10 h-full flex flex-col gap-0 items-stretch justify-between">
-                  <div className="w-10 h-10 flex items-center justify-center border border-white/50 text-sm font-medium mb-3">
-                    [{String(index + 1).padStart(2, '0')}]
-                  </div>
-                  <span className="text-white text-sm uppercase tracking-wide font-semibold leading-tight block">
-                    {trait.text}
-                  </span>
-                </div>
-              </div>
-            ))}
+                RIVVIA ISN&apos;T FOR EVERYONE
+                <br />
+                HERE&apos;S WHO WE BUILT IT FOR
+              </h2>
+              <p 
+                className="text-lg md:text-xl text-white/70 uppercase tracking-wide animate-fadeIn"
+                style={{ animationDelay: '400ms' }}
+              >
+                THE RIGHT RIVVIA CANDIDATE:
+              </p>
+            </div>
           </div>
 
-          <a 
-            href="#join" 
-            className={`btn-secondary inline-block transition-all duration-700 delay-[900ms] ${
-              isVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-8'
-            }`}
-          >
-            READY?
-          </a>
+          {/* Traits Sections - Horizontal Scroll */}
+          {traits.map((trait, index) => (
+            <div 
+              key={index}
+              className="flex-shrink-0 w-screen h-full flex items-center justify-center px-8 md:px-16 lg:px-24 relative"
+            >
+              {/* Decorative small images */}
+              {index < decorativeImages.length && (
+                <>
+                  <div 
+                    className="absolute z-10 animate-fadeIn"
+                    style={{
+                      ...decorativeImages[index].position,
+                      animationDelay: '600ms'
+                    }}
+                  >
+                    <div className="relative">
+                      {/* Small placeholder image */}
+                      <div className="w-24 h-32 md:w-32 md:h-40 bg-white/5 border border-white/20 overflow-hidden">
+                        <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
+                      </div>
+                      {/* Label */}
+                      <p className="text-white/50 text-[10px] uppercase tracking-wider mt-2 font-medium">
+                        {decorativeImages[index].label}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Additional decorative image if available */}
+                  {index < decorativeImages.length - 1 && (
+                    <div 
+                      className="absolute z-10 animate-fadeIn"
+                      style={{
+                        top: decorativeImages[index].position.top === '15%' ? '75%' : '20%',
+                        left: decorativeImages[index].position.left === '10%' ? '80%' : '15%',
+                        animationDelay: '800ms'
+                      }}
+                    >
+                      <div className="relative">
+                        <div className="w-20 h-28 md:w-28 md:h-36 bg-white/5 border border-white/20 overflow-hidden">
+                          <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
+                        </div>
+                        <p className="text-white/50 text-[10px] uppercase tracking-wider mt-2 font-medium">
+                          {decorativeImages[index + 1].label}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
+
+              {/* Main content card */}
+              <div className="max-w-5xl w-full flex flex-col md:flex-row gap-8 md:gap-12 items-center relative z-20">
+                {/* Large trait image */}
+                <div className="w-full md:w-1/2 relative">
+                  <div className="relative h-[400px] md:h-[500px] lg:h-[600px] w-full overflow-hidden border border-white/30 group transition-all duration-500 hover:border-white/50">
+                    <Image
+                      src={trait.image}
+                      alt={trait.text}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    {/* Dark overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-70" />
+                    
+                    {/* Number badge */}
+                    <div className="absolute top-6 left-6 w-12 h-12 flex items-center justify-center border border-white/50 text-lg font-medium z-10">
+                      [{String(index + 1).padStart(2, '0')}]
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="w-full md:w-1/2 space-y-6">
+                  {/* Label */}
+                  <p className="text-white/50 text-xs md:text-sm uppercase tracking-[0.3em]">
+                    {trait.label}
+                  </p>
+                  
+                  {/* Main text */}
+                  <h3 className="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight">
+                    {trait.text}
+                  </h3>
+
+                  {/* Quote/Description */}
+                  <p className="text-white/70 text-base md:text-lg leading-relaxed italic">
+                    &quot;Since I was 7 years old and had my first experience with kart racing, I&apos;ve worked tirelessly to make that dream come true.&quot;
+                  </p>
+
+                  {/* Progress indicator */}
+                  <div className="flex items-center gap-2 pt-4">
+                    {traits.map((_, i) => (
+                      <div 
+                        key={i}
+                        className={`h-1 transition-all duration-300 ${
+                          i === index ? 'bg-white w-12' : 'bg-white/30 w-12'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {/* Outro Section */}
+          <div className="flex-shrink-0 w-screen h-full flex flex-col items-center justify-center px-8 md:px-16">
+            <div className="max-w-2xl text-center">
+              <h3 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-8">
+                SOUND LIKE YOU?
+              </h3>
+              <a 
+                href="#join" 
+                className="btn-secondary inline-block"
+              >
+                READY?
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll progress indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30">
+          <div className="flex items-center gap-2">
+            <div className="w-32 h-1 bg-white/20 overflow-hidden">
+              <div 
+                className="h-full bg-white transition-all duration-200"
+                style={{ width: `${scrollProgress * 100}%` }}
+              />
+            </div>
+            <span className="text-white/50 text-xs uppercase tracking-wider">
+              {Math.round(scrollProgress * 100)}%
+            </span>
+          </div>
         </div>
       </div>
     </section>
