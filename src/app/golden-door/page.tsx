@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from 'react';
 import Link from 'next/link';
+import Navbar from '@/components/Navbar';
 
 const goldenDoorWinners = [
   {
@@ -50,9 +51,11 @@ export default function GoldenDoorPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-black">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-16 px-6 lg:px-8">
+    <>
+      <Navbar />
+      <main className="min-h-screen bg-black">
+        {/* Hero Section */}
+        <section data-theme="dark" className="relative pt-32 pb-16 px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Back Button */}
           <Link 
@@ -127,5 +130,6 @@ export default function GoldenDoorPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }
