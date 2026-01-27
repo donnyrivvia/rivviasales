@@ -1,11 +1,22 @@
 'use client';
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Hero() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isContentVisible, setIsContentVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleVideoLoad = () => {
     setIsVideoLoaded(true);
@@ -46,7 +57,13 @@ export default function Hero() {
           preload="auto"
           onCanPlayThrough={handleVideoLoad}
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ 
+          style={isMobile ? { 
+            objectPosition: 'center',
+            opacity: 0.2,
+            transform: 'scale(1)',
+            left: 0,
+            top: 0,
+          } : { 
             objectPosition: 'left',
             transform: 'scale(1.5)',
             left: '24%',
