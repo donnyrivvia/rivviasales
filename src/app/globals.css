@@ -92,6 +92,24 @@ body {
   }
 }
 
+@keyframes gridGradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.8s ease-out forwards;
 }
@@ -110,6 +128,10 @@ body {
 
 .animate-grid {
   animation: grid 20s linear infinite;
+}
+
+.animate-gridGradient {
+  animation: gridGradient 30s ease-in-out infinite;
 }
 
 /* Staggered animation delays */

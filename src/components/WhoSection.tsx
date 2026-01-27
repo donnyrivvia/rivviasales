@@ -105,6 +105,23 @@ export default function WhoSection() {
             opacity: 0.5
           }}
         />
+        
+        {/* Animated gradient mask overlay - fades grid on edges */}
+        <div 
+          className="absolute inset-0 z-[1] animate-gridGradient pointer-events-none"
+          style={{
+            background: `
+              radial-gradient(
+                ellipse 100% 80% at 50% 50%,
+                transparent 0%,
+                transparent 20%,
+                rgba(0, 0, 0, 0.7) 50%,
+                black 80%
+              )
+            `,
+            backgroundSize: '200% 200%'
+          }}
+        />
 
         {/* Horizontal scrolling container */}
         <div 
