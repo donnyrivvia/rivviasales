@@ -82,14 +82,23 @@ export default function Navbar() {
   const hamburgerColor = isDarkSection ? "bg-white" : "bg-black";
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/20 backdrop-blur-[40px] border-b border-white/10"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="w-full mx-auto px-6 lg:px-8">
+    <>
+      {/* Mobile Menu Backdrop - Blur Background */}
+      <div
+        className={`fixed inset-0 bg-black/30 backdrop-blur-md z-40 transition-opacity duration-300 md:hidden ${
+          isMobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setIsMobileMenuOpen(false)}
+      />
+
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled || isMobileMenuOpen
+            ? "bg-white/20 backdrop-blur-[40px] border-b border-white/10"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="w-full mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
@@ -237,6 +246,7 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
+    </>
   );
 }
 
