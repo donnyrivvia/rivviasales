@@ -93,9 +93,9 @@ export default function WhoSection() {
     >
       {/* Sticky container */}
       <div className="sticky top-0 h-screen w-full overflow-hidden">
-        {/* Subtle grid background pattern */}
+        {/* Animated grid background pattern */}
         <div 
-          className="absolute inset-0 opacity-[0.03] z-0"
+          className="absolute inset-0 opacity-[0.03] z-0 animate-grid"
           style={{
             backgroundImage: `
               linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
