@@ -40,6 +40,7 @@ export default function WhoSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [translateX, setTranslateX] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,29 +48,51 @@ export default function WhoSection() {
 
       const section = sectionRef.current;
       const container = containerRef.current;
-      const sectionRect = section.getBoundingClientRect();
+      const rect = section.getBoundingClientRect();
       const sectionHeight = section.offsetHeight;
       const viewportHeight = window.innerHeight;
 
-      // Calculate scroll progress through the section
-      const scrollStart = sectionRect.top;
-      const scrollEnd = scrollStart - (sectionHeight - viewportHeight);
-      
-      if (scrollStart <= 0 && scrollEnd <= 0) {
-        const progress = Math.abs(scrollStart) / (sectionHeight - viewportHeight);
-        const clampedProgress = Math.max(0, Math.min(1, progress));
-        setScrollProgress(clampedProgress);
+      // When section enters viewport until it exits
+      const start = rect.top + viewportHeight;
+      const end = rect.bottom;
 
-        // Apply horizontal scroll based on vertical scroll
-        const maxScroll = container.scrollWidth - container.offsetWidth;
-        container.scrollLeft = maxScroll * clampedProgress;
+      if (start > 0 && end > viewportHeight) {
+        // Calculate progress (0 to 1) as user scrolls through the section
+        const scrollDistance = sectionHeight - viewportHeight;
+        const scrolled = -rect.top;
+        const progress = Math.max(0, Math.min(1, scrolled / scrollDistance));
+        
+        setScrollProgress(progress);
+
+        // Calculate how far to translate horizontally
+        // Total width = number of screens * viewport width
+        const totalScreens = 6; // intro + 4 traits + outro
+        const totalWidth = container.scrollWidth;
+        const viewportWidth = window.innerWidth;
+        const maxTranslate = -(totalWidth - viewportWidth);
+        
+        setTranslateX(maxTranslate * progress);
+      } else if (end <= viewportHeight) {
+        // Section has fully scrolled through
+        setScrollProgress(1);
+        const totalWidth = container.scrollWidth;
+        const viewportWidth = window.innerWidth;
+        setTranslateX(-(totalWidth - viewportWidth));
+      } else if (start <= 0) {
+        // Section hasn't entered yet
+        setScrollProgress(0);
+        setTranslateX(0);
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
     handleScroll(); // Initial check
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   return (
@@ -96,10 +119,11 @@ export default function WhoSection() {
         {/* Horizontal scrolling container */}
         <div 
           ref={containerRef}
-          className="h-full flex items-center overflow-x-hidden"
+          className="h-full flex items-center"
           style={{ 
-            scrollBehavior: 'auto',
-            WebkitOverflowScrolling: 'touch'
+            transform: `translateX(${translateX}px)`,
+            transition: 'none',
+            willChange: 'transform'
           }}
         >
           {/* Intro Section */}
