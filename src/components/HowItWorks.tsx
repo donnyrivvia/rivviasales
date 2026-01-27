@@ -60,8 +60,12 @@ export default function HowItWorks() {
       {/* Full Screen Split Layout */}
       <div className="flex flex-col md:flex-row h-screen">
         {/* Left Side - Image */}
-        <div className="relative w-full md:w-1/2 h-1/2 md:h-full">
-          <div className="absolute inset-0 transition-opacity duration-700">
+        <div className="relative w-full md:w-1/2 h-1/2 md:h-full overflow-hidden">
+          {/* Image with fade transition */}
+          <div 
+            key={currentIndex}
+            className="absolute inset-0 animate-fadeIn"
+          >
             <Image
               src={currentStep.image}
               alt={currentStep.title}
@@ -70,8 +74,11 @@ export default function HowItWorks() {
               priority
             />
           </div>
-          {/* Large Number Overlay */}
-          <div className="absolute top-8 right-8 md:top-16 md:right-16 pointer-events-none">
+          {/* Large Number Overlay with transition */}
+          <div 
+            key={`number-${currentIndex}`}
+            className="absolute top-8 right-8 md:top-16 md:right-16 pointer-events-none animate-fadeIn"
+          >
             <span className="font-display text-[120px] md:text-[200px] lg:text-[280px] text-white/10 leading-none">
               {currentStep.number}
             </span>
@@ -91,13 +98,20 @@ export default function HowItWorks() {
               BUILT FOR BIG GROWTH
             </h2>
 
-            {/* Step Title with Number */}
-            <h3 className="text-xl md:text-2xl lg:text-3xl font-display font-medium mb-6 md:mb-8 tracking-wide">
+            {/* Step Title with Number - animated */}
+            <h3 
+              key={`title-${currentIndex}`}
+              className="text-xl md:text-2xl lg:text-3xl font-display font-medium mb-6 md:mb-8 tracking-wide animate-slideInUp"
+            >
               {currentIndex + 1}. {currentStep.title}
             </h3>
 
-            {/* Description */}
-            <p className="text-white/70 text-base md:text-lg lg:text-xl leading-relaxed mb-12 md:mb-16">
+            {/* Description - animated */}
+            <p 
+              key={`desc-${currentIndex}`}
+              className="text-white/70 text-base md:text-lg lg:text-xl leading-relaxed mb-12 md:mb-16 animate-slideInUp"
+              style={{ animationDelay: '100ms' }}
+            >
               {currentStep.description}
             </p>
 
