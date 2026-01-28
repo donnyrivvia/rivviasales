@@ -16,7 +16,7 @@ export default function CultureSection() {
         {/* Section Header */}
         <div 
           ref={headerAnimation.elementRef as React.RefObject<HTMLDivElement>}
-          className="text-center mb-20"
+          className="flex flex-col text-center mb-20"
         >
           <WipeReveal
             as="p"

@@ -16,7 +16,7 @@ export default function WhySection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
           {/* Left Column - Title */}
-          <div>
+          <div className="flex flex-col">
             <div className="line-accent mb-6" />
             <WipeReveal
               as="h2"
@@ -37,7 +37,7 @@ export default function WhySection() {
           </div>
 
           {/* Right Column - Content */}
-          <div className="space-y-6">
+          <div className="flex flex-col space-y-6">
             <WipeReveal
               as="p"
               className="text-xl md:text-2xl font-semibold text-black/90 leading-tight uppercase tracking-wide"

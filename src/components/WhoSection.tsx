@@ -252,7 +252,7 @@ export default function WhoSection() {
         >
           {/* Intro Section */}
           <div className="flex-shrink-0 w-screen h-full flex flex-col items-center justify-center px-8 md:px-16 relative">
-            <div className="max-w-4xl text-center">
+            <div className="max-w-4xl text-center flex flex-col">
               <WipeReveal
                 as="h2"
                 className="font-display text-4xl md:text-6xl lg:text-7xl tracking-tight leading-tight mb-8"
@@ -608,7 +608,7 @@ export default function WhoSection() {
       {/* Mobile - Simple stacked layout */}
       <div className="md:hidden py-16 px-6">
         {/* Intro Section */}
-        <div className="mb-16 text-center">
+        <div className="mb-16 text-center flex flex-col">
           <WipeReveal
             as="h2"
             className="font-display text-3xl sm:text-4xl tracking-tight leading-tight mb-6"
