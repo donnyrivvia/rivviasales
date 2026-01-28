@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     siteName: "Rivvia",
     images: [
       {
-        url: "/og-image.png", // Update with your thumbnail image path
+        url: "/WALKINGRIVVIA.png", // Update with your thumbnail image path
         width: 1200,
         height: 630,
         alt: "Rivvia - Build your sales career with confidence",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Rivvia — Sell With Confidence",
     description: "Build your sales career with Rivvia. Leads provided. Active markets. Real opportunity.",
-    images: ["/og-image.png"], // Update with your thumbnail image path
+    images: ["/WALKINGRIVVIA.png"], // Update with your thumbnail image path
   },
 };
 
