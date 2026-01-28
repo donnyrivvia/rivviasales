@@ -120,7 +120,7 @@ body {
     transform: translateX(-100%);
   }
   100% {
-    transform: translateX(100%);
+    transform: translateX(110%);
   }
 }
 
@@ -179,7 +179,8 @@ body {
   position: relative;
   display: block;
   overflow: hidden;
-  padding: 0.05em 0;
+  padding: 0.1em 0.05em;
+  margin: 0 -0.05em;
 }
 
 .wipe-reveal-line span {
@@ -220,7 +221,8 @@ body {
   position: relative;
   display: inline-block;
   overflow: hidden;
-  padding: 0.05em 0;
+  padding: 0.1em 0.05em;
+  margin: 0 -0.05em;
 }
 
 .wipe-reveal-inline span {
