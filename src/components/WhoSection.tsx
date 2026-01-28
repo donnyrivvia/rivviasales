@@ -26,7 +26,7 @@ const mainPhotos = [
     paddingBottom: 0,
   },
   { 
-    image: "/selfImprovement3.png",
+    image: "/WALKINGRIVVIA.png",
     label: "HIGH PERFORMANCE",
     text: "CRAVES SELF IMPROVEMENT/PERFORMANCE",
     aspectRatio: '4/3',
@@ -64,7 +64,7 @@ const smallBoxes = [
     aspectRatio: '5/4',         // Example: slightly taller than wide
     paddingTop: 0,
     paddingBottom: '7vh',
-    image: '/rivvia.png',
+    image: '/selfImprovement3.png',
   },
   { 
     verticalAlign: 'center',
@@ -282,9 +282,9 @@ export default function WhoSection() {
               <div className="flex flex-col items-center">
                 {/* Label above photo if verticalAlign is 'bottom' */}
                 {mainPhotos[0].verticalAlign === 'bottom' && (
-                  <div className="mb-3 text-center">
+                  <div className="mb-3 text-center flex items-center justify-center gap-2">
                     <p className="text-xs md:text-sm text-white/70 uppercase tracking-wider">
-                      {mainPhotos[0].text}
+                    [01] {mainPhotos[0].text}
                     </p>
                   </div>
                 )}
@@ -303,16 +303,13 @@ export default function WhoSection() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-60" />
-                  <div className="absolute top-3 left-3 w-8 h-8 flex items-center justify-center border border-white/50 text-xs font-medium">
-                    [01]
-                  </div>
                 </div>
                 
                 {/* Label below photo if verticalAlign is NOT 'bottom' */}
                 {mainPhotos[0].verticalAlign !== 'bottom' && (
-                  <div className="mt-3 text-center">
+                  <div className="mt-3 text-center flex items-center justify-center gap-2">
                     <p className="text-xs md:text-sm text-white/70 uppercase tracking-wider">
-                      {mainPhotos[0].text}
+                      [01]{mainPhotos[0].text}
                     </p>
                   </div>
                 )}
@@ -362,9 +359,9 @@ export default function WhoSection() {
               <div className="flex flex-col items-center">
                 {/* Label above photo if verticalAlign is 'bottom' */}
                 {mainPhotos[1].verticalAlign === 'bottom' && (
-                  <div className="mb-3 text-center">
+                  <div className="mb-3 text-center flex items-center justify-center gap-2">
                     <p className="text-xs md:text-sm text-white/70 uppercase tracking-wider">
-                      {mainPhotos[1].text}
+                      [02] {mainPhotos[1].text}
                     </p>
                   </div>
                 )}
@@ -383,16 +380,13 @@ export default function WhoSection() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-60" />
-                  <div className="absolute top-3 left-3 w-8 h-8 flex items-center justify-center border border-white/50 text-xs font-medium">
-                    [02]
-                  </div>
                 </div>
                 
                 {/* Label below photo if verticalAlign is NOT 'bottom' */}
                 {mainPhotos[1].verticalAlign !== 'bottom' && (
-                  <div className="mt-3 text-center">
+                  <div className="mt-3 text-center flex items-center justify-center gap-2">
                     <p className="text-xs md:text-sm text-white/70 uppercase tracking-wider">
-                      {mainPhotos[1].text}
+                      [02] {mainPhotos[1].text}
                     </p>
                   </div>
                 )}
@@ -423,9 +417,9 @@ export default function WhoSection() {
               <div className="flex flex-col items-center">
                 {/* Label above photo if verticalAlign is 'bottom' */}
                 {mainPhotos[2].verticalAlign === 'bottom' && (
-                  <div className="mb-3 text-center">
+                  <div className="mb-3 text-center flex items-center justify-center gap-2">
                     <p className="text-xs md:text-sm text-white/70 uppercase tracking-wider">
-                      {mainPhotos[2].text}
+                      [03] {mainPhotos[2].text}
                     </p>
                   </div>
                 )}
@@ -444,16 +438,13 @@ export default function WhoSection() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-60" />
-                  <div className="absolute top-3 left-3 w-8 h-8 flex items-center justify-center border border-white/50 text-xs font-medium">
-                    [03]
-                  </div>
                 </div>
                 
                 {/* Label below photo if verticalAlign is NOT 'bottom' */}
                 {mainPhotos[2].verticalAlign !== 'bottom' && (
-                  <div className="mt-3 text-center">
+                  <div className="mt-3 text-center flex items-center justify-center gap-2">
                     <p className="text-xs md:text-sm text-white/70 uppercase tracking-wider">
-                      {mainPhotos[2].text}
+                      [03] {mainPhotos[2].text}
                     </p>
                   </div>
                 )}
@@ -503,9 +494,9 @@ export default function WhoSection() {
               <div className="flex flex-col items-center">
                 {/* Label above photo if verticalAlign is 'bottom' */}
                 {mainPhotos[3].verticalAlign === 'bottom' && (
-                  <div className="mb-3 text-center">
+                  <div className="mb-3 text-center flex items-center justify-center gap-2">
                     <p className="text-xs md:text-sm text-white/70 uppercase tracking-wider">
-                      {mainPhotos[3].text}
+                      [04] {mainPhotos[3].text}
                     </p>
                   </div>
                 )}
@@ -524,16 +515,13 @@ export default function WhoSection() {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-60" />
-                  <div className="absolute top-3 left-3 w-8 h-8 flex items-center justify-center border border-white/50 text-xs font-medium">
-                    [04]
-                  </div>
                 </div>
                 
                 {/* Label below photo if verticalAlign is NOT 'bottom' */}
                 {mainPhotos[3].verticalAlign !== 'bottom' && (
-                  <div className="mt-3 text-center">
+                  <div className="mt-3 text-center flex items-center justify-center gap-2">
                     <p className="text-xs md:text-sm text-white/70 uppercase tracking-wider">
-                      {mainPhotos[3].text}
+                      [04] {mainPhotos[3].text}
                     </p>
                   </div>
                 )}
@@ -635,13 +623,11 @@ export default function WhoSection() {
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-60" />
-                <div className="absolute top-3 left-3 w-8 h-8 flex items-center justify-center border border-white/50 text-xs font-medium">
-                  [{String(index + 1).padStart(2, '0')}]
-                </div>
               </div>
               
-              {/* Label below photo */}
-              <div className="mt-4 text-center">
+              {/* Label below photo with number */}
+              <div className="mt-4 text-center flex items-center justify-center gap-2">
+                <span className="text-sm text-white/50">[{String(index + 1).padStart(2, '0')}]</span>
                 <p className="text-sm text-white/70 uppercase tracking-wider">
                   {photo.text}
                 </p>
