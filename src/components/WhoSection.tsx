@@ -21,8 +21,8 @@ const mainPhotos = [
     text: "IS MOTIVATED BY REAL OPPORTUNITY",
     aspectRatio: '2/3',
     verticalAlign: 'top',
-    containerWidth: 400,
-    paddingTop: 0,
+    containerWidth: 450,
+    paddingTop: '10vh',
     paddingBottom: 0,
   },
   { 
@@ -30,18 +30,18 @@ const mainPhotos = [
     label: "HIGH PERFORMANCE",
     text: "CRAVES SELF IMPROVEMENT/PERFORMANCE",
     aspectRatio: '4/3',
-    verticalAlign: 'center',
-    containerWidth: 550,
+    verticalAlign: 'bottom',
+    containerWidth: 630,
     paddingTop: 0,
-    paddingBottom: 0,
+    paddingBottom: '5vh',
   },
   { 
-    image: "/transparency.png",
+    image: "/knocking.png",
     label: "TRANSPARENCY",
     text: "VALUES TRANSPARENCY",
     aspectRatio: '16/9',
-    verticalAlign: 'top',
-    containerWidth: 700,
+    verticalAlign: 'center',
+    containerWidth: 750,
     paddingTop: '10vh',
     paddingBottom: 0,
   }
@@ -56,6 +56,7 @@ const smallBoxes = [
     aspectRatio: '3/4',        // Aspect ratio - height is auto-calculated
     paddingTop: '14vh',
     paddingBottom: 0,
+    image: '/walking-driveway.png',   // Add/adjust your image paths as required
   },
   { 
     verticalAlign: 'bottom',
@@ -63,13 +64,15 @@ const smallBoxes = [
     aspectRatio: '5/4',         // Example: slightly taller than wide
     paddingTop: 0,
     paddingBottom: '7vh',
+    image: '/rivvia.png',
   },
   { 
-    verticalAlign: 'bottom',
+    verticalAlign: 'center',
     containerWidth: 280,
     aspectRatio: '1/1',
     paddingTop: 0,
     paddingBottom: '13vh',
+    image: '/award-give.png',
   },
   { 
     verticalAlign: 'top',
@@ -77,6 +80,7 @@ const smallBoxes = [
     aspectRatio: '5/4',         // Example: wider than tall
     paddingTop: '10vh',
     paddingBottom: '0vh',
+    image: '/smallGroup.png',
   },
   { 
     verticalAlign: 'bottom',
@@ -84,20 +88,23 @@ const smallBoxes = [
     aspectRatio: '2/3',
     paddingTop: '13vh',
     paddingBottom: '10vh',
+    image: '/CEO-rivvia.png',
   },
   { 
-    verticalAlign: 'center',
+    verticalAlign: 'top',
     containerWidth: 290,
     aspectRatio: '1/1.2',       // Example: slightly taller than wide
     paddingTop: '10vh',
     paddingBottom: 0,
+    image: '/award-lineup.png',
   },
   { 
-    verticalAlign: 'top',
+    verticalAlign: 'bottom',
     containerWidth: 200,
     aspectRatio: '1/1',
     paddingTop: '10vh',
     paddingBottom: '10vh',
+    image: '/walking-neighborhood.png',
   },
 ];
 
@@ -123,9 +130,17 @@ export default function WhoSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [translateX, setTranslateX] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const maxTranslateRef = useRef(0);
 
   useEffect(() => {
+    // Check if mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+
     // Calculate max translate distance once on mount/resize
     const calculateMaxTranslate = () => {
       if (!containerRef.current) return;
@@ -135,7 +150,7 @@ export default function WhoSection() {
     };
 
     const handleScroll = () => {
-      if (!sectionRef.current) return;
+      if (!sectionRef.current || isMobile) return;
 
       const section = sectionRef.current;
       const rect = section.getBoundingClientRect();
@@ -154,36 +169,43 @@ export default function WhoSection() {
     };
 
     const handleResize = () => {
+      checkMobile();
       calculateMaxTranslate();
       handleScroll();
     };
 
     // Initial calculations
-    calculateMaxTranslate();
-    const timeoutId = setTimeout(() => {
+    if (!isMobile) {
       calculateMaxTranslate();
-      handleScroll();
-    }, 100);
+      const timeoutId = setTimeout(() => {
+        calculateMaxTranslate();
+        handleScroll();
+      }, 100);
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+        clearTimeout(timeoutId);
+      };
+    }
+
     window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
-      clearTimeout(timeoutId);
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <section 
       ref={sectionRef}
       data-theme="dark" 
       className="relative bg-black"
-      style={{ height: '400vh' }} // 4x viewport height for scroll duration
+      style={{ height: isMobile ? 'auto' : '400vh' }} // 4x viewport height for desktop scroll, auto for mobile
     >
-      {/* Sticky container */}
-      <div className="sticky top-[81px] w-full overflow-hidden bg-black" style={{ height: "calc(100vh - 81px)" }}>
+      {/* Desktop - Sticky horizontal scroll container */}
+      <div className="hidden md:block sticky top-[81px] w-full overflow-hidden bg-black" style={{ height: "calc(100vh - 81px)" }}>
         {/* Animated grid background pattern with gradient mask */}
         <div 
           className="absolute inset-0 z-0 animate-grid animate-gridGradient"
@@ -248,7 +270,7 @@ export default function WhoSection() {
           </div>
 
           {/* Gallery Section - Flex Row Layout */}
-          <div className="flex-shrink-0 h-full flex flex-row items-center gap-[20vw]">
+          <div className="flex-shrink-0 h-full flex flex-row items-center gap-[13vw]">
             {/* Map through photos and boxes in sequence */}
             
 
@@ -298,12 +320,13 @@ export default function WhoSection() {
             </div>
             {/* Small box 1 */}
             <div 
-              className={`h-full flex flex-col ${getVerticalAlignment(smallBoxes[0].verticalAlign)} items-center`}
+              className={`hidden md:flex h-full flex-col ${getVerticalAlignment(smallBoxes[0].verticalAlign)} items-center`}
               style={{ width: `${smallBoxes[0].containerWidth}px`, paddingTop: smallBoxes[0].paddingTop, paddingBottom: smallBoxes[0].paddingBottom }}
             >
               <div 
-                className="bg-white/5 border border-white/20"
-                style={{ 
+                className="border border-white/20 bg-cover bg-center grayscale"
+                style={{
+                  backgroundImage: `url('${smallBoxes[0].image}')`,
                   width: `${smallBoxes[0].containerWidth}px`,
                   height: `${calculateHeight(smallBoxes[0].containerWidth, smallBoxes[0].aspectRatio)}px`
                 }}
@@ -314,12 +337,13 @@ export default function WhoSection() {
 
             {/* Small box 2 */}
             <div 
-              className={`h-full flex flex-col ${getVerticalAlignment(smallBoxes[1].verticalAlign)} items-center`}
+              className={`hidden md:flex h-full flex-col ${getVerticalAlignment(smallBoxes[1].verticalAlign)} items-center`}
               style={{ width: `${smallBoxes[1].containerWidth}px`, paddingTop: smallBoxes[1].paddingTop, paddingBottom: smallBoxes[1].paddingBottom }}
             >
               <div 
-                className="bg-white/5 border border-white/20"
-                style={{ 
+                className="border border-white/20 bg-cover bg-center grayscale"
+                style={{  
+                  backgroundImage: `url('${smallBoxes[1].image}')`,
                   width: `${smallBoxes[1].containerWidth}px`,
                   height: `${calculateHeight(smallBoxes[1].containerWidth, smallBoxes[1].aspectRatio)}px`
                 }}
@@ -376,12 +400,13 @@ export default function WhoSection() {
             </div>
             {/* Small box 3 */}
             <div 
-              className={`h-full flex flex-col ${getVerticalAlignment(smallBoxes[2].verticalAlign)} items-center`}
+              className={`hidden md:flex h-full flex-col ${getVerticalAlignment(smallBoxes[2].verticalAlign)} items-center`}
               style={{ width: `${smallBoxes[2].containerWidth}px`, paddingTop: smallBoxes[2].paddingTop, paddingBottom: smallBoxes[2].paddingBottom }}
             >
               <div 
-                className="bg-white/5 border border-white/20"
+                className="border border-white/20 bg-cover bg-center grayscale"
                 style={{ 
+                  backgroundImage: `url('${smallBoxes[2].image}')`,
                   width: `${smallBoxes[2].containerWidth}px`,
                   height: `${calculateHeight(smallBoxes[2].containerWidth, smallBoxes[2].aspectRatio)}px`
                 }}
@@ -437,12 +462,13 @@ export default function WhoSection() {
             
             {/* Small box 4 */}
             <div 
-              className={`h-full flex flex-col ${getVerticalAlignment(smallBoxes[3].verticalAlign)} items-center`}
+              className={`hidden md:flex h-full flex-col ${getVerticalAlignment(smallBoxes[3].verticalAlign)} items-center`}
               style={{ width: `${smallBoxes[3].containerWidth}px`, paddingTop: smallBoxes[3].paddingTop, paddingBottom: smallBoxes[3].paddingBottom }}
             >
               <div 
-                className="bg-white/5 border border-white/20"
+                className="border border-white/20 bg-cover bg-center grayscale"
                 style={{ 
+                  backgroundImage: `url('${smallBoxes[3].image}')`,
                   width: `${smallBoxes[3].containerWidth}px`,
                   height: `${calculateHeight(smallBoxes[3].containerWidth, smallBoxes[3].aspectRatio)}px`
                 }}
@@ -452,12 +478,13 @@ export default function WhoSection() {
             </div>
             {/* Small box 5 */}
             <div 
-              className={`h-full flex flex-col ${getVerticalAlignment(smallBoxes[4].verticalAlign)} items-center`}
+              className={`hidden md:flex h-full flex-col ${getVerticalAlignment(smallBoxes[4].verticalAlign)} items-center`}
               style={{ width: `${smallBoxes[4].containerWidth}px`, paddingTop: smallBoxes[4].paddingTop, paddingBottom: smallBoxes[4].paddingBottom }}
             >
               <div 
-                className="bg-white/5 border border-white/20"
+                className="border border-white/20 bg-cover bg-center grayscale"
                 style={{ 
+                  backgroundImage: `url('${smallBoxes[4].image}')`,
                   width: `${smallBoxes[4].containerWidth}px`,
                   height: `${calculateHeight(smallBoxes[4].containerWidth, smallBoxes[4].aspectRatio)}px`
                 }}
@@ -514,12 +541,13 @@ export default function WhoSection() {
             </div>
             {/* Small box 6 */}
             <div 
-              className={`h-full flex flex-col ${getVerticalAlignment(smallBoxes[5].verticalAlign)} items-center`}
+              className={`hidden md:flex h-full flex-col ${getVerticalAlignment(smallBoxes[5].verticalAlign)} items-center`}
               style={{ width: `${smallBoxes[5].containerWidth}px`, paddingTop: smallBoxes[5].paddingTop, paddingBottom: smallBoxes[5].paddingBottom }}
             >
               <div 
-                className="bg-white/5 border border-white/20"
+                className="border border-white/20 bg-cover bg-center grayscale"
                 style={{ 
+                  backgroundImage: `url('${smallBoxes[5].image}')`,
                   width: `${smallBoxes[5].containerWidth}px`,
                   height: `${calculateHeight(smallBoxes[5].containerWidth, smallBoxes[5].aspectRatio)}px`
                 }}
@@ -530,12 +558,13 @@ export default function WhoSection() {
 
             {/* Small box 7 */}
             <div 
-              className={`h-full flex flex-col ${getVerticalAlignment(smallBoxes[6].verticalAlign)} items-center`}
+              className={`hidden md:flex h-full flex-col ${getVerticalAlignment(smallBoxes[6].verticalAlign)} items-center`}
               style={{ width: `${smallBoxes[6].containerWidth}px`, paddingTop: smallBoxes[6].paddingTop, paddingBottom: smallBoxes[6].paddingBottom }}
             >
               <div 
-                className="bg-white/5 border border-white/20"
+                className="border border-white/20 bg-cover bg-center grayscale"
                 style={{ 
+                  backgroundImage: `url('${smallBoxes[6].image}')`,
                   width: `${smallBoxes[6].containerWidth}px`,
                   height: `${calculateHeight(smallBoxes[6].containerWidth, smallBoxes[6].aspectRatio)}px`
                 }}
@@ -574,6 +603,64 @@ export default function WhoSection() {
               {Math.round(scrollProgress * 100)}%
             </span>
           </div>
+        </div>
+      </div>
+
+      {/* Mobile - Simple stacked layout */}
+      <div className="md:hidden py-16 px-6">
+        {/* Intro Section */}
+        <div className="mb-16 text-center">
+          <h2 className="font-display text-3xl sm:text-4xl tracking-tight leading-tight mb-6">
+            RIVVIA ISN&apos;T FOR EVERYONE
+            <br />
+            HERE&apos;S WHO WE BUILT IT FOR
+          </h2>
+          <p className="text-base text-white/70 uppercase tracking-wide">
+            THE RIGHT RIVVIA CANDIDATE:
+          </p>
+        </div>
+
+        {/* Stacked Photos */}
+        <div className="space-y-12">
+          {mainPhotos.map((photo, index) => (
+            <div key={index} className="flex flex-col items-center">
+              <div 
+                className="w-full max-w-sm overflow-hidden border border-white/30 relative"
+                style={{ aspectRatio: photo.aspectRatio }}
+              >
+                <Image
+                  src={photo.image}
+                  alt={photo.text}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-60" />
+                <div className="absolute top-3 left-3 w-8 h-8 flex items-center justify-center border border-white/50 text-xs font-medium">
+                  [{String(index + 1).padStart(2, '0')}]
+                </div>
+              </div>
+              
+              {/* Label below photo */}
+              <div className="mt-4 text-center">
+                <p className="text-sm text-white/70 uppercase tracking-wider">
+                  {photo.text}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Outro */}
+        <div className="mt-16 text-center">
+          <h3 className="font-display text-3xl sm:text-4xl tracking-tight mb-6">
+            SOUND LIKE YOU?
+          </h3>
+          <a 
+            href="#join" 
+            className="btn-secondary inline-block"
+          >
+            READY?
+          </a>
         </div>
       </div>
     </section>
