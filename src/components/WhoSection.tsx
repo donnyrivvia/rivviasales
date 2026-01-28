@@ -3,55 +3,119 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
-const traits = [
-  {
-    text: "VALUES STRUCTURE OVER HYPE",
+// Layout configuration - main photos with full control
+const mainPhotos = [
+  { 
     image: "/structureOverHype.png",
-    label: "STRUCTURE FIRST"
+    label: "STRUCTURE FIRST",
+    text: "VALUES STRUCTURE OVER HYPE",
+    aspectRatio: '3/4',  // Aspect ratio
+    verticalAlign: 'bottom', // 'top', 'center', 'bottom'
+    containerWidth: 500, // Width of flex container
+    paddingTop: 0,       // Padding top in pixels (optional)
+    paddingBottom: 0,    // Padding bottom in pixels (optional)
   },
-  {
-    text: "IS MOTIVATED BY REAL OPPORTUNITY",
+  { 
     image: "/realOpportunity2.png",
-    label: "REAL GROWTH"
+    label: "REAL GROWTH",
+    text: "IS MOTIVATED BY REAL OPPORTUNITY",
+    aspectRatio: '2/3',
+    verticalAlign: 'top',
+    containerWidth: 400,
+    paddingTop: 0,
+    paddingBottom: 0,
   },
-  {
-    text: "CRAVES SELF IMPROVEMENT/PERFORMANCE",
+  { 
     image: "/selfImprovement3.png",
-    label: "HIGH PERFORMANCE"
+    label: "HIGH PERFORMANCE",
+    text: "CRAVES SELF IMPROVEMENT/PERFORMANCE",
+    aspectRatio: '4/3',
+    verticalAlign: 'center',
+    containerWidth: 550,
+    paddingTop: 0,
+    paddingBottom: 0,
   },
-  {
-    text: "VALUES TRANSPARENCY",
+  { 
     image: "/transparency.png",
-    label: "TRANSPARENCY"
+    label: "TRANSPARENCY",
+    text: "VALUES TRANSPARENCY",
+    aspectRatio: '16/9',
+    verticalAlign: 'top',
+    containerWidth: 700,
+    paddingTop: '10vh',
+    paddingBottom: 0,
+  }
+];
+
+// Small decorative boxes with full control
+// Width and height are calculated from containerWidth and aspectRatio using calculateHeight()
+const smallBoxes = [
+  { 
+    verticalAlign: 'top',      // 'top', 'center', 'bottom'
+    containerWidth: 250,       // Width in pixels (also used for box width)
+    aspectRatio: '3/4',        // Aspect ratio - height is auto-calculated
+    paddingTop: '14vh',
+    paddingBottom: 0,
+  },
+  { 
+    verticalAlign: 'bottom',
+    containerWidth: 210,
+    aspectRatio: '5/4',         // Example: slightly taller than wide
+    paddingTop: 0,
+    paddingBottom: '7vh',
+  },
+  { 
+    verticalAlign: 'bottom',
+    containerWidth: 280,
+    aspectRatio: '1/1',
+    paddingTop: 0,
+    paddingBottom: '13vh',
+  },
+  { 
+    verticalAlign: 'top',
+    containerWidth: 280,
+    aspectRatio: '5/4',         // Example: wider than tall
+    paddingTop: '10vh',
+    paddingBottom: '0vh',
+  },
+  { 
+    verticalAlign: 'bottom',
+    containerWidth: 260,
+    aspectRatio: '2/3',
+    paddingTop: '13vh',
+    paddingBottom: '10vh',
+  },
+  { 
+    verticalAlign: 'center',
+    containerWidth: 290,
+    aspectRatio: '1/1.2',       // Example: slightly taller than wide
+    paddingTop: '10vh',
+    paddingBottom: 0,
+  },
+  { 
+    verticalAlign: 'top',
+    containerWidth: 200,
+    aspectRatio: '1/1',
+    paddingTop: '10vh',
+    paddingBottom: '10vh',
   },
 ];
 
-// Decorative photo variations for each slide
-const decorativePhotos = [
-  // Slide 0 - Structure
-  [
-    { width: 'w-24 md:w-32', height: 'h-32 md:h-44', top: '8%', left: '6%', rotate: '-3deg' },
-    { width: 'w-28 md:w-36', height: 'h-20 md:h-28', bottom: '12%', right: '8%', rotate: '2deg' },
-    { width: 'w-20 md:w-24', height: 'h-28 md:h-36', top: '55%', left: '12%', rotate: '4deg' },
-  ],
-  // Slide 1 - Opportunity
-  [
-    { width: 'w-32 md:w-40', height: 'h-24 md:h-32', top: '15%', right: '10%', rotate: '-2deg' },
-    { width: 'w-20 md:w-28', height: 'h-32 md:h-40', bottom: '20%', left: '8%', rotate: '3deg' },
-    { width: 'w-24 md:w-32', height: 'h-24 md:h-32', top: '50%', right: '15%', rotate: '-4deg' },
-  ],
-  // Slide 2 - Performance
-  [
-    { width: 'w-28 md:w-36', height: 'h-36 md:h-48', top: '10%', left: '10%', rotate: '2deg' },
-    { width: 'w-24 md:w-32', height: 'h-20 md:h-24', bottom: '15%', right: '12%', rotate: '-3deg' },
-  ],
-  // Slide 3 - Transparency
-  [
-    { width: 'w-20 md:w-28', height: 'h-28 md:h-36', top: '12%', right: '8%', rotate: '3deg' },
-    { width: 'w-32 md:w-40', height: 'h-28 md:h-36', bottom: '18%', left: '10%', rotate: '-2deg' },
-    { width: 'w-24 md:w-28', height: 'h-32 md:h-40', top: '60%', right: '18%', rotate: '4deg' },
-  ],
-];
+// Helper function to calculate height from aspect ratio and width
+const calculateHeight = (width: number, aspectRatio: string): number => {
+  const [widthRatio, heightRatio] = aspectRatio.split('/').map(Number);
+  return (width * heightRatio) / widthRatio;
+};
+
+// Helper function to get flex alignment class
+const getVerticalAlignment = (align: string) => {
+  switch(align) {
+    case 'top': return 'justify-start';
+    case 'bottom': return 'justify-end';
+    case 'center':
+    default: return 'justify-center';
+  }
+};
 
 
 export default function WhoSection() {
@@ -119,7 +183,7 @@ export default function WhoSection() {
       style={{ height: '400vh' }} // 4x viewport height for scroll duration
     >
       {/* Sticky container */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden bg-black">
+      <div className="sticky top-[81px] w-full overflow-hidden bg-black" style={{ height: "calc(100vh - 81px)" }}>
         {/* Animated grid background pattern with gradient mask */}
         <div 
           className="absolute inset-0 z-0 animate-grid animate-gridGradient"
@@ -183,62 +247,303 @@ export default function WhoSection() {
             </div>
           </div>
 
-          {/* Traits Sections - Horizontal Scroll */}
-          {traits.map((trait, index) => (
+          {/* Gallery Section - Flex Row Layout */}
+          <div className="flex-shrink-0 h-full flex flex-row items-center gap-[20vw]">
+            {/* Map through photos and boxes in sequence */}
+            
+
+            {/* Photo 1 */}
             <div 
-              key={index}
-              className="flex-shrink-0 w-screen h-full flex items-center justify-center px-8 md:px-16 lg:px-24 relative"
+              className={`h-full flex flex-col ${getVerticalAlignment(mainPhotos[0].verticalAlign)} items-center`}
+              style={{ width: `${mainPhotos[0].containerWidth}px`, paddingTop: mainPhotos[0].paddingTop, paddingBottom: mainPhotos[0].paddingBottom }}
             >
-              {/* Small decorative images without labels - varied sizes and positions */}
-              {decorativePhotos[index]?.map((photo, photoIndex) => (
+              <div className="flex flex-col items-center">
+                {/* Label above photo if verticalAlign is 'bottom' */}
+                {mainPhotos[0].verticalAlign === 'bottom' && (
+                  <div className="mb-3 text-center">
+                    <p className="text-xs md:text-sm text-white/70 uppercase tracking-wider">
+                      {mainPhotos[0].text}
+                    </p>
+                  </div>
+                )}
+                
                 <div 
-                  key={photoIndex}
-                  className="absolute z-10 animate-fadeIn"
-                  style={{
-                    top: photo.top,
-                    bottom: photo.bottom,
-                    left: photo.left,
-                    right: photo.right,
-                    transform: `rotate(${photo.rotate})`,
-                    animationDelay: `${(photoIndex + 1) * 200 + 200}ms`
+                  className="overflow-hidden border border-white/30 relative"
+                  style={{ 
+                    width: `${mainPhotos[0].containerWidth}px`, 
+                    aspectRatio: mainPhotos[0].aspectRatio 
                   }}
                 >
-                  <div className={`${photo.width} ${photo.height} bg-white/5 border border-white/20 overflow-hidden transition-transform duration-300 hover:scale-105`}>
-                    <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
+                  <Image
+                    src={mainPhotos[0].image}
+                    alt={mainPhotos[0].text}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-60" />
+                  <div className="absolute top-3 left-3 w-8 h-8 flex items-center justify-center border border-white/50 text-xs font-medium">
+                    [01]
                   </div>
                 </div>
-              ))}
-
-              {/* Main slide - centered */}
-              <div className="max-w-4xl w-full flex flex-col items-center relative z-20">
-                {/* Large trait image */}
-                <div className="relative w-full max-w-2xl">
-                  <div className="relative h-[500px] md:h-[600px] lg:h-[700px] w-full overflow-hidden border border-white/30 group transition-all duration-500 hover:border-white/50">
-                    <Image
-                      src={trait.image}
-                      alt={trait.text}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    {/* Dark overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-70" />
-                    
-                    {/* Number badge */}
-                    <div className="absolute top-6 left-6 w-12 h-12 flex items-center justify-center border border-white/50 text-lg font-medium z-10">
-                      [{String(index + 1).padStart(2, '0')}]
-                    </div>
+                
+                {/* Label below photo if verticalAlign is NOT 'bottom' */}
+                {mainPhotos[0].verticalAlign !== 'bottom' && (
+                  <div className="mt-3 text-center">
+                    <p className="text-xs md:text-sm text-white/70 uppercase tracking-wider">
+                      {mainPhotos[0].text}
+                    </p>
                   </div>
-                  
-                  {/* Label below image */}
-                  <div className="mt-6 text-center">
-                    <h3 className="font-display text-2xl md:text-3xl lg:text-4xl tracking-tight leading-tight">
-                      {trait.text}
-                    </h3>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
-          ))}
+            {/* Small box 1 */}
+            <div 
+              className={`h-full flex flex-col ${getVerticalAlignment(smallBoxes[0].verticalAlign)} items-center`}
+              style={{ width: `${smallBoxes[0].containerWidth}px`, paddingTop: smallBoxes[0].paddingTop, paddingBottom: smallBoxes[0].paddingBottom }}
+            >
+              <div 
+                className="bg-white/5 border border-white/20"
+                style={{ 
+                  width: `${smallBoxes[0].containerWidth}px`,
+                  height: `${calculateHeight(smallBoxes[0].containerWidth, smallBoxes[0].aspectRatio)}px`
+                }}
+              >
+                <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
+              </div>
+            </div>
+
+            {/* Small box 2 */}
+            <div 
+              className={`h-full flex flex-col ${getVerticalAlignment(smallBoxes[1].verticalAlign)} items-center`}
+              style={{ width: `${smallBoxes[1].containerWidth}px`, paddingTop: smallBoxes[1].paddingTop, paddingBottom: smallBoxes[1].paddingBottom }}
+            >
+              <div 
+                className="bg-white/5 border border-white/20"
+                style={{ 
+                  width: `${smallBoxes[1].containerWidth}px`,
+                  height: `${calculateHeight(smallBoxes[1].containerWidth, smallBoxes[1].aspectRatio)}px`
+                }}
+              >
+                <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
+              </div>
+            </div>
+
+            
+
+            {/* Photo 2 */}
+            <div 
+              className={`h-full flex flex-col ${getVerticalAlignment(mainPhotos[1].verticalAlign)} items-center`}
+              style={{ width: `${mainPhotos[1].containerWidth}px`, paddingTop: mainPhotos[1].paddingTop, paddingBottom: mainPhotos[1].paddingBottom }}
+            >
+              <div className="flex flex-col items-center">
+                {/* Label above photo if verticalAlign is 'bottom' */}
+                {mainPhotos[1].verticalAlign === 'bottom' && (
+                  <div className="mb-3 text-center">
+                    <p className="text-xs md:text-sm text-white/70 uppercase tracking-wider">
+                      {mainPhotos[1].text}
+                    </p>
+                  </div>
+                )}
+                
+                <div 
+                  className="overflow-hidden border border-white/30 relative"
+                  style={{ 
+                    width: `${mainPhotos[1].containerWidth}px`, 
+                    aspectRatio: mainPhotos[1].aspectRatio 
+                  }}
+                >
+                  <Image
+                    src={mainPhotos[1].image}
+                    alt={mainPhotos[1].text}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-60" />
+                  <div className="absolute top-3 left-3 w-8 h-8 flex items-center justify-center border border-white/50 text-xs font-medium">
+                    [02]
+                  </div>
+                </div>
+                
+                {/* Label below photo if verticalAlign is NOT 'bottom' */}
+                {mainPhotos[1].verticalAlign !== 'bottom' && (
+                  <div className="mt-3 text-center">
+                    <p className="text-xs md:text-sm text-white/70 uppercase tracking-wider">
+                      {mainPhotos[1].text}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+            {/* Small box 3 */}
+            <div 
+              className={`h-full flex flex-col ${getVerticalAlignment(smallBoxes[2].verticalAlign)} items-center`}
+              style={{ width: `${smallBoxes[2].containerWidth}px`, paddingTop: smallBoxes[2].paddingTop, paddingBottom: smallBoxes[2].paddingBottom }}
+            >
+              <div 
+                className="bg-white/5 border border-white/20"
+                style={{ 
+                  width: `${smallBoxes[2].containerWidth}px`,
+                  height: `${calculateHeight(smallBoxes[2].containerWidth, smallBoxes[2].aspectRatio)}px`
+                }}
+              >
+                <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
+              </div>
+            </div>
+
+            {/* Photo 3 */}
+            <div 
+              className={`h-full flex flex-col ${getVerticalAlignment(mainPhotos[2].verticalAlign)} items-center`}
+              style={{ width: `${mainPhotos[2].containerWidth}px`, paddingTop: mainPhotos[2].paddingTop, paddingBottom: mainPhotos[2].paddingBottom }}
+            >
+              <div className="flex flex-col items-center">
+                {/* Label above photo if verticalAlign is 'bottom' */}
+                {mainPhotos[2].verticalAlign === 'bottom' && (
+                  <div className="mb-3 text-center">
+                    <p className="text-xs md:text-sm text-white/70 uppercase tracking-wider">
+                      {mainPhotos[2].text}
+                    </p>
+                  </div>
+                )}
+                
+                <div 
+                  className="overflow-hidden border border-white/30 relative"
+                  style={{ 
+                    width: `${mainPhotos[2].containerWidth}px`, 
+                    aspectRatio: mainPhotos[2].aspectRatio 
+                  }}
+                >
+                  <Image
+                    src={mainPhotos[2].image}
+                    alt={mainPhotos[2].text}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-60" />
+                  <div className="absolute top-3 left-3 w-8 h-8 flex items-center justify-center border border-white/50 text-xs font-medium">
+                    [03]
+                  </div>
+                </div>
+                
+                {/* Label below photo if verticalAlign is NOT 'bottom' */}
+                {mainPhotos[2].verticalAlign !== 'bottom' && (
+                  <div className="mt-3 text-center">
+                    <p className="text-xs md:text-sm text-white/70 uppercase tracking-wider">
+                      {mainPhotos[2].text}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            {/* Small box 4 */}
+            <div 
+              className={`h-full flex flex-col ${getVerticalAlignment(smallBoxes[3].verticalAlign)} items-center`}
+              style={{ width: `${smallBoxes[3].containerWidth}px`, paddingTop: smallBoxes[3].paddingTop, paddingBottom: smallBoxes[3].paddingBottom }}
+            >
+              <div 
+                className="bg-white/5 border border-white/20"
+                style={{ 
+                  width: `${smallBoxes[3].containerWidth}px`,
+                  height: `${calculateHeight(smallBoxes[3].containerWidth, smallBoxes[3].aspectRatio)}px`
+                }}
+              >
+                <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
+              </div>
+            </div>
+            {/* Small box 5 */}
+            <div 
+              className={`h-full flex flex-col ${getVerticalAlignment(smallBoxes[4].verticalAlign)} items-center`}
+              style={{ width: `${smallBoxes[4].containerWidth}px`, paddingTop: smallBoxes[4].paddingTop, paddingBottom: smallBoxes[4].paddingBottom }}
+            >
+              <div 
+                className="bg-white/5 border border-white/20"
+                style={{ 
+                  width: `${smallBoxes[4].containerWidth}px`,
+                  height: `${calculateHeight(smallBoxes[4].containerWidth, smallBoxes[4].aspectRatio)}px`
+                }}
+              >
+                <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
+              </div>
+            </div>
+
+            
+
+            {/* Photo 4 */}
+            <div 
+              className={`h-full flex flex-col ${getVerticalAlignment(mainPhotos[3].verticalAlign)} items-center`}
+              style={{ width: `${mainPhotos[3].containerWidth}px`, paddingTop: mainPhotos[3].paddingTop, paddingBottom: mainPhotos[3].paddingBottom }}
+            >
+              <div className="flex flex-col items-center">
+                {/* Label above photo if verticalAlign is 'bottom' */}
+                {mainPhotos[3].verticalAlign === 'bottom' && (
+                  <div className="mb-3 text-center">
+                    <p className="text-xs md:text-sm text-white/70 uppercase tracking-wider">
+                      {mainPhotos[3].text}
+                    </p>
+                  </div>
+                )}
+                
+                <div 
+                  className="overflow-hidden border border-white/30 relative"
+                  style={{ 
+                    width: `${mainPhotos[3].containerWidth}px`, 
+                    aspectRatio: mainPhotos[3].aspectRatio 
+                  }}
+                >
+                  <Image
+                    src={mainPhotos[3].image}
+                    alt={mainPhotos[3].text}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-60" />
+                  <div className="absolute top-3 left-3 w-8 h-8 flex items-center justify-center border border-white/50 text-xs font-medium">
+                    [04]
+                  </div>
+                </div>
+                
+                {/* Label below photo if verticalAlign is NOT 'bottom' */}
+                {mainPhotos[3].verticalAlign !== 'bottom' && (
+                  <div className="mt-3 text-center">
+                    <p className="text-xs md:text-sm text-white/70 uppercase tracking-wider">
+                      {mainPhotos[3].text}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+            {/* Small box 6 */}
+            <div 
+              className={`h-full flex flex-col ${getVerticalAlignment(smallBoxes[5].verticalAlign)} items-center`}
+              style={{ width: `${smallBoxes[5].containerWidth}px`, paddingTop: smallBoxes[5].paddingTop, paddingBottom: smallBoxes[5].paddingBottom }}
+            >
+              <div 
+                className="bg-white/5 border border-white/20"
+                style={{ 
+                  width: `${smallBoxes[5].containerWidth}px`,
+                  height: `${calculateHeight(smallBoxes[5].containerWidth, smallBoxes[5].aspectRatio)}px`
+                }}
+              >
+                <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
+              </div>
+            </div>
+
+            {/* Small box 7 */}
+            <div 
+              className={`h-full flex flex-col ${getVerticalAlignment(smallBoxes[6].verticalAlign)} items-center`}
+              style={{ width: `${smallBoxes[6].containerWidth}px`, paddingTop: smallBoxes[6].paddingTop, paddingBottom: smallBoxes[6].paddingBottom }}
+            >
+              <div 
+                className="bg-white/5 border border-white/20"
+                style={{ 
+                  width: `${smallBoxes[6].containerWidth}px`,
+                  height: `${calculateHeight(smallBoxes[6].containerWidth, smallBoxes[6].aspectRatio)}px`
+                }}
+              >
+                <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
+              </div>
+            </div>
+          </div>
 
           {/* Outro Section */}
           <div className="flex-shrink-0 w-screen h-full flex flex-col items-center justify-center px-8 md:px-16">
