@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import WipeReveal from './WipeReveal';
 
 export default function CultureSection() {
   const headerAnimation = useScrollAnimation({ threshold: 0.2 });
@@ -15,22 +16,33 @@ export default function CultureSection() {
         {/* Section Header */}
         <div 
           ref={headerAnimation.elementRef as React.RefObject<HTMLDivElement>}
-          className={`text-center mb-20 transition-all duration-700 ${
-            headerAnimation.isVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
-          }`}
+          className="text-center mb-20"
         >
-          <p className="text-white/50 text-sm uppercase tracking-[0.3em] mb-4">
+          <WipeReveal
+            as="p"
+            className="text-white/50 text-sm uppercase tracking-[0.3em] mb-4"
+            theme="light"
+            delay={0}
+          >
             Our Environment
-          </p>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6">
+          </WipeReveal>
+          <WipeReveal
+            as="h2"
+            className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6"
+            theme="light"
+            delay={150}
+          >
             WHAT IT&apos;S LIKE WORKING AT RIVVIA
-          </h2>
-          <p className="text-xl md:text-2xl text-white/80 leading-relaxed max-w-3xl mx-auto">
+          </WipeReveal>
+          <WipeReveal
+            as="p"
+            className="text-xl md:text-2xl text-white/80 leading-relaxed max-w-3xl mx-auto"
+            theme="light"
+            delay={300}
+          >
             Rivvia is a performance-driven team built on accountability,
             professionalism, and execution.
-          </p>
+          </WipeReveal>
         </div>
 
         {/* Mini Sections */}
@@ -40,20 +52,24 @@ export default function CultureSection() {
             ref={supportAnimation.elementRef as React.RefObject<HTMLDivElement>}
             className="grid lg:grid-cols-2 gap-12 items-center"
           >
-            <div 
-              className={`order-2 lg:order-1 transition-all duration-700 ${
-                supportAnimation.isVisible 
-                  ? 'opacity-100 translate-x-0' 
-                  : 'opacity-0 -translate-x-8'
-              }`}
-            >
+            <div className="order-2 lg:order-1">
               <div className="line-accent mb-6" />
-              <h3 className="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight mb-6">
+              <WipeReveal
+                as="h3"
+                className="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight mb-6"
+                theme="light"
+                delay={0}
+              >
                 SUPPORT
-              </h3>
-              <p className="text-lg md:text-xl text-white/70 mb-6 leading-relaxed">
+              </WipeReveal>
+              <WipeReveal
+                as="p"
+                className="text-lg md:text-xl text-white/70 mb-6 leading-relaxed"
+                theme="light"
+                delay={150}
+              >
                 Systems and resources to help you succeed
-              </p>
+              </WipeReveal>
               <p className="text-base text-white/60 leading-relaxed">
                 From day one, you'll have access to proven tools, comprehensive training, and ongoing support. Our team is committed to providing everything you need to perform at your best—whether it's tech, leads, or coaching.
               </p>
@@ -101,20 +117,24 @@ export default function CultureSection() {
                 />
               </div>
             </div>
-            <div 
-              className={`order-2 transition-all duration-700 delay-200 ${
-                structureAnimation.isVisible 
-                  ? 'opacity-100 translate-x-0' 
-                  : 'opacity-0 translate-x-8'
-              }`}
-            >
+            <div className="order-2">
               <div className="line-accent mb-6" />
-              <h3 className="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight mb-6">
+              <WipeReveal
+                as="h3"
+                className="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight mb-6"
+                theme="light"
+                delay={0}
+              >
                 STRUCTURE
-              </h3>
-              <p className="text-lg md:text-xl text-white/70 mb-6 leading-relaxed">
+              </WipeReveal>
+              <WipeReveal
+                as="p"
+                className="text-lg md:text-xl text-white/70 mb-6 leading-relaxed"
+                theme="light"
+                delay={150}
+              >
                 Clear workflows and expectations
-              </p>
+              </WipeReveal>
               <p className="text-base text-white/60 leading-relaxed">
                 No guessing. No chaos. We operate with clear processes, defined roles, and transparent expectations. You'll always know what's expected, how to improve, and where you stand.
               </p>
@@ -126,20 +146,24 @@ export default function CultureSection() {
             ref={communicationAnimation.elementRef as React.RefObject<HTMLDivElement>}
             className="grid lg:grid-cols-2 gap-12 items-center"
           >
-            <div 
-              className={`order-2 lg:order-1 transition-all duration-700 ${
-                communicationAnimation.isVisible 
-                  ? 'opacity-100 translate-x-0' 
-                  : 'opacity-0 -translate-x-8'
-              }`}
-            >
+            <div className="order-2 lg:order-1">
               <div className="line-accent mb-6" />
-              <h3 className="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight mb-6">
+              <WipeReveal
+                as="h3"
+                className="font-display text-3xl md:text-4xl lg:text-5xl tracking-tight mb-6"
+                theme="light"
+                delay={0}
+              >
                 COMMUNICATION
-              </h3>
-              <p className="text-lg md:text-xl text-white/70 mb-6 leading-relaxed">
+              </WipeReveal>
+              <WipeReveal
+                as="p"
+                className="text-lg md:text-xl text-white/70 mb-6 leading-relaxed"
+                theme="light"
+                delay={150}
+              >
                 Direct, honest, and transparent
-              </p>
+              </WipeReveal>
               <p className="text-base text-white/60 leading-relaxed">
                 We believe in straight talk. No corporate speak, no mixed messages. You'll get honest feedback, clear direction, and open channels to leadership. It's communication that actually helps you grow.
               </p>

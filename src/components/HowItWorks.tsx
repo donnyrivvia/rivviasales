@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from 'react';
+import WipeReveal from './WipeReveal';
 
 const steps = [
   {
@@ -89,14 +90,24 @@ export default function HowItWorks() {
         <div className="relative w-full md:w-1/2 h-1/2 md:h-full bg-black flex items-center justify-center px-8 md:px-16 lg:px-24">
           <div className="max-w-2xl w-full">
             {/* Section Label */}
-            <p className="text-white/50 text-xs md:text-sm uppercase tracking-[0.3em] mb-4 md:mb-6">
+            <WipeReveal
+              as="p"
+              className="text-white/50 text-xs md:text-sm uppercase tracking-[0.3em] mb-4 md:mb-6"
+              theme="light"
+              delay={0}
+            >
               The Sales Process
-            </p>
+            </WipeReveal>
             
             {/* Main Heading */}
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl xl:text-6xl tracking-tight mb-12 md:mb-16 leading-tight">
+            <WipeReveal
+              as="h2"
+              className="font-display text-3xl md:text-4xl lg:text-5xl xl:text-6xl tracking-tight mb-12 md:mb-16 leading-tight"
+              theme="light"
+              delay={200}
+            >
               BUILT FOR BIG GROWTH
-            </h2>
+            </WipeReveal>
 
             {/* Step Title with Number - animated */}
             <h3 

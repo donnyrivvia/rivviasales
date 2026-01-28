@@ -115,6 +115,35 @@ body {
   }
 }
 
+@keyframes wipeReveal {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes wipeRevealHorizontal {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes textSlideUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.8s ease-out forwards;
 }
@@ -145,6 +174,99 @@ body {
 .delay-300 { animation-delay: 300ms; }
 .delay-400 { animation-delay: 400ms; }
 .delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
+
+/* Wipe reveal animation for text - Lando Norris style */
+.wipe-reveal {
+  position: relative;
+  display: inline-block;
+}
+
+.wipe-reveal-line {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 0.05em 0;
+}
+
+.wipe-reveal-line span {
+  display: inline-block;
+  animation: textSlideUp 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  animation-play-state: paused;
+}
+
+.wipe-reveal-line.active span {
+  animation-play-state: running;
+}
+
+.wipe-reveal-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  transform: translateY(100%);
+  animation: wipeReveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  animation-play-state: paused;
+  z-index: 1;
+}
+
+.wipe-reveal-line.active::after {
+  animation-play-state: running;
+}
+
+/* Dark theme variant */
+.wipe-reveal-line.dark::after {
+  background: black;
+}
+
+/* Horizontal variant */
+.wipe-reveal-line.horizontal::after {
+  animation: wipeRevealHorizontal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+/* For bolded text inline */
+.wipe-reveal-inline {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  padding: 0.05em 0;
+}
+
+.wipe-reveal-inline span {
+  display: inline-block;
+  animation: textSlideUp 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  animation-play-state: paused;
+}
+
+.wipe-reveal-inline.active span {
+  animation-play-state: running;
+}
+
+.wipe-reveal-inline::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  animation: wipeReveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  animation-play-state: paused;
+  z-index: 1;
+}
+
+.wipe-reveal-inline.active::after {
+  animation-play-state: running;
+}
+
+.wipe-reveal-inline.dark::after {
+  background: black;
+}
 
 /* Section reveal animation */
 .reveal {

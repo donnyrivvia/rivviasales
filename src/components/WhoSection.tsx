@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import WipeReveal from './WipeReveal';
 
 // Layout configuration - main photos with full control
 const mainPhotos = [
@@ -252,20 +253,30 @@ export default function WhoSection() {
           {/* Intro Section */}
           <div className="flex-shrink-0 w-screen h-full flex flex-col items-center justify-center px-8 md:px-16 relative">
             <div className="max-w-4xl text-center">
-              <h2 
-                className="font-display text-4xl md:text-6xl lg:text-7xl tracking-tight leading-tight mb-8 animate-fadeIn"
-                style={{ animationDelay: '200ms' }}
+              <WipeReveal
+                as="h2"
+                className="font-display text-4xl md:text-6xl lg:text-7xl tracking-tight leading-tight mb-8"
+                theme="light"
+                delay={200}
               >
                 RIVVIA ISN&apos;T FOR EVERYONE
-                <br />
+              </WipeReveal>
+              <WipeReveal
+                as="h2"
+                className="font-display text-4xl md:text-6xl lg:text-7xl tracking-tight leading-tight mb-8"
+                theme="light"
+                delay={350}
+              >
                 HERE&apos;S WHO WE BUILT IT FOR
-              </h2>
-              <p 
-                className="text-lg md:text-xl text-white/70 uppercase tracking-wide animate-fadeIn"
-                style={{ animationDelay: '400ms' }}
+              </WipeReveal>
+              <WipeReveal
+                as="p"
+                className="text-lg md:text-xl text-white/70 uppercase tracking-wide"
+                theme="light"
+                delay={500}
               >
                 THE RIGHT RIVVIA CANDIDATE:
-              </p>
+              </WipeReveal>
             </div>
           </div>
 
@@ -598,14 +609,30 @@ export default function WhoSection() {
       <div className="md:hidden py-16 px-6">
         {/* Intro Section */}
         <div className="mb-16 text-center">
-          <h2 className="font-display text-3xl sm:text-4xl tracking-tight leading-tight mb-6">
+          <WipeReveal
+            as="h2"
+            className="font-display text-3xl sm:text-4xl tracking-tight leading-tight mb-6"
+            theme="light"
+            delay={0}
+          >
             RIVVIA ISN&apos;T FOR EVERYONE
-            <br />
+          </WipeReveal>
+          <WipeReveal
+            as="h2"
+            className="font-display text-3xl sm:text-4xl tracking-tight leading-tight mb-6"
+            theme="light"
+            delay={150}
+          >
             HERE&apos;S WHO WE BUILT IT FOR
-          </h2>
-          <p className="text-base text-white/70 uppercase tracking-wide">
+          </WipeReveal>
+          <WipeReveal
+            as="p"
+            className="text-base text-white/70 uppercase tracking-wide"
+            theme="light"
+            delay={300}
+          >
             THE RIGHT RIVVIA CANDIDATE:
-          </p>
+          </WipeReveal>
         </div>
 
         {/* Stacked Photos */}

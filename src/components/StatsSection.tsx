@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import WipeReveal from "./WipeReveal";
 
 const stats = [
   {
@@ -134,19 +135,23 @@ export default function StatsSection() {
     <section data-theme="dark" id="opportunity" className="py-24 md:py-32 bg-[#0a0a0a]">
       <div ref={sectionRef} className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div 
-          className={`text-center mb-16 md:mb-20 transition-all duration-700 ${
-            isVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6">
+        <div className="text-center mb-16 md:mb-20">
+          <WipeReveal
+            as="h2"
+            className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6"
+            theme="light"
+            delay={0}
+          >
             OPPORTUNITY THAT SCALES
-          </h2>
-          <p className="text-xl md:text-2xl text-white/80 font-semibold mb-4">
+          </WipeReveal>
+          <WipeReveal
+            as="p"
+            className="text-xl md:text-2xl text-white/80 font-semibold mb-4"
+            theme="light"
+            delay={150}
+          >
             Real Volume. Real Growth. Real Results.
-          </p>
+          </WipeReveal>
           <p className="text-white/60 max-w-2xl mx-auto italic mb-6">
             Consistent Demand for our sales teams across a nationwide market.
           </p>

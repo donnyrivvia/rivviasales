@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect, useMemo } from "react";
+import WipeReveal from "./WipeReveal";
 
 // ========================================
 // GRID CONTROLS - Adjust these values

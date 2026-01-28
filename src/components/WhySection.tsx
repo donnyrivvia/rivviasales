@@ -1,6 +1,7 @@
 'use client';
 
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import WipeReveal from './WipeReveal';
 
 export default function WhySection() {
   const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
@@ -15,32 +16,52 @@ export default function WhySection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
           {/* Left Column - Title */}
-          <div 
-            className={`transition-all duration-700 ${
-              isVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-8'
-            }`}
-          >
+          <div>
             <div className="line-accent mb-6" />
-            <h2 className="font-display text-5xl md:text-6xl lg:text-7xl tracking-tight leading-[0.95] text-black">
+            <WipeReveal
+              as="h2"
+              className="font-display text-5xl md:text-6xl lg:text-7xl tracking-tight leading-[0.95] text-black"
+              theme="dark"
+              delay={0}
+            >
               WHY SELL
-              <br />
+            </WipeReveal>
+            <WipeReveal
+              as="h2"
+              className="font-display text-5xl md:text-6xl lg:text-7xl tracking-tight leading-[0.95] text-black"
+              theme="dark"
+              delay={150}
+            >
               WITH RIVVIA?
-            </h2>
+            </WipeReveal>
           </div>
 
           {/* Right Column - Content */}
-          <div 
-            className={`space-y-6 transition-all duration-700 delay-200 ${
-              isVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-8'
-            }`}
-          >
-            <p className="text-xl md:text-2xl font-semibold text-black/90 leading-tight uppercase tracking-wide">
-              HIGH DEMAND.<br/> SERIOUS ENVIRONMENT.<br/> PROVEN SYSTEMS.
-            </p>
+          <div className="space-y-6">
+            <WipeReveal
+              as="p"
+              className="text-xl md:text-2xl font-semibold text-black/90 leading-tight uppercase tracking-wide"
+              theme="dark"
+              delay={300}
+            >
+              HIGH DEMAND.
+            </WipeReveal>
+            <WipeReveal
+              as="p"
+              className="text-xl md:text-2xl font-semibold text-black/90 leading-tight uppercase tracking-wide"
+              theme="dark"
+              delay={400}
+            >
+              SERIOUS ENVIRONMENT.
+            </WipeReveal>
+            <WipeReveal
+              as="p"
+              className="text-xl md:text-2xl font-semibold text-black/90 leading-tight uppercase tracking-wide"
+              theme="dark"
+              delay={500}
+            >
+              PROVEN SYSTEMS.
+            </WipeReveal>
             <p className="text-base text-black/70 leading-relaxed">
               Rivvia is designed for excellence. From the high-demand product we sell (fiber internet) to the internal systems we've put into place, we've tooled our business to ensure your efforts are matched with maximum upside and wire-to-wire support.
             </p>
