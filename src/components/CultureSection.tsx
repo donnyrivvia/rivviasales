@@ -109,7 +109,7 @@ export default function CultureSection() {
               {/* Placeholder for Structure Image/Video */}
               <div className="aspect-[4/3] bg-white/5 overflow-hidden border border-white/10 flex items-center justify-center">
                 <Image 
-                  src="/knocking.png" 
+                  src="/WALKINGRIVVIA.png" 
                   alt="Clear structure and workflows"
                   width={800}
                   height={600}

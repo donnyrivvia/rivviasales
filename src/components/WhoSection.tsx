@@ -27,7 +27,7 @@ const mainPhotos = [
     paddingBottom: 0,
   },
   { 
-    image: "/WALKINGRIVVIA.png",
+    image: "/IMG_8533.jpeg",
     label: "HIGH PERFORMANCE",
     text: "CRAVES SELF IMPROVEMENT/PERFORMANCE",
     aspectRatio: '4/3',
