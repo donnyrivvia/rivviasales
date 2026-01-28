@@ -88,7 +88,7 @@ export default function HowItWorks() {
 
         {/* Right Side - Content */}
         <div className="relative w-full md:w-1/2 h-1/2 md:h-full bg-black flex items-center justify-center px-8 md:px-16 lg:px-24">
-          <div className="max-w-2xl w-full flex flex-col">
+          <div className="max-w-2xl w-full">
             {/* Section Label */}
             <WipeReveal
               as="p"
@@ -97,7 +97,7 @@ export default function HowItWorks() {
               delay={0}
             >
               The Sales Process
-            </WipeReveal>
+            </WipeReveal> <br />
             
             {/* Main Heading */}
             <WipeReveal

@@ -119,18 +119,22 @@ body {
   0% {
     transform: translateX(-100%);
   }
+  50% {
+    transform: translateX(0);
+  }
   100% {
     transform: translateX(110%);
   }
 }
 
-@keyframes textSlideIn {
+@keyframes textReveal {
   0% {
-    transform: translateX(-20px);
+    opacity: 0;
+  }
+  50% {
     opacity: 0;
   }
   100% {
-    transform: translateX(0);
     opacity: 1;
   }
 }
@@ -169,28 +173,29 @@ body {
 .delay-700 { animation-delay: 700ms; }
 .delay-800 { animation-delay: 800ms; }
 
-/* Wipe reveal animation for text - Horizontal style */
+/* Wipe reveal animation for text */
 .wipe-reveal {
   position: relative;
   display: inline-block;
+  overflow: hidden;
 }
 
 .wipe-reveal-line {
   position: relative;
   display: block;
   overflow: hidden;
-  padding: 0.1em 0.05em;
-  margin: 0 -0.05em;
+  padding-right: 26px;
 }
 
-.wipe-reveal-line span {
+.wipe-reveal-line .wipe-text {
+  position: relative;
   display: inline-block;
-  animation: textSlideIn 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-  animation-play-state: paused;
+  opacity: 0;
+  z-index: 0;
 }
 
-.wipe-reveal-line.active span {
-  animation-play-state: running;
+.wipe-reveal-line.active .wipe-text {
+  animation: textReveal 0.7s ease-out forwards;
 }
 
 .wipe-reveal-line::after {
@@ -201,14 +206,12 @@ body {
   width: 100%;
   height: 100%;
   background: white;
-  transform: translateX(-100%);
-  animation: wipeReveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-  animation-play-state: paused;
   z-index: 1;
+  transform: translateX(-100%);
 }
 
 .wipe-reveal-line.active::after {
-  animation-play-state: running;
+  animation: wipeReveal 0.7s ease-out forwards;
 }
 
 /* Dark theme variant */
@@ -221,18 +224,17 @@ body {
   position: relative;
   display: inline-block;
   overflow: hidden;
-  padding: 0.1em 0.05em;
-  margin: 0 -0.05em;
 }
 
-.wipe-reveal-inline span {
+.wipe-reveal-inline .wipe-text {
+  position: relative;
   display: inline-block;
-  animation: textSlideIn 0.8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-  animation-play-state: paused;
+  opacity: 0;
+  z-index: 0;
 }
 
-.wipe-reveal-inline.active span {
-  animation-play-state: running;
+.wipe-reveal-inline.active .wipe-text {
+  animation: textReveal 0.7s ease-out forwards;
 }
 
 .wipe-reveal-inline::after {
@@ -243,13 +245,12 @@ body {
   width: 100%;
   height: 100%;
   background: white;
-  animation: wipeReveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-  animation-play-state: paused;
   z-index: 1;
+  transform: translateX(-100%);
 }
 
 .wipe-reveal-inline.active::after {
-  animation-play-state: running;
+  animation: wipeReveal 0.7s ease-out forwards;
 }
 
 .wipe-reveal-inline.dark::after {

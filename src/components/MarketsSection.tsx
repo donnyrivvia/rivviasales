@@ -118,15 +118,38 @@ export default function MarketsSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-center">
         <div className="max-w-[600px] text-center">
           <div className="line-accent mb-6 mx-auto" />
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6">
-          QUALITY LEADS FROM<br />ALL OVER THE NATION
-          </h2>
-          <p className="text-lg text-white/70 mb-6 leading-relaxed uppercase tracking-wide">
-          Although we’re in 22 markets, we have the power to sell wherever there’s demand. We field quality leads from all over the nation, giving you more chances to close. 
-          </p>
-          <p className="text-white/60 mb-8">
-          Bigger opportunity means bigger upside for everyone at Rivvia.
-          </p>
+          <WipeReveal
+            as="h2"
+            className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[0.8] mb-6"
+            theme="light"
+            delay={0}
+          >
+            QUALITY LEADS FROM
+          </WipeReveal> <br />
+          <WipeReveal
+            as="h2"
+            className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[0.8] mb-6"
+            theme="light"
+            delay={0}
+          >
+            ALL OVER THE NATION
+          </WipeReveal> <br />
+          <WipeReveal
+            as="p"
+            className="text-lg text-white/70 mb-6 leading-relaxed uppercase tracking-wide"
+            theme="light"
+            delay={150}
+          >
+            Although we’re in 22 markets, we have the power to sell wherever there’s demand. We field quality leads from all over the nation, giving you more chances to close.
+          </WipeReveal> <br />
+          <WipeReveal
+            as="p"
+            className="text-white/60 mb-8"
+            theme="light"
+            delay={300}
+          >
+            Bigger opportunity means bigger upside for everyone at Rivvia.
+          </WipeReveal>
         </div>
       </div>
     </section>

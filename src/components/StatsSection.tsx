@@ -135,7 +135,7 @@ export default function StatsSection() {
     <section data-theme="dark" id="opportunity" className="py-24 md:py-32 bg-[#0a0a0a]">
       <div ref={sectionRef} className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col text-center mb-16 md:mb-20">
+        <div className="text-center mb-16 md:mb-20 flex flex-col items-center justify-center">
           <WipeReveal
             as="h2"
             className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6"

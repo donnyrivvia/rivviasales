@@ -48,11 +48,11 @@ export default function Hero() {
       
       {/* Content */}
       <div className="relative z-10 w-full max-w-[90vw] px-6 lg:px-8 py-32 pt-40 flex flex-col items-start justify-start mx-auto">
-        <div className="max-w-4xl flex flex-col">
+        <div className="max-w-4xl">
           {/* Main Headline */}
           <WipeReveal 
             as="h1"
-            className="font-display text-black text-5xl sm:text-7xl md:text-[140px] lg:text-[180px] xl:text-[200px] leading-[0.85] mb-4 sm:mb-6"
+            className="font-display text-black text-5xl sm:text-7xl md:text-[140px] lg:text-[180px] xl:text-[200px] leading-[0.8]"
             theme="dark"
             delay={100}
           >
@@ -60,7 +60,7 @@ export default function Hero() {
           </WipeReveal>
           <WipeReveal 
             as="h1"
-            className="font-display text-black text-5xl sm:text-7xl md:text-[140px] lg:text-[180px] xl:text-[200px] leading-[0.85] mb-4 sm:mb-6"
+            className="font-display text-black text-5xl sm:text-7xl md:text-[140px] lg:text-[180px] xl:text-[200px] leading-[0.8]"
             theme="dark"
             delay={250}
           >
@@ -69,7 +69,7 @@ export default function Hero() {
           
           <WipeReveal 
             as="h3"
-            className="font-display text-black text-3xl sm:text-5xl md:text-[60px] lg:text-[80px] xl:text-[100px] leading-[0.95] mb-6"
+            className="font-display text-black text-3xl sm:text-5xl md:text-[60px] lg:text-[80px] xl:text-[100px] leading-[0.95]"
             theme="dark"
             delay={400}
           >

@@ -60,9 +60,7 @@ export default function WipeReveal({
               display: 'block'
             }}
           >
-            <span style={{ animationDelay: `${delay + (index * 150)}ms` }}>
-              {line}
-            </span>
+            <span className="wipe-text">{line}</span>
           </span>
         ));
       }
@@ -71,14 +69,9 @@ export default function WipeReveal({
       return (
         <span
           className={`wipe-reveal-line ${theme === 'dark' ? 'dark' : ''} ${isVisible ? 'active' : ''}`}
-          style={{ 
-            '--animation-delay': `${delay}ms`,
-            animationDelay: `${delay}ms` 
-          } as React.CSSProperties}
+          style={{ animationDelay: `${delay}ms` }}
         >
-          <span style={{ animationDelay: `${delay}ms` }}>
-            {children}
-          </span>
+          <span className="wipe-text">{children}</span>
         </span>
       );
     }
@@ -87,14 +80,9 @@ export default function WipeReveal({
     return (
       <span
         className={`wipe-reveal-line ${theme === 'dark' ? 'dark' : ''} ${isVisible ? 'active' : ''}`}
-        style={{ 
-          '--animation-delay': `${delay}ms`,
-          animationDelay: `${delay}ms` 
-        } as React.CSSProperties}
+        style={{ animationDelay: `${delay}ms` }}
       >
-        <span style={{ animationDelay: `${delay}ms` }}>
-          {children}
-        </span>
+        <span className="wipe-text">{children}</span>
       </span>
     );
   };
@@ -144,14 +132,9 @@ export function WipeRevealInline({
     <span 
       ref={ref}
       className={`wipe-reveal-inline ${theme === 'dark' ? 'dark' : ''} ${isVisible ? 'active' : ''} ${className}`}
-      style={{ 
-        '--animation-delay': `${delay}ms`,
-        animationDelay: `${delay}ms` 
-      } as React.CSSProperties}
+      style={{ animationDelay: `${delay}ms` }}
     >
-      <span style={{ animationDelay: `${delay}ms` }}>
-        {children}
-      </span>
+      <span className="wipe-text">{children}</span>
     </span>
   );
 }

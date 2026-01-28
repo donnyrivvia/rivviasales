@@ -16,7 +16,7 @@ export default function WhySection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
           {/* Left Column - Title */}
-          <div className="flex flex-col">
+          <div>
             <div className="line-accent mb-6" />
             <WipeReveal
               as="h2"
@@ -25,7 +25,7 @@ export default function WhySection() {
               delay={0}
             >
               WHY SELL
-            </WipeReveal>
+            </WipeReveal> <br />
             <WipeReveal
               as="h2"
               className="font-display text-5xl md:text-6xl lg:text-7xl tracking-tight leading-[0.95] text-black"
@@ -37,7 +37,7 @@ export default function WhySection() {
           </div>
 
           {/* Right Column - Content */}
-          <div className="flex flex-col space-y-6">
+          <div className="space-y-6">
             <WipeReveal
               as="p"
               className="text-xl md:text-2xl font-semibold text-black/90 leading-tight uppercase tracking-wide"
@@ -45,7 +45,7 @@ export default function WhySection() {
               delay={300}
             >
               HIGH DEMAND.
-            </WipeReveal>
+            </WipeReveal> <br />
             <WipeReveal
               as="p"
               className="text-xl md:text-2xl font-semibold text-black/90 leading-tight uppercase tracking-wide"
@@ -53,7 +53,7 @@ export default function WhySection() {
               delay={400}
             >
               SERIOUS ENVIRONMENT.
-            </WipeReveal>
+            </WipeReveal> <br />
             <WipeReveal
               as="p"
               className="text-xl md:text-2xl font-semibold text-black/90 leading-tight uppercase tracking-wide"

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import WipeReveal from './WipeReveal';
 
 const testimonials = [
   {
@@ -102,10 +103,22 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight">
+          <WipeReveal
+            as="h2"
+            className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight"
+            theme="light"
+            delay={0}
+          >
             OUR GOLDEN DOOR WINNERS
-          </h2>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">Get to know them and see what they're saying about their experience with Rivvia.</p>
+          </WipeReveal> <br />
+          <WipeReveal
+            as="p"
+            className="text-white/60 text-lg max-w-2xl mx-auto"
+            theme="light"
+            delay={150}
+          >
+            Get to know them and see what they're saying about their experience with Rivvia.
+          </WipeReveal>
         </div>
 
         {/* Carousel Container */}

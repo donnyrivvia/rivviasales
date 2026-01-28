@@ -16,7 +16,7 @@ export default function CultureSection() {
         {/* Section Header */}
         <div 
           ref={headerAnimation.elementRef as React.RefObject<HTMLDivElement>}
-          className="flex flex-col text-center mb-20"
+          className="text-center mb-20"
         >
           <WipeReveal
             as="p"
@@ -25,7 +25,7 @@ export default function CultureSection() {
             delay={0}
           >
             Our Environment
-          </WipeReveal>
+          </WipeReveal> <br />
           <WipeReveal
             as="h2"
             className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6"
@@ -33,7 +33,7 @@ export default function CultureSection() {
             delay={150}
           >
             WHAT IT&apos;S LIKE WORKING AT RIVVIA
-          </WipeReveal>
+          </WipeReveal> <br />
           <WipeReveal
             as="p"
             className="text-xl md:text-2xl text-white/80 leading-relaxed max-w-3xl mx-auto"
@@ -61,7 +61,7 @@ export default function CultureSection() {
                 delay={0}
               >
                 SUPPORT
-              </WipeReveal>
+              </WipeReveal> <br />
               <WipeReveal
                 as="p"
                 className="text-lg md:text-xl text-white/70 mb-6 leading-relaxed"
@@ -126,7 +126,7 @@ export default function CultureSection() {
                 delay={0}
               >
                 STRUCTURE
-              </WipeReveal>
+              </WipeReveal> <br />
               <WipeReveal
                 as="p"
                 className="text-lg md:text-xl text-white/70 mb-6 leading-relaxed"
@@ -155,7 +155,7 @@ export default function CultureSection() {
                 delay={0}
               >
                 COMMUNICATION
-              </WipeReveal>
+              </WipeReveal> <br />
               <WipeReveal
                 as="p"
                 className="text-lg md:text-xl text-white/70 mb-6 leading-relaxed"
