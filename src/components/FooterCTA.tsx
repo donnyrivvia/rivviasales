@@ -1,10 +1,12 @@
 'use client';
 
-import Link from "next/link";
+import { useState } from "react";
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import JoinTeamModal from './JoinTeamModal';
 
 export default function FooterCTA() {
   const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.3 });
+  const [isJoinModalOpen, setIsJoinModalOpen] = useState(false);
 
   return (
     <section 
@@ -48,8 +50,8 @@ export default function FooterCTA() {
           </p>
 
           {/* CTA */}
-          <Link
-            href="#"
+          <button
+            onClick={() => setIsJoinModalOpen(true)}
             className={`btn-primary inline-flex items-center gap-3 text-lg transition-all duration-700 delay-300 ${
               isVisible 
                 ? 'opacity-100 translate-y-0' 
@@ -70,9 +72,12 @@ export default function FooterCTA() {
                 d="M17 8l4 4m0 0l-4 4m4-4H3"
               />
             </svg>
-          </Link>
+          </button>
         </div>
       </div>
+
+      {/* Join Team Modal */}
+      <JoinTeamModal isOpen={isJoinModalOpen} onClose={() => setIsJoinModalOpen(false)} />
     </section>
   );
 }

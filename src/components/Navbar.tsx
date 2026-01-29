@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import JoinTeamModal from "./JoinTeamModal";
 
 const navLinks = [
   { href: "#about", label: "About" },
@@ -14,7 +15,7 @@ const navLinks = [
 
 const socialLinks = [
   { 
-    href: "https://www.instagram.com/rivvia", 
+    href: "https://www.instagram.com/rivviasales/", 
     label: "Instagram",
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -23,7 +24,7 @@ const socialLinks = [
     )
   },
   { 
-    href: "https://www.linkedin.com/company/rivvia", 
+    href: "https://www.linkedin.com/company/rivvia/", 
     label: "LinkedIn",
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -32,7 +33,7 @@ const socialLinks = [
     )
   },
   { 
-    href: "https://www.facebook.com/rivvia", 
+    href: "https://www.facebook.com/rivviasales", 
     label: "Facebook",
     icon: (
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -46,6 +47,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkSection, setIsDarkSection] = useState(false);
+  const [isJoinModalOpen, setIsJoinModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -153,12 +155,12 @@ export default function Navbar() {
             </div>
 
             {/* CTA Button */}
-            <Link
-              href="#join"
+            <button
+              onClick={() => setIsJoinModalOpen(true)}
               className={`px-6 py-3 text-sm font-semibold uppercase tracking-wider transition-colors ${buttonClass}`}
             >
               Join the Team
-            </Link>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -235,17 +237,22 @@ export default function Navbar() {
               ))}
             </div>
 
-            <Link
-              href="#join"
+            <button
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                setIsJoinModalOpen(true);
+              }}
               className={`px-6 py-3 text-sm font-semibold uppercase tracking-wider text-center mt-2 transition-colors ${buttonClass}`}
-              onClick={() => setIsMobileMenuOpen(false)}
             >
               Join the Team
-            </Link>
+            </button>
           </div>
         </div>
       </div>
     </nav>
+
+    {/* Join Team Modal */}
+    <JoinTeamModal isOpen={isJoinModalOpen} onClose={() => setIsJoinModalOpen(false)} />
     </>
   );
 }

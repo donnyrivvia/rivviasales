@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import WipeReveal from "./WipeReveal";
+import JoinTeamModal from "./JoinTeamModal";
 
 export default function Hero() {
   const [isMobile, setIsMobile] = useState(false);
+  const [isJoinModalOpen, setIsJoinModalOpen] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -88,9 +90,12 @@ export default function Hero() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-start items-start">
-            <Link href="#join" className="btn-primary-light inline-block text-center">
+            <button 
+              onClick={() => setIsJoinModalOpen(true)}
+              className="btn-primary-light inline-block text-center"
+            >
               Join the Team
-            </Link>
+            </button>
             <Link
               href="#how-it-works"
               className="btn-secondary-light inline-block text-center"
@@ -108,7 +113,8 @@ export default function Hero() {
         </div>
       </div>
 
-      
+      {/* Join Team Modal */}
+      <JoinTeamModal isOpen={isJoinModalOpen} onClose={() => setIsJoinModalOpen(false)} />
     </section>
   );
 }
