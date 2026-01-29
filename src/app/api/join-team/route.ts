@@ -27,7 +27,7 @@ export async function POST(request: Request) {
 
     // Send email using Resend
     const emailResult = await resend.emails.send({
-      from: 'Rivvia Careers <noreply@yourdomain.com>', // Update with your verified domain
+      from: 'Rivvia Careers <noreply@rivvia.com>', // Verified domain in Resend
       to: [
         'donny@rivvia.com',
         'jeremy@rivvia.com',
@@ -135,9 +135,13 @@ export async function POST(request: Request) {
 
     if (emailResult.error) {
       console.error('Resend error:', emailResult.error);
-      throw new Error('Failed to send email');
+      return NextResponse.json(
+        { error: 'Failed to send email', details: emailResult.error },
+        { status: 500 }
+      );
     }
 
+    console.log('Email sent successfully:', emailResult.data?.id);
     return NextResponse.json(
       { success: true, message: 'Application submitted successfully' },
       { status: 200 }
@@ -145,7 +149,10 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error('Form submission error:', error);
     return NextResponse.json(
-      { error: 'Failed to submit application' },
+      { 
+        error: 'Failed to submit application', 
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
       { status: 500 }
     );
   }
