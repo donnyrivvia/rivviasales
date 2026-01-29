@@ -29,6 +29,7 @@ const testimonials = [
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const autoPlayRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
@@ -42,31 +43,63 @@ export default function Testimonials() {
         video.pause();
       }
     });
+    setIsVideoPlaying(true);
   };
 
-  // Add play event listeners to all videos
+  // Handle video pause/ended
+  const handleVideoPauseOrEnd = () => {
+    // Check if any video is still playing
+    const anyVideoPlaying = videoRefs.current.some((video) => video && !video.paused);
+    setIsVideoPlaying(anyVideoPlaying);
+  };
+
+  // Add play/pause/ended event listeners to all videos
   useEffect(() => {
+    const cleanupFunctions: (() => void)[] = [];
+
     videoRefs.current.forEach((video, index) => {
       if (video) {
         const playHandler = () => handleVideoPlay(index);
+        const pauseHandler = handleVideoPauseOrEnd;
+        const endedHandler = handleVideoPauseOrEnd;
+        
         video.addEventListener('play', playHandler);
-        return () => video.removeEventListener('play', playHandler);
+        video.addEventListener('pause', pauseHandler);
+        video.addEventListener('ended', endedHandler);
+        
+        cleanupFunctions.push(() => {
+          video.removeEventListener('play', playHandler);
+          video.removeEventListener('pause', pauseHandler);
+          video.removeEventListener('ended', endedHandler);
+        });
       }
     });
+
+    return () => {
+      cleanupFunctions.forEach(cleanup => cleanup());
+    };
   }, []);
 
-  // Auto-advance carousel
+  // Auto-advance carousel (only when no video is playing)
   useEffect(() => {
-    autoPlayRef.current = setInterval(() => {
-      setCurrentIndex((prev) => prev + 1);
-    }, 5000); // Change slide every 5 seconds
+    if (!isVideoPlaying) {
+      autoPlayRef.current = setInterval(() => {
+        // Pause all videos when auto-advancing
+        videoRefs.current.forEach((video) => {
+          if (video && !video.paused) {
+            video.pause();
+          }
+        });
+        setCurrentIndex((prev) => prev + 1);
+      }, 5000); // Change slide every 5 seconds
+    }
 
     return () => {
       if (autoPlayRef.current) {
         clearInterval(autoPlayRef.current);
       }
     };
-  }, []);
+  }, [isVideoPlaying]);
 
   // Handle infinite loop reset
   useEffect(() => {
@@ -85,16 +118,34 @@ export default function Testimonials() {
 
   const goToPrevious = () => {
     if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    // Pause all videos when navigating
+    videoRefs.current.forEach((video) => {
+      if (video && !video.paused) {
+        video.pause();
+      }
+    });
     setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
   };
 
   const goToNext = () => {
     if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    // Pause all videos when navigating
+    videoRefs.current.forEach((video) => {
+      if (video && !video.paused) {
+        video.pause();
+      }
+    });
     setCurrentIndex((prev) => prev + 1);
   };
 
   const goToSlide = (index: number) => {
     if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    // Pause all videos when navigating
+    videoRefs.current.forEach((video) => {
+      if (video && !video.paused) {
+        video.pause();
+      }
+    });
     setCurrentIndex(index);
   };
 

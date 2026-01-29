@@ -6,14 +6,15 @@
   --accent: #ffffff;
   --muted: #888888;
   --border: #222222;
-}
-
-@theme inline {
+  
+  /* Theme color mappings */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  
+  /* Font mappings */
   --font-sans: var(--font-inter);
   --font-display: var(--font-bebas);
 }
