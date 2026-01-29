@@ -16,6 +16,9 @@ const bebasNeue = Bebas_Neue({
 export const metadata: Metadata = {
   title: "Rivvia — Sell With Confidence",
   description: "Build your sales career with Rivvia. Leads provided. Active markets. Real opportunity.",
+  icons: {
+    icon: "/favicon.png",
+  },
   openGraph: {
     title: "Rivvia — Sell With Confidence",
     description: "Build your sales career with Rivvia. Leads provided. Active markets. Real opportunity.",

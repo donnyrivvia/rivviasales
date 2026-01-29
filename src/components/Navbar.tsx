@@ -8,8 +8,8 @@ const navLinks = [
   { href: "#how-it-works", label: "How It Works" },
   { href: "/incentives", label: "Incentives" },
   { href: "/golden-door", label: "Golden Door" },
-  { href: "https://apps.apple.com/app/knockvia", label: "Knockvia", external: true },
-  { href: "https://store.rivvia.com", label: "Store", external: true },
+  { href: "https://apps.apple.com/us/app/knockvia/id6737631914", label: "Knockvia", external: true },
+  { href: "https://rivvia.shop", label: "Store", external: true },
 ];
 
 const socialLinks = [
