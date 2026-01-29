@@ -56,12 +56,19 @@ For better deliverability, verify your domain with Resend:
 Edit `/src/app/api/join-team/route.ts` and update these lines:
 
 ```typescript
-from: 'Rivvia Careers <noreply@yourdomain.com>', // Line 28
+from: 'Rivvia Careers <noreply@yourdomain.com>', // Line 30
 // Change to: 'Rivvia Careers <noreply@rivviasales.com>'
 
-to: 'careers@rivvia.com', // Line 29
-// Change to: whoever should receive applications
+to: [
+  'donny@rivvia.com',
+  // Add more emails below:
+  // 'manager@rivvia.com',
+  // 'hr@rivvia.com',
+], // Lines 31-36
+// Add or remove emails as needed - all will receive the application
 ```
+
+**Note:** You can send to multiple email addresses by adding them to the array!
 
 ### Step 6: Deploy Environment Variable
 
@@ -71,6 +78,31 @@ When deploying to Vercel/production:
 2. Navigate to **Environment Variables**
 3. Add `RESEND_API_KEY` with your API key value
 4. Redeploy your site
+
+---
+
+## Multiple Recipients
+
+The form is configured to send to multiple email addresses. To add or remove recipients:
+
+1. Edit `/src/app/api/join-team/route.ts`
+2. Find the `to:` array (around line 31)
+3. Add or remove email addresses:
+
+```typescript
+to: [
+  'donny@rivvia.com',
+  'manager@rivvia.com',
+  'hr@rivvia.com',
+],
+```
+
+**All email addresses in the array will receive the application.**
+
+**Note:** If you only need one recipient, you can use a string instead:
+```typescript
+to: 'donny@rivvia.com',
+```
 
 ---
 

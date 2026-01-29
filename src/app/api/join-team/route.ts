@@ -28,7 +28,14 @@ export async function POST(request: Request) {
     // Send email using Resend
     const emailResult = await resend.emails.send({
       from: 'Rivvia Careers <noreply@yourdomain.com>', // Update with your verified domain
-      to: 'donny@rivvia.com', // Update with the email that receives applications
+      to: [
+        'donny@rivvia.com',
+        'jeremy@rivvia.com',
+        'matth@rivvia.com',
+        // Add more emails below:
+        // 'manager@rivvia.com',
+        // 'hr@rivvia.com',
+      ],
       replyTo: email, // Allows easy reply to the applicant
       subject: `New Team Application: ${fullName}`,
       html: `
