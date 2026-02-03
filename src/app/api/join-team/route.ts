@@ -125,7 +125,7 @@ export async function POST(request: Request) {
             ` : ''}
             
             <div class="footer">
-              <p>This application was submitted through rivviasales.com</p>
+              <p>This application was submitted through rivvia.com</p>
               <p>Click reply to respond directly to ${fullName}</p>
             </div>
           </body>
