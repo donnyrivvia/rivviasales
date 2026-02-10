@@ -41,15 +41,26 @@ export default function KnockViaPage() {
           ref={heroAnimation.elementRef as React.RefObject<HTMLElement>}
           data-theme="dark"
           className="relative min-h-screen flex items-center justify-center px-6 py-32 overflow-hidden"
-          style={{ background: '#1F1F36' }}
         >
-          {/* Decorative elements */}
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ 
+              backgroundImage: 'url(/knockvia_mockup.png)',
+              backgroundPosition: 'center',
+            }}
+          />
+          
+          {/* Dark overlay */}
+          <div className="absolute inset-0" style={{ background: 'rgba(31, 31, 54, 0.7)' }} />
+          
+          {/* Decorative gradient elements */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-20 left-10 w-72 h-72 rounded-full blur-3xl" style={{ background: '#7753F4' }} />
             <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full blur-3xl" style={{ background: '#7753F4' }} />
           </div>
 
-          <div className="relative z-10 max-w-5xl mx-auto text-center">
+          <div className="relative z-10 w-full max-w-[30vw] mx-auto text-center">
             <div 
               className={`transition-all duration-700 ${
                 heroAnimation.isVisible 
@@ -61,7 +72,7 @@ export default function KnockViaPage() {
                 <img 
                   src="/Knockvia-logos/SVG/logo-lockup-prp_wht.svg" 
                   alt="KnockVia"
-                  className="w-full max-w-2xl h-auto"
+                  className="w-full h-auto"
                 />
               </div>
               <h2 className="font-display text-2xl md:text-4xl lg:text-5xl tracking-tight mb-12 text-white/90">
