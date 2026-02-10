@@ -142,7 +142,15 @@ export default function StatsSection() {
             theme="light"
             delay={0}
           >
-            OPPORTUNITY THAT SCALES
+            WE GIVE YOU SCALABILITY
+          </WipeReveal>
+          <WipeReveal
+            as="h2"
+            className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6"
+            theme="light"
+            delay={0}
+          >
+            LIKE NEVER BEFORE
           </WipeReveal>
           <WipeReveal
             as="p"

@@ -53,12 +53,20 @@ export default function Hero() {
         <div className="max-w-4xl">
           {/* Main Headline */}
           <WipeReveal 
+            as="h3"
+            className="font-display text-black text-3xl sm:text-5xl md:text-[60px] lg:text-[80px] xl:text-[100px] leading-[0.95]"
+            theme="dark"
+            delay={400}
+          >
+            <i>BUILD FOR THOSE WHO WANT</i>
+          </WipeReveal>
+          <WipeReveal 
             as="h1"
             className="font-display text-black text-5xl sm:text-7xl md:text-[140px] lg:text-[180px] xl:text-[200px] leading-[0.8]"
             theme="dark"
             delay={100}
           >
-            <b><i>A BETTER</i></b>
+            <b><i>MORE OUT OF</i></b>
           </WipeReveal>
           <WipeReveal 
             as="h1"
@@ -66,26 +74,19 @@ export default function Hero() {
             theme="dark"
             delay={250}
           >
-            <b><i>SALES CAREER</i></b>
+            <b><i>THEIR SALES CAREER</i></b>
           </WipeReveal>
           
-          <WipeReveal 
-            as="h3"
-            className="font-display text-black text-3xl sm:text-5xl md:text-[60px] lg:text-[80px] xl:text-[100px] leading-[0.95]"
-            theme="dark"
-            delay={400}
-          >
-            <i>BEGINS AT RIVVIA</i>
-          </WipeReveal>
+          
 
           {/* Subheadline */}
           <p className="text-sm md:text-base text-black max-w-3xl mb-10 leading-relaxed uppercase tracking-wider">
-            LEADING FIBER PROVIDER | MEANINGFUL OPPORTUNITIES | INCENTIVES
+            LEADING FIBER PROVIDER | INBOUND LEADS | HOT MARKETS | MEANINGFUL OPPORTUNITIES | INCENTIVES
           </p>
 
           {/* Description */}
           <p className="text-base md:text-lg text-black max-w-2xl mb-10 italic leading-relaxed">
-            Rivvia is built for sales reps who care more about consistency and less about hype. Our product, systems, and platforms are designed to help you win, win big, and win consistently.
+          The D2C world isn’t like it used to be, but not everyone is keeping up. At Rivvia, we’re dedicated to providing better experiences, better products, and better systems so you get way more out of this than you ever thought possible.
           </p>
 
           {/* CTAs */}

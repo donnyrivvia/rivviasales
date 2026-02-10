@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import WipeReveal from './WipeReveal';
+import JoinTeamModal from './JoinTeamModal';
 
 // Layout configuration - main photos with full control
 const mainPhotos = [
@@ -29,7 +30,7 @@ const mainPhotos = [
   { 
     image: "/IMG_8533.jpeg",
     label: "HIGH PERFORMANCE",
-    text: "CRAVES SELF IMPROVEMENT/PERFORMANCE",
+    text: "BUILDS AND ADDS TO OUR CULTURE",
     aspectRatio: '4/3',
     verticalAlign: 'bottom',
     containerWidth: 630,
@@ -39,7 +40,7 @@ const mainPhotos = [
   { 
     image: "/knocking.png",
     label: "TRANSPARENCY",
-    text: "VALUES TRANSPARENCY",
+    text: "APPRECIATES TRANSPARENCY",
     aspectRatio: '16/9',
     verticalAlign: 'center',
     containerWidth: 750,
@@ -132,6 +133,7 @@ export default function WhoSection() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [translateX, setTranslateX] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isJoinModalOpen, setIsJoinModalOpen] = useState(false);
   const maxTranslateRef = useRef(0);
 
   useEffect(() => {
@@ -275,7 +277,7 @@ export default function WhoSection() {
                 theme="light"
                 delay={500}
               >
-                THE RIGHT RIVVIA CANDIDATE:
+                THE RIGHT RIVVIA REP:
               </WipeReveal>
             </div>
           </div>
@@ -668,14 +670,18 @@ export default function WhoSection() {
           <h3 className="font-display text-3xl sm:text-4xl tracking-tight mb-6">
             SOUND LIKE YOU?
           </h3>
-          <a 
-            href="#join" 
+          <button
+            type="button"
             className="btn-secondary inline-block"
+            onClick={() => setIsJoinModalOpen(true)}
           >
-            READY?
-          </a>
+            YOU READY?
+          </button>
         </div>
       </div>
+
+      {/* Join Team Modal */}
+      <JoinTeamModal isOpen={isJoinModalOpen} onClose={() => setIsJoinModalOpen(false)} />
     </section>
   );
 }

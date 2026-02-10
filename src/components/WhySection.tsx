@@ -2,10 +2,13 @@
 
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import WipeReveal from './WipeReveal';
+import JoinTeamModal from "./JoinTeamModal";
+import { useState } from "react";
 
 export default function WhySection() {
   const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
-
+  const [isJoinModalOpen, setIsJoinModalOpen] = useState(false);
+  
   return (
     <section 
       ref={elementRef as React.RefObject<HTMLElement>}
@@ -24,7 +27,7 @@ export default function WhySection() {
               theme="dark"
               delay={0}
             >
-              WHY SELL
+              WHY CHOOSE RIVVIA?
             </WipeReveal> <br />
             <WipeReveal
               as="h2"
@@ -32,7 +35,7 @@ export default function WhySection() {
               theme="dark"
               delay={150}
             >
-              WITH RIVVIA?
+              BECAUSE THERE’S NOTHING ELSE LIKE IT
             </WipeReveal>
           </div>
 
@@ -51,7 +54,7 @@ export default function WhySection() {
                 theme="dark"
                 delay={300}
               >
-                HIGH DEMAND.
+                HIGH DEMAND PRODUCTS.
               </WipeReveal>
             </div>
 
@@ -68,7 +71,7 @@ export default function WhySection() {
                 theme="dark"
                 delay={400}
               >
-                SERIOUS ENVIRONMENT.
+                BIG WIN ENVIRONMENT.
               </WipeReveal>
             </div>
 
@@ -91,11 +94,22 @@ export default function WhySection() {
 
             {/* Bottom text */}
             <p className="text-base text-black/70 leading-relaxed pt-4 border-t border-black/10">
-              Rivvia is designed for excellence. From the high-demand product we sell (fiber internet) to the internal systems we've put into place, we've tooled our business to ensure your efforts are matched with maximum upside and wire-to-wire support.
+            Rivvia is designed for excellence. From the high-demand product we sell (fiber internet) to the internal systems we’ve put into place, we’ve tooled our business to ensure your efforts are matched with maximum upside and wire-to-wire support.
             </p>
+
+          <div className="pt-6">
+            <button
+              className="btn-secondary-light inline-block text-center"
+              onClick={() => setIsJoinModalOpen(true)}
+            >
+              join the team
+            </button>
+          </div>
           </div>
         </div>
       </div>
+      {/* Join Team Modal */}
+      <JoinTeamModal isOpen={isJoinModalOpen} onClose={() => setIsJoinModalOpen(false)} />
     </section>
   );
 }
