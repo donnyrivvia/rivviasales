@@ -212,7 +212,7 @@ export default function KnockViaPage() {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer theme="light" />
     </>
   );
 }

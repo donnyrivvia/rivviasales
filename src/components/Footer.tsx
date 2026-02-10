@@ -50,13 +50,25 @@ const navigation = {
   ],
 };
 
-export default function Footer() {
+interface FooterProps {
+  theme?: 'light' | 'dark';
+}
+
+export default function Footer({ theme = 'dark' }: FooterProps) {
   const [isJoinModalOpen, setIsJoinModalOpen] = useState(false);
   const currentYear = new Date().getFullYear();
 
+  const bgClass = theme === 'light' ? 'bg-white' : 'bg-black';
+  const borderClass = theme === 'light' ? 'border-black/10' : 'border-white/10';
+  const textClass = theme === 'light' ? 'text-black' : 'text-white';
+  const textSecondaryClass = theme === 'light' ? 'text-black/60' : 'text-white/60';
+  const textMutedClass = theme === 'light' ? 'text-black/50' : 'text-white/50';
+  const textLightClass = theme === 'light' ? 'text-black/30' : 'text-white/30';
+  const logoFilter = theme === 'light' ? '' : 'brightness-0 invert';
+
   return (
     <>
-      <footer className="bg-black border-t border-white/10">
+      <footer className={`${bgClass} border-t ${borderClass}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
           {/* Top Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-12">
@@ -66,17 +78,17 @@ export default function Footer() {
                 <img 
                   src="/logo.svg" 
                   alt="RIVVIA Logo" 
-                  className="h-[50px] w-auto brightness-0 invert"
+                  className={`h-[50px] w-auto ${logoFilter}`}
                 />
               </Link>
-              <p className="text-white/60 text-sm leading-relaxed">
+              <p className={`${textSecondaryClass} text-sm leading-relaxed`}>
                 Build your sales career with Rivvia. High demand. Serious environment. Proven systems.
               </p>
             </div>
 
             {/* Navigation Links */}
             <div>
-              <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
+              <h3 className={`${textClass} font-semibold text-sm uppercase tracking-wider mb-4`}>
                 Navigation
               </h3>
               <ul className="space-y-3">
@@ -84,7 +96,11 @@ export default function Footer() {
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-white/50 hover:text-white transition-colors text-sm"
+                      className={`text-sm transition-colors ${
+                        theme === 'light' 
+                          ? 'text-black/50 hover:text-black' 
+                          : 'text-white/50 hover:text-white'
+                      }`}
                     >
                       {item.name}
                     </Link>
@@ -94,7 +110,11 @@ export default function Footer() {
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-white/50 hover:text-white transition-colors text-sm"
+                      className={`text-sm transition-colors ${
+                        theme === 'light' 
+                          ? 'text-black/50 hover:text-black' 
+                          : 'text-white/50 hover:text-white'
+                      }`}
                     >
                       {item.name}
                     </Link>
@@ -105,7 +125,7 @@ export default function Footer() {
 
             {/* Resources */}
             <div>
-              <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
+              <h3 className={`${textClass} font-semibold text-sm uppercase tracking-wider mb-4`}>
                 Resources
               </h3>
               <ul className="space-y-3">
@@ -115,7 +135,11 @@ export default function Footer() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-white/50 hover:text-white transition-colors text-sm"
+                      className={`text-sm transition-colors ${
+                        theme === 'light' 
+                          ? 'text-black/50 hover:text-black' 
+                          : 'text-white/50 hover:text-white'
+                      }`}
                     >
                       {item.name}
                     </a>
@@ -124,7 +148,11 @@ export default function Footer() {
                 <li>
                   <button
                     onClick={() => setIsJoinModalOpen(true)}
-                    className="text-white/50 hover:text-white transition-colors text-sm text-left"
+                    className={`text-sm transition-colors text-left ${
+                      theme === 'light' 
+                        ? 'text-black/50 hover:text-black' 
+                        : 'text-white/50 hover:text-white'
+                    }`}
                   >
                     Join the Team
                   </button>
@@ -134,7 +162,7 @@ export default function Footer() {
 
             {/* Social */}
             <div>
-              <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
+              <h3 className={`${textClass} font-semibold text-sm uppercase tracking-wider mb-4`}>
                 Follow Us
               </h3>
               <div className="flex gap-4">
@@ -144,7 +172,11 @@ export default function Footer() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/50 hover:text-white transition-colors"
+                    className={`transition-colors ${
+                      theme === 'light' 
+                        ? 'text-black/50 hover:text-black' 
+                        : 'text-white/50 hover:text-white'
+                    }`}
                     aria-label={item.name}
                   >
                     {item.icon}
@@ -155,16 +187,30 @@ export default function Footer() {
           </div>
 
           {/* Bottom Section */}
-          <div className="pt-8 border-t border-white/10">
+          <div className={`pt-8 border-t ${borderClass}`}>
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <p className="text-white/30 text-sm">
+              <p className={`${textLightClass} text-sm`}>
                 © {currentYear} Rivvia. All rights reserved.
               </p>
               <div className="flex gap-6">
-                <Link href="#" className="text-white/30 hover:text-white/50 text-sm transition-colors">
+                <Link 
+                  href="#" 
+                  className={`text-sm transition-colors ${
+                    theme === 'light' 
+                      ? 'text-black/30 hover:text-black/50' 
+                      : 'text-white/30 hover:text-white/50'
+                  }`}
+                >
                   Privacy Policy
                 </Link>
-                <Link href="#" className="text-white/30 hover:text-white/50 text-sm transition-colors">
+                <Link 
+                  href="#" 
+                  className={`text-sm transition-colors ${
+                    theme === 'light' 
+                      ? 'text-black/30 hover:text-black/50' 
+                      : 'text-white/30 hover:text-white/50'
+                  }`}
+                >
                   Terms of Service
                 </Link>
               </div>
