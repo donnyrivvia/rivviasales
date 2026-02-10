@@ -35,19 +35,17 @@ export default function KnockViaPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-black">
+      <main className="min-h-screen bg-white">
         {/* Hero Section */}
         <section 
           ref={heroAnimation.elementRef as React.RefObject<HTMLElement>}
-          className="relative min-h-screen flex items-center justify-center px-6 py-32 overflow-hidden"
-          style={{
-            background: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)'
-          }}
+          data-theme="light"
+          className="relative min-h-screen flex items-center justify-center px-6 py-32 overflow-hidden bg-white"
         >
           {/* Decorative elements */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-20 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
-            <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute top-20 left-10 w-72 h-72 bg-black/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-black/5 rounded-full blur-3xl" />
           </div>
 
           <div className="relative z-10 max-w-5xl mx-auto text-center">
@@ -58,16 +56,16 @@ export default function KnockViaPage() {
                   : 'opacity-0 translate-y-8'
               }`}
             >
-              <h1 className="font-display text-6xl md:text-8xl lg:text-9xl tracking-tight mb-8">
+              <h1 className="font-display text-6xl md:text-8xl lg:text-9xl tracking-tight mb-8 text-black">
                 KNOCKVIA
               </h1>
-              <h2 className="font-display text-2xl md:text-4xl lg:text-5xl tracking-tight mb-12 text-white/90">
+              <h2 className="font-display text-2xl md:text-4xl lg:text-5xl tracking-tight mb-12 text-black/90">
                 ONBOARD. CANVAS. CLOSE.
                 <br />
                 AND COMPETE. IN ONE APP.
               </h2>
-              <div className="inline-block border-t border-b border-white/20 py-4 px-8 mb-12">
-                <p className="text-lg md:text-xl text-white/70 uppercase tracking-widest">
+              <div className="inline-block border-t border-b border-black/20 py-4 px-8 mb-12">
+                <p className="text-lg md:text-xl text-black/70 uppercase tracking-widest">
                   Meet Your Best Sales Friend
                 </p>
               </div>
@@ -76,7 +74,7 @@ export default function KnockViaPage() {
         </section>
 
         {/* Intro Section */}
-        <section className="py-24 md:py-32 bg-white text-black">
+        <section className="py-24 md:py-32 bg-white text-black" data-theme="light">
           <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-8 leading-tight">
               WE BUILT KNOCKVIA AS A ONE-STOP SHOP FOR OUR SALES REPS.
@@ -90,7 +88,8 @@ export default function KnockViaPage() {
         {/* Features Section */}
         <section 
           ref={featuresAnimation.elementRef as React.RefObject<HTMLElement>}
-          className="py-24 md:py-32 bg-black"
+          className="py-24 md:py-32 bg-gray-50"
+          data-theme="light"
         >
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
             <div className="space-y-20">
@@ -106,11 +105,11 @@ export default function KnockViaPage() {
                   <div className="grid md:grid-cols-2 gap-12 items-center">
                     {/* Image placeholder - alternating sides */}
                     <div 
-                      className={`aspect-[4/3] bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex items-center justify-center ${
+                      className={`aspect-[4/3] bg-gradient-to-br from-black/10 to-black/5 border border-black/10 flex items-center justify-center ${
                         index % 2 === 0 ? 'md:order-1' : 'md:order-2'
                       }`}
                     >
-                      <div className="text-white/30 text-center">
+                      <div className="text-black/30 text-center">
                         <svg className="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                         </svg>
@@ -120,10 +119,10 @@ export default function KnockViaPage() {
 
                     {/* Content */}
                     <div className={index % 2 === 0 ? 'md:order-2' : 'md:order-1'}>
-                      <h3 className="font-display text-4xl md:text-5xl tracking-tight mb-6">
+                      <h3 className="font-display text-4xl md:text-5xl tracking-tight mb-6 text-black">
                         {feature.title}
                       </h3>
-                      <p className="text-lg text-white/70 leading-relaxed">
+                      <p className="text-lg text-black/70 leading-relaxed">
                         {feature.description}
                       </p>
                     </div>
@@ -138,6 +137,7 @@ export default function KnockViaPage() {
         <section 
           ref={ctaAnimation.elementRef as React.RefObject<HTMLElement>}
           className="py-24 md:py-32 bg-white text-black"
+          data-theme="light"
         >
           <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
             <h2 
@@ -193,14 +193,14 @@ export default function KnockViaPage() {
         </section>
 
         {/* Closer Look Section */}
-        <section className="py-24 md:py-32 bg-[#0a0a0a]">
+        <section className="py-24 md:py-32 bg-white" data-theme="light">
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight text-center mb-16">
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight text-center mb-16 text-black">
               A CLOSER LOOK AT KNOCKVIA
             </h2>
             {/* Video/Demo Placeholder */}
-            <div className="aspect-video bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex items-center justify-center">
-              <div className="text-white/30 text-center">
+            <div className="aspect-video bg-gradient-to-br from-black/10 to-black/5 border border-black/10 flex items-center justify-center">
+              <div className="text-black/30 text-center">
                 <svg className="w-20 h-20 mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
