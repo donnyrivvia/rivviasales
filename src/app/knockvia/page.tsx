@@ -57,9 +57,13 @@ export default function KnockViaPage() {
                   : 'opacity-0 translate-y-8'
               }`}
             >
-              <h1 className="font-display text-6xl md:text-8xl lg:text-9xl tracking-tight mb-8 text-white">
-                KNOCKVIA
-              </h1>
+              <div className="flex justify-center mb-12">
+                <img 
+                  src="/Knockvia-logos/SVG/logo-lockup-prp_wht.svg" 
+                  alt="KnockVia"
+                  className="w-full max-w-2xl h-auto"
+                />
+              </div>
               <h2 className="font-display text-2xl md:text-4xl lg:text-5xl tracking-tight mb-12 text-white/90">
                 ONBOARD. CANVAS. CLOSE.
                 <br />
