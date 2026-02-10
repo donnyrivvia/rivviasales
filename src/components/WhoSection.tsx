@@ -581,12 +581,13 @@ export default function WhoSection() {
               <h3 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight mb-8">
                 SOUND LIKE YOU?
               </h3>
-              <a 
-                href="#join" 
-                className="btn-secondary inline-block"
-              >
-                READY?
-              </a>
+              <button
+            type="button"
+            className="btn-secondary inline-block"
+            onClick={() => setIsJoinModalOpen(true)}
+          >
+            YOU READY?
+          </button>
             </div>
           </div>
         </div>

@@ -7,9 +7,9 @@ import WipeReveal from './WipeReveal';
 const steps = [
   {
     number: "01",
-    title: "ONBOARD & ALIGN",
+    title: "FAST ONBOARDING",
     description:
-      "World class onboarding ensures you're ready to sell fiber and represent Rivvia.",
+      "World class onboarding ensures you’re ready to sell fiber and represent Rivvia.",
     image: "/growth1.png",
   },
   {

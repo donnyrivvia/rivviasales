@@ -124,7 +124,7 @@ export default function MarketsSection() {
             theme="light"
             delay={0}
           >
-            QUALITY LEADS FROM
+            CURRENT MARKETS &
           </WipeReveal> <br />
           <WipeReveal
             as="h2"
@@ -132,7 +132,7 @@ export default function MarketsSection() {
             theme="light"
             delay={0}
           >
-            ALL OVER THE NATION
+            MARKET EXPANSION
           </WipeReveal> <br />
           <WipeReveal
             as="p"
@@ -140,7 +140,7 @@ export default function MarketsSection() {
             theme="light"
             delay={150}
           >
-            Although we’re in 22 markets, we have the power to sell wherever there’s demand. We field quality leads from all over the nation, giving you more chances to close.
+            RIVVIA CURRENTLY OPERATES IN 22 MARKETS ACROSS THE COUNTRY, AND CONSISTENTLY OPENS NEW MARKETS EACH QUARTER. 
           </WipeReveal> <br />
           <WipeReveal
             as="p"
@@ -148,7 +148,7 @@ export default function MarketsSection() {
             theme="light"
             delay={300}
           >
-            Bigger opportunity means bigger upside for everyone at Rivvia.
+            Each market is strategically picked for Fiber adoption to ensure the highest close rate possible.
           </WipeReveal>
         </div>
       </div>

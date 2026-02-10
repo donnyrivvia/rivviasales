@@ -12,7 +12,7 @@ const incentives = [
     id: 'out-of-office-2026',
     title: "2026 OUT OF OFFICE",
     poster: "/incentives/26_ OUT OF OFFICE.png",
-    description: "Our annual Out of Office incentive rewards top performers with an all-expenses-paid trip. Work hard, hit your goals, and get away from the office in style.",
+    description: "Our annual big trip. Qualifying for this yearly incentive means you’ve done something special. We think you deserve an all-expense paid vacation to somewhere tropical. Don’t you?",
     details: [
       "All-expenses-paid luxury trip",
       "Exclusive for top performers",
@@ -24,7 +24,7 @@ const incentives = [
     id: 'members-only',
     title: "MEMBERS ONLY",
     poster: "/incentives/MEMBERS ONLY POSTER 2.png",
-    description: "Join the elite. Members Only is our exclusive recognition program for consistent high achievers who demonstrate excellence month after month.",
+    description: "Our Monthly Incentive that wins you CLBR apparel (that you’ll actually want to wear). We drop new designs monthly, so hitting quota turns into a status symbol.",
     details: [
       "Exclusive recognition program",
       "Reserved for consistent performers",
@@ -74,7 +74,8 @@ export default function IncentivesPage() {
                   : 'opacity-0 translate-y-8'
               }`}
             >
-              RIVVIA INCENTIVES
+              BIG COMMISSIONS. COOL INCENTIVES.<br />WHAT MORE COULD ASK FOR?
+
             </h1>
             <p 
               className={`text-xl text-white/70 max-w-3xl mx-auto leading-relaxed transition-all duration-700 delay-200 ${
@@ -83,7 +84,7 @@ export default function IncentivesPage() {
                   : 'opacity-0 translate-y-8'
               }`}
             >
-              Performance-driven rewards for those who execute. Work hard, hit your goals, and reap the benefits.
+              We design our Incentive packages to excite and motivate. 
             </p>
           </div>
         </div>
