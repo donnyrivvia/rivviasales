@@ -6,24 +6,28 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const features = [
   {
-    title: "ONBOARD.",
-    description: "The KNOCKVIA app will get you 100% onboarded. Every doc, signature, and form you need to sign and see to get you started is in the app.",
+    title: "CANVAS & AREA MANAGEMENT",
+    description: "Your tool to canvas, create leads, and prospect. Familiarize yourself with your sales territory—see where it's hot, cold, and what's already been knocked. Never double up. Only double down.",
   },
   {
-    title: "CANVAS.",
-    description: "Familiarize yourself with the area in which you're selling. You can see where it's hot, cold, and what's already been knocked. Never double up. Only double down.",
+    title: "LEAD MANAGEMENT",
+    description: "Track and manage all your sales needs from initial contact to close. Process orders in just 3 minutes. knockVia walks you through the entire process, making it easy to train and onboard new reps.",
   },
   {
-    title: "MANAGE CUSTOMERS.",
-    description: "Enter every new lead/customer/contract in KNOCKVIA. From initial contact to close, KNOCKVIA will walk you through the entire process.",
+    title: "ONBOARDING",
+    description: "Get 100% onboarded fast. Every doc, signature, and form you need is in the app. Sign documents, add recruits, and complete your welcome call—all in one place.",
   },
   {
-    title: "LEADERBOARDS",
-    description: "See how you stack up against those on your team. With one tap, check the leaderboard, how close you are to qualifying for certain incentives, and more.",
+    title: "LEADERBOARDS & HIERARCHY",
+    description: "See how you stack up against your team. With one tap, check the leaderboard, track your progress toward incentives, and manage your team hierarchy. Compete and win on the go.",
   },
   {
-    title: "TRAINING",
-    description: "Not liking where you are on the Leaderboard? Check out the training section in the app to receive top-tier education and support your efforts.",
+    title: "PAYROLL & REPORTING",
+    description: "Manage your commissions and payroll seamlessly. knockVia has you covered from lead creation to payment processing, helping you create better value and profit from your direct-to-consumer efforts.",
+  },
+  {
+    title: "OFFLINE SUPPORT & PORTALS",
+    description: "Work anywhere with offline mapping support and email login. The new portals feature gives you a fresh look and feel with faster performance—complete with rocket boosters for warp-speed efficiency.",
   },
 ];
 
@@ -46,7 +50,7 @@ export default function KnockViaPage() {
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{ 
-              backgroundImage: 'url(/knockvia_mockup.png)',
+              backgroundImage: 'url(/knockvia_mockup2.png)',
               backgroundPosition: 'center',
             }}
           />
