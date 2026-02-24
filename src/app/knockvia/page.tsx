@@ -8,26 +8,22 @@ const features = [
   {
     title: "CANVAS & AREA MANAGEMENT",
     description: "Your tool to canvas, create leads, and prospect. Familiarize yourself with your sales territory—see where it's hot, cold, and what's already been knocked. Never double up. Only double down.",
+    image: "/knockvia/screenshot-1.png",
   },
   {
     title: "LEAD MANAGEMENT",
     description: "Track and manage all your sales needs from initial contact to close. Process orders in just 3 minutes. knockVia walks you through the entire process, making it easy to train and onboard new reps.",
+    image: "/knockvia/screenshot-2.png",
   },
   {
     title: "ONBOARDING",
     description: "Get 100% onboarded fast. Every doc, signature, and form you need is in the app. Sign documents, add recruits, and complete your welcome call—all in one place.",
+    image: "/knockvia/screenshot-3.png",
   },
   {
     title: "LEADERBOARDS & HIERARCHY",
     description: "See how you stack up against your team. With one tap, check the leaderboard, track your progress toward incentives, and manage your team hierarchy. Compete and win on the go.",
-  },
-  {
-    title: "PAYROLL & REPORTING",
-    description: "Manage your commissions and payroll seamlessly. knockVia has you covered from lead creation to payment processing, helping you create better value and profit from your direct-to-consumer efforts.",
-  },
-  {
-    title: "OFFLINE SUPPORT & PORTALS",
-    description: "Work anywhere with offline mapping support and email login. The new portals feature gives you a fresh look and feel with faster performance—complete with rocket boosters for warp-speed efficiency.",
+    image: "/knockvia/screenshot-4.png",
   },
 ];
 
@@ -124,21 +120,18 @@ export default function KnockViaPage() {
                   }`}
                 >
                   <div className="grid md:grid-cols-2 gap-12 items-center">
-                    {/* Image placeholder - alternating sides */}
+                    {/* App Screenshot */}
                     <div 
-                      className={`aspect-[4/3] flex items-center justify-center border ${
+                      className={`flex items-center justify-center ${
                         index % 2 === 0 ? 'md:order-1' : 'md:order-2'
                       }`}
-                      style={{ 
-                        background: 'linear-gradient(135deg, #EDEFF7 0%, #D3D6E0 100%)',
-                        borderColor: '#BCBFCC'
-                      }}
                     >
-                      <div className="text-center" style={{ color: '#9DA2B3' }}>
-                        <svg className="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                        </svg>
-                        <p className="text-sm">Feature Preview</p>
+                      <div className="relative w-full max-w-sm mx-auto">
+                        <img 
+                          src={feature.image} 
+                          alt={feature.title}
+                          className="w-full h-auto drop-shadow-2xl"
+                        />
                       </div>
                     </div>
 
