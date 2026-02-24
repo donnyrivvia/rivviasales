@@ -87,7 +87,7 @@ export default function KnockViaPage() {
               </div>
               <div 
               className={`flex flex-col sm:flex-row gap-6 justify-center transition-all duration-700 delay-200 ${
-                ctaAnimation.isVisible 
+                heroAnimation.isVisible 
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 translate-y-8'
               }`}
