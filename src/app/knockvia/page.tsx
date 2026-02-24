@@ -6,23 +6,23 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const features = [
   {
-    title: "CANVAS & AREA MANAGEMENT",
-    description: "Your tool to canvas, create leads, and prospect. Familiarize yourself with your sales territory—see where it's hot, cold, and what's already been knocked. Never double up. Only double down.",
+    title: "EASY SIGN IN",
+    description: "Get started quickly with simple phone number or email authentication. knockVia's streamlined login gets you into the field faster, so you can focus on what matters—selling.",
     image: "/knockvia/screenshot-1.png",
   },
   {
-    title: "LEAD MANAGEMENT",
-    description: "Track and manage all your sales needs from initial contact to close. Process orders in just 3 minutes. knockVia walks you through the entire process, making it easy to train and onboard new reps.",
+    title: "COMPLETE SALES HUB",
+    description: "Your home base for everything sales. Create leads, manage customers, schedule welcome calls, handle recruiting, access training, and more—all from one intuitive dashboard. Every action you need is just a tap away.",
     image: "/knockvia/screenshot-2.png",
   },
   {
-    title: "ONBOARDING",
-    description: "Get 100% onboarded fast. Every doc, signature, and form you need is in the app. Sign documents, add recruits, and complete your welcome call—all in one place.",
+    title: "LEADERBOARDS",
+    description: "See how you stack up against your team. Track your rankings, monitor your progress toward incentives, and fuel your competitive edge. Real-time leaderboards keep you motivated and in the game.",
     image: "/knockvia/screenshot-3.png",
   },
   {
-    title: "LEADERBOARDS & HIERARCHY",
-    description: "See how you stack up against your team. With one tap, check the leaderboard, track your progress toward incentives, and manage your team hierarchy. Compete and win on the go.",
+    title: "SMART MAPPING",
+    description: "Navigate your territory with precision. See your sales area, track where you've knocked, identify hot zones, and plan your route efficiently. Work offline with full mapping support—no internet required.",
     image: "/knockvia/screenshot-4.png",
   },
 ];
