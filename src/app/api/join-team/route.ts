@@ -42,6 +42,7 @@ export async function POST(request: Request) {
         'donny@rivvia.com',
         'jeremy@rivvia.com',
         'matth@rivvia.com',
+        'curtisb@rivvia.com',
         // Add more emails below:
         // 'manager@rivvia.com',
         // 'hr@rivvia.com',
